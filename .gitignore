@@ -71,3 +71,6 @@ crashlytics-build.properties
 
 /[Uu]ser[Ss]ettings/
 /[Rr]ecordings/
+
+.idea/
+.vsconfig
