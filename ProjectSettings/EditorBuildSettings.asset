@@ -6,6 +6,18 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/Testing/TestScene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
+    path: Assets/Scenes/test_simon_network/Launcher.unity
+    guid: e5fb56e33809a9246afc621e0bf3ade1
+  - enabled: 1
+    path: Assets/Scenes/test_simon_network/Room for 1.unity
+    guid: c0323a271e735ff40bb8e063b27096e5
+  - enabled: 1
+    path: Assets/Scenes/test_simon_network/Room for 2.unity
+    guid: 3b41165e12854894fabefefd71547824
+  - enabled: 1
+    path: Assets/Scenes/test_simon_network/Room for 3.unity
+    guid: e16d2da5c023b6d4da11e49de008be47
+  - enabled: 1
+    path: Assets/Scenes/test_simon_network/Room for 4.unity
+    guid: dcd5ab9438b90c94182f5d734b0b9a26
   m_configObjects: {}
