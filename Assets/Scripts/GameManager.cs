@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using Photon.Pun;
 using Photon.Realtime;
 
-namespace Com.MyCompany.MyGame
+namespace RogueCaml
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {

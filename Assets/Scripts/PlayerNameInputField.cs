@@ -6,7 +6,7 @@ using Photon.Realtime;
 
 using System.Collections;
 
-namespace Com.MyCompany.MyGame
+namespace RogueCaml
 {
     /// <summary>
     /// Player name input field. Let the user input his name, will appear above the player in the game.
