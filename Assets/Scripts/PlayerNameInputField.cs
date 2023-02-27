@@ -29,7 +29,7 @@ namespace Com.MyCompany.MyGame
         void Start () {
 
             string defaultName = string.Empty;
-            InputField _inputField = this.GetComponent(InputField);
+            InputField _inputField = this.GetComponent<InputField>();
             if (_inputField!=null)
             {
                 if (PlayerPrefs.HasKey(playerNamePrefKey))
