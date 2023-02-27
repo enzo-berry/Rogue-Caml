@@ -237,5 +237,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  rb: {fileID: 0}
+  rb: {fileID: 841372470}
   Health: 3
+  PlayerUiPrefab: {fileID: 7619197174301073097, guid: d9936d48b1d8dc34cafdd73ed7f03b13, type: 3}
