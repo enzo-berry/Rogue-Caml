@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.5
+  orthographic size: 0.8642726
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -244,12 +244,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 637341715689640835, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.0211
+      objectReference: {fileID: 0}
+    - target: {fileID: 637341715689640835, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -14.18
       objectReference: {fileID: 0}
     - target: {fileID: 637341715689640835, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 637341715689640835, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
       propertyPath: m_LocalPosition.z
@@ -283,6 +287,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2442197680423789882, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
+      propertyPath: MinDistance
+      value: 2.732245
+      objectReference: {fileID: 0}
     - target: {fileID: 3582383605393781203, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
       propertyPath: m_Name
       value: Square
@@ -306,11 +314,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8284726158154399593, guid: 82a1c58bcaa8ac8438b508c808902bb4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.1
+      value: 0.19
       objectReference: {fileID: 0}
     - target: {fileID: 8284726158154399593, guid: 82a1c58bcaa8ac8438b508c808902bb4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8284726158154399593, guid: 82a1c58bcaa8ac8438b508c808902bb4, type: 3}
       propertyPath: m_LocalPosition.z
