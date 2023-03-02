@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 5718020299936524067}
   - component: {fileID: 841372472}
   - component: {fileID: 3302154829412797363}
+  - component: {fileID: 6340805809262794232}
   m_Layer: 0
   m_Name: mult_player
   m_TagString: Untagged
@@ -240,3 +241,30 @@ MonoBehaviour:
   rb: {fileID: 841372470}
   Health: 3
   PlayerUiPrefab: {fileID: 7619197174301073097, guid: d9936d48b1d8dc34cafdd73ed7f03b13, type: 3}
+  WeaponPrefab: {fileID: 2301505430143218688, guid: 482be74b88041484d813e0365f8564d7, type: 3}
+--- !u!61 &6340805809262794232
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340805809113597259}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.12622213, y: 0.098172545}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 3.5, y: 3.5}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.4060774, y: 2.9109638}
+  m_EdgeRadius: 0

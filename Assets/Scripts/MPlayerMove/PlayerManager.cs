@@ -21,6 +21,7 @@ namespace RogueCaml
         [Tooltip("The Player's UI GameObject Prefab")]
         [SerializeField]
         public GameObject PlayerUiPrefab;
+        public GameObject WeaponPrefab;
 
 
         #region IPunObservable implementation
@@ -67,6 +68,7 @@ namespace RogueCaml
             }
 
             GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
+            GameObject _weapon = Instantiate(this.WeaponPrefab);
             _uiGo.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
         }
 
