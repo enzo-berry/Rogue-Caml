@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System;
+
 using Photon.Pun;
 using Photon.Realtime;
 
@@ -11,16 +13,18 @@ using Photon.Realtime;
 namespace RogueCaml{
 public class SwordScript : MonoBehaviourPunCallbacks
 {
-    public EdgeCollider2D collider;
+    //public EdgeCollider2D collider;
     private PlayerManager target;
     public SpriteRenderer render;
-    public Transform transform;
+    //public Transform transform;
     public int coolDown;
     public int angle;
     public int Dommage;
 
 
+    private Vector2 xaxe = new Vector2(1,0);
     private Vector3 mousePosition;
+    private float alpha = 0;
 
     //private PlayerManager owner
     // Start is called before the first frame update
@@ -51,15 +55,34 @@ public class SwordScript : MonoBehaviourPunCallbacks
         if(target.photonView.IsMine)
         {
             Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 tmp = this.transform.position;
-            Vector2 direction = new Vector2(Signe(mp.x - tmp.x), Signe(mp.y- tmp.y));
+            Vector2 tmp = target.rb.position;
+
+            Vector2 v = mp - tmp;
+
+            alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+            Vector2 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+            
             this.transform.position = target.rb.position + direction;
+
+            alpha *= (float)(180f/Math.PI);
+            alpha -= 45f;
+
+            transform.eulerAngles = new Vector3(0f,0f,alpha);
         }
         
         //Vector3 =
         //transform.Rotate(0,0,180);
         
     }
+
+    void FixedUpdate()
+    {
+        if(target.photonView.IsMine)
+        {
+            //Debug.LogError($"{alpha}", this);
+        }
+    }
+
     void Attaque()
     {
         
