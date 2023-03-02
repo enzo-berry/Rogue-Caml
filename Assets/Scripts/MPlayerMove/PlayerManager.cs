@@ -24,7 +24,7 @@ namespace RogueCaml
         [Tooltip("The Player's UI GameObject Prefab")]
         [SerializeField]
         public GameObject PlayerUiPrefab;
-        public GameObject WeaponPrefab;
+        public GameObject weapon;
 
 
         #region IPunObservable implementation
@@ -71,9 +71,9 @@ namespace RogueCaml
             }
 
             GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
-            GameObject _weapon = Instantiate(this.WeaponPrefab);
+            
             _uiGo.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
-            _weapon.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
+            
         }
 
         #if UNITY54ORNEWER
@@ -98,8 +98,6 @@ namespace RogueCaml
             {
                 GameObject _uiGo =  Instantiate(PlayerUiPrefab);
                 _uiGo.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
-                GameObject _weapon = Instantiate(this.WeaponPrefab);
-                _weapon.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
             }
             else
             {
@@ -140,5 +138,28 @@ namespace RogueCaml
             movement.y = Input.GetAxisRaw("Vertical");
             
         }
+
+        void OnCollisionStay(Collision other)
+        {
+            Debug.LogWarning("çaa", this);
+            //static int WeaponCD;
+            switch(other.collider.tag)
+            {
+                case "Weapon":
+                    if(weapon == null)
+                    {
+                        weapon = other.collider.gameObject;
+                        weapon.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
+                    }
+                    else if(Input.GetButtonDown("e"))
+                    {
+                        weapon.SendMessage("UnsetTarget",this, SendMessageOptions.RequireReceiver);
+                        weapon = other.collider.gameObject;
+                        weapon.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
+                    }
+                    break;
+            }
+        }
+        
     }
 }

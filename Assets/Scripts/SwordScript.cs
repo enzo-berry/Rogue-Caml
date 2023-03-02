@@ -45,14 +45,7 @@ public class SwordScript : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void Update()
     {
-        if (target == null)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-
-
-        if(target.photonView.IsMine)
+        if(target != null)
         {
             Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             Vector2 tmp = target.rb.position;
@@ -77,10 +70,7 @@ public class SwordScript : MonoBehaviourPunCallbacks
 
     void FixedUpdate()
     {
-        if(target.photonView.IsMine)
-        {
-            //Debug.LogError($"{alpha}", this);
-        }
+        
     }
 
     void Attaque()
@@ -99,6 +89,11 @@ public class SwordScript : MonoBehaviourPunCallbacks
             target = _target;
     
         }
+
+    public void UnsetTarget(PlayerManager _target)
+    {
+        target = null;
+    }
 
     int Signe(float f) 
     {
