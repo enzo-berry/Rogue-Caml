@@ -9,11 +9,12 @@ public class SwordScript : MonoBehaviour
     public EdgeCollider2D collider;
     private PlayerManager target;
     public SpriteRenderer render;
-    public Rigidbody2D rb;
     public Transform transform;
     public int coolDown;
     public int angle;
     public int Dommage;
+
+    //private PlayerManager owner
     // Start is called before the first frame update
 
     
@@ -33,9 +34,11 @@ public class SwordScript : MonoBehaviour
             Destroy(this.gameObject);
             return;
         }
+
+        this.transform.position = target.rb.position;
         //Vector3 =
         //transform.Rotate(0,0,180);
-        //transform.position = Vector3(3,3,0);
+        
     }
     void Attaque()
     {

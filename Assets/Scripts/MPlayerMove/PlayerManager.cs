@@ -70,6 +70,7 @@ namespace RogueCaml
             GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
             GameObject _weapon = Instantiate(this.WeaponPrefab);
             _uiGo.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
+            _weapon.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
         }
 
         #if UNITY54ORNEWER
@@ -94,6 +95,8 @@ namespace RogueCaml
             {
                 GameObject _uiGo =  Instantiate(PlayerUiPrefab);
                 _uiGo.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
+                GameObject _weapon = Instantiate(this.WeaponPrefab);
+                _weapon.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
             }
             else
             {
