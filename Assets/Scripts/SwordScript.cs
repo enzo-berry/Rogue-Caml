@@ -14,7 +14,7 @@ namespace RogueCaml{
 public class SwordScript : MonoBehaviourPunCallbacks
 {
     //public EdgeCollider2D collider;
-    private PlayerManager target;
+    public PlayerManager target;
     public SpriteRenderer render;
     //public Transform transform;
     public int coolDown;

@@ -15,7 +15,7 @@ namespace RogueCaml
         public float moveSpeed = 5f;
         public int attaqueSpeed = 1;
         public int Health = 3;
-        
+
         public Rigidbody2D rb;
         Vector2 movement;
 
@@ -98,8 +98,8 @@ namespace RogueCaml
             {
                 GameObject _uiGo =  Instantiate(PlayerUiPrefab);
                 _uiGo.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
-                GameObject _weapon = Instantiate(this.WeaponPrefab);
-                _weapon.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
+                //GameObject _weapon = Instantiate(this.WeaponPrefab);
+                //_weapon.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
             }
             else
             {
