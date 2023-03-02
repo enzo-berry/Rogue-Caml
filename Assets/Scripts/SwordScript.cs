@@ -7,15 +7,18 @@ namespace RogueCaml{
 public class SwordScript : MonoBehaviour
 {
     public EdgeCollider2D collider;
-    public GameObject render;
+    public SpriteRenderer render;
+    public Rigidbody2D rb;
     public int coolDown;
     public int angle;
     public int Dommage;
     // Start is called before the first frame update
+
+    
     void Start()
     {
         //collider.SetActive(false);
-        render.SetActive(false);
+        //render.SetActive(false);
     }
 
     // Update is called once per frame
@@ -27,7 +30,7 @@ public class SwordScript : MonoBehaviour
 
     void Attaque()
     {
-
+        
     }
 
 }
