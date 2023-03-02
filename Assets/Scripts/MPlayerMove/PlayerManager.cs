@@ -13,10 +13,13 @@ namespace RogueCaml
         public static GameObject LocalPlayerInstance;
 
         public float moveSpeed = 5f;
+        public int attaqueSpeed = 1;
+        public int Health = 3;
+        
         public Rigidbody2D rb;
         Vector2 movement;
 
-        public int Health = 3;
+        
 
         [Tooltip("The Player's UI GameObject Prefab")]
         [SerializeField]

@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using Photon.Pun;
+using Photon.Realtime;
+
+
+
 
 namespace RogueCaml{
-public class SwordScript : MonoBehaviour
+public class SwordScript : MonoBehaviourPunCallbacks
 {
     public EdgeCollider2D collider;
     private PlayerManager target;
@@ -14,9 +19,16 @@ public class SwordScript : MonoBehaviour
     public int angle;
     public int Dommage;
 
+
+    private Vector3 mousePosition;
+
     //private PlayerManager owner
     // Start is called before the first frame update
 
+    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        
+    }
     
     void Start()
     {
@@ -35,7 +47,15 @@ public class SwordScript : MonoBehaviour
             return;
         }
 
-        this.transform.position = target.rb.position;
+
+        if(target.photonView.IsMine)
+        {
+            Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 tmp = this.transform.position;
+            Vector2 direction = new Vector2(Signe(mp.x - tmp.x), Signe(mp.y- tmp.y));
+            this.transform.position = target.rb.position + direction;
+        }
+        
         //Vector3 =
         //transform.Rotate(0,0,180);
         
@@ -56,6 +76,11 @@ public class SwordScript : MonoBehaviour
             target = _target;
     
         }
+
+    int Signe(float f) 
+    {
+        return f>0? 1 : f==0? 0 : -1;
+    }
 
 }
 }
