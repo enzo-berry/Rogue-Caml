@@ -136,30 +136,12 @@ namespace RogueCaml
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
+
+            
             
         }
 
-        void OnCollisionStay(Collision other)
-        {
-            Debug.LogWarning("çaa", this);
-            //static int WeaponCD;
-            switch(other.collider.tag)
-            {
-                case "Weapon":
-                    if(weapon == null)
-                    {
-                        weapon = other.collider.gameObject;
-                        weapon.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
-                    }
-                    else if(Input.GetButtonDown("e"))
-                    {
-                        weapon.SendMessage("UnsetTarget",this, SendMessageOptions.RequireReceiver);
-                        weapon = other.collider.gameObject;
-                        weapon.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
-                    }
-                    break;
-            }
-        }
+        
         
     }
 }

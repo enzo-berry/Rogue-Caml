@@ -11,7 +11,7 @@ using Photon.Realtime;
 
 
 namespace RogueCaml{
-public class SwordScript : MonoBehaviourPunCallbacks
+public class SwordScript : Item
 {
     //public EdgeCollider2D collider;
     public PlayerManager target;
@@ -78,21 +78,24 @@ public class SwordScript : MonoBehaviourPunCallbacks
         
     }
 
-    public void SetTarget(PlayerManager _target)
+    public void Pickup(PlayerManager _target)
+    {
+        if (_target == null)
         {
-            if (_target == null)
-            {
-                Debug.LogError("<Color=Red><a>Missing</a></Color> PlayMakerManager target for PlayerUI.SetTarget.", this);
-                return;
-            }
-            // Cache references for efficiency
-            target = _target;
-    
+            Debug.LogError("<Color=Red><a>Missing</a></Color> PlayMakerManager target for PlayerUI.SetTarget.", this);
+            return;
         }
+            // Cache references for efficiency
+        target = _target;
 
-    public void UnsetTarget(PlayerManager _target)
+
+        this.gameObject.tag = "Weapon";
+    }
+
+    public void Drop()
     {
         target = null;
+        this.gameObject.tag = "ItemW";
     }
 
     int Signe(float f) 

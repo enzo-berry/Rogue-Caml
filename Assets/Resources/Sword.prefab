@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 7122183106312743728}
   m_Layer: 0
   m_Name: Sword
-  m_TagString: Weapon
+  m_TagString: ItemW
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 672091b2b500d0547a950444e5b17de3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 7417828424810411905}
   - {fileID: 4435951063462099800}
-  sceneViewId: 0
+  sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &7417828424810411905
