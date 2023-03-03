@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 30
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -206,6 +206,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &522932550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 522932551}
+  m_Layer: 0
+  m_Name: mobGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &522932551
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 522932550}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &6015353297861211967
 PrefabInstance:
@@ -285,11 +316,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6340805809113597239, guid: a2e44bbe172c54847aa4bd6b28348f39, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.99
+      value: -7.63
       objectReference: {fileID: 0}
     - target: {fileID: 6340805809113597239, guid: a2e44bbe172c54847aa4bd6b28348f39, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.16
+      value: 3.32
       objectReference: {fileID: 0}
     - target: {fileID: 6340805809113597239, guid: a2e44bbe172c54847aa4bd6b28348f39, type: 3}
       propertyPath: m_LocalPosition.z
@@ -342,11 +373,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5179551240134286894, guid: 2042fb041ac741d43a2a22f884b6c7ac, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.46
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 5179551240134286894, guid: 2042fb041ac741d43a2a22f884b6c7ac, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.04
+      value: 7.7
       objectReference: {fileID: 0}
     - target: {fileID: 5179551240134286894, guid: 2042fb041ac741d43a2a22f884b6c7ac, type: 3}
       propertyPath: m_LocalPosition.z
@@ -384,9 +415,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Ennemies
       objectReference: {fileID: 0}
+    - target: {fileID: 7353404767461780992, guid: 2042fb041ac741d43a2a22f884b6c7ac, type: 3}
+      propertyPath: rb
+      value: 
+      objectReference: {fileID: 7353404767461781001}
     - target: {fileID: 9084872281767796459, guid: 2042fb041ac741d43a2a22f884b6c7ac, type: 3}
       propertyPath: sceneViewId
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2042fb041ac741d43a2a22f884b6c7ac, type: 3}
+--- !u!50 &7353404767461781001 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 7353404767461781001, guid: 2042fb041ac741d43a2a22f884b6c7ac, type: 3}
+  m_PrefabInstance: {fileID: 7353404767461780990}
+  m_PrefabAsset: {fileID: 0}
