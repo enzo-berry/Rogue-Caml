@@ -16,28 +16,28 @@ public class PlayerCollisionController : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("collision enter", this);
+        //Debug.Log("collision enter", this);
     }
 
     private void OnCollisionStay2D(Collision2D collision)
     {
-        Debug.Log("collision stay", this);
+        //Debug.Log("collision stay", this);
     }
 
     private void OnCollisionExit2D(Collision2D collision)
     {
-        Debug.Log("collision exit", this);
+        //Debug.Log("collision exit", this);
     }
 
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log("trigger enter", this);
+        //Debug.Log("trigger enter", this);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("trigger stay", this);
+        //Debug.Log("trigger stay", this);
         if(collision.gameObject.CompareTag("ItemW") && Input.GetButton("Fire1"))
         {
             collision.gameObject.SendMessage("Pickup", me, SendMessageOptions.RequireReceiver);
@@ -58,7 +58,7 @@ public class PlayerCollisionController : MonoBehaviourPunCallbacks
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        Debug.Log("trigger exit", this);
+        //Debug.Log("trigger exit", this);
     }
 }
 }

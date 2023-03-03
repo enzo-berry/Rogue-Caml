@@ -11,6 +11,8 @@ namespace RogueCaml{
 public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
 {
     public int Health = 5;
+    public float moveSpeed = 5f;
+    public Rigidbody2D rb;
 
 
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -42,6 +44,35 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             Destroy(this.gameObject);
         }
+
+
+    }
+
+    void FixedUpdate()
+    {
+        
+     
+
+        PlayerManager[] players = FindObjectsOfType<PlayerManager>();
+        Vector2 v = new Vector2(0f,0f);
+        double d = 10000000000000;
+
+        Debug.LogError($"players found : {players.Length}", this);
+        
+
+        for(int i  = 0; i < players.Length; i++)
+        {
+            if(Distance(players[i].transform.position - transform.position) < d);
+            {
+                v = players[i].transform.position - transform.position;
+                d = Distance(v);
+            }
+        }
+
+        float alpha = alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+        Vector2 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+        
+        rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
     }
 
 
@@ -49,5 +80,16 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         Health -= amount;
     }
+
+    double Distance(Vector2 v)
+    {
+        return (float)(Math.Sqrt(v.x * v.x + v.y * v.y));
+    }
+
+    int Signe(float f) 
+    {
+        return f>0? 1 : f==0? 0 : -1;
+    }
+
 }
 }
