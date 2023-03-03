@@ -54,13 +54,13 @@ namespace RogueCaml
             }
         }
 
-        #if !UNITY_5_4_OR_NEWER
+        /*#if !UNITY_5_4_OR_NEWER
         /// <summary>See CalledOnLevelWasLoaded. Outdated in Unity 5.4.</summary>
         void OnLevelWasLoaded(int level)
         {
             this.CalledOnLevelWasLoaded(level);
         }
-        #endif
+        #endif*/
 
         void CalledOnLevelWasLoaded(int level)
         {
@@ -71,7 +71,7 @@ namespace RogueCaml
             
         }
 
-        #if UNITY54ORNEWER
+        /*#if UNITY54ORNEWER
         public override void OnDisable()
         {
             // Always call the base to remove callbacks
@@ -85,7 +85,7 @@ namespace RogueCaml
         {
             this.CalledOnLevelWasLoaded(scene.buildIndex);
         }
-        #endif
+        #endif*/
 
         void Start()
         {
@@ -100,10 +100,10 @@ namespace RogueCaml
             }
 
             //a la fin
-            #if UNITY54ORNEWER
+            /*#if UNITY54ORNEWER
             // Unity 5.4 has a new scene management. register a method to call CalledOnLevelWasLoaded.
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
-            #endif
+            #endif*/
         }
 
         void Awake()

@@ -129,7 +129,7 @@ MonoBehaviour:
   render: {fileID: 2301505430143218719}
   coolDown: 0
   angle: 0
-  Dommage: 0
+  Dommage: 1
 --- !u!114 &3318950470493670531
 MonoBehaviour:
   m_ObjectHideFlags: 0
