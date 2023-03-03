@@ -176,7 +176,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 11.5
+  orthographic size: 0.8642726
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -207,6 +207,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1058891843 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8284726158154399591, guid: 82a1c58bcaa8ac8438b508c808902bb4, type: 3}
+  m_PrefabInstance: {fileID: 8284726156749839857}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1058891848
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1058891843}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 9367c34fc724f344280fa1ce0fda9475, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
 --- !u!1001 &3124180824503179761
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -219,12 +244,16 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 637341715689640835, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2.0211
+      objectReference: {fileID: 0}
+    - target: {fileID: 637341715689640835, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -14.18
       objectReference: {fileID: 0}
     - target: {fileID: 637341715689640835, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.6
       objectReference: {fileID: 0}
     - target: {fileID: 637341715689640835, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
       propertyPath: m_LocalPosition.z
@@ -258,6 +287,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2442197680423789882, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
+      propertyPath: MinDistance
+      value: 2.732245
+      objectReference: {fileID: 0}
     - target: {fileID: 3582383605393781203, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
       propertyPath: m_Name
       value: Square
@@ -281,11 +314,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8284726158154399593, guid: 82a1c58bcaa8ac8438b508c808902bb4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -5.1
+      value: 0.19
       objectReference: {fileID: 0}
     - target: {fileID: 8284726158154399593, guid: 82a1c58bcaa8ac8438b508c808902bb4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.05
       objectReference: {fileID: 0}
     - target: {fileID: 8284726158154399593, guid: 82a1c58bcaa8ac8438b508c808902bb4, type: 3}
       propertyPath: m_LocalPosition.z
