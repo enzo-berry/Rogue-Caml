@@ -13,14 +13,18 @@ namespace RogueCaml
         public static GameObject LocalPlayerInstance;
 
         public float moveSpeed = 5f;
+        public int attaqueSpeed = 1;
+        public int Health = 3;
+
         public Rigidbody2D rb;
         Vector2 movement;
 
-        public int Health = 3;
+        
 
         [Tooltip("The Player's UI GameObject Prefab")]
         [SerializeField]
         public GameObject PlayerUiPrefab;
+        public GameObject weapon;
 
 
         #region IPunObservable implementation
@@ -50,27 +54,24 @@ namespace RogueCaml
             }
         }
 
-        #if !UNITY_5_4_OR_NEWER
+        /*#if !UNITY_5_4_OR_NEWER
         /// <summary>See CalledOnLevelWasLoaded. Outdated in Unity 5.4.</summary>
         void OnLevelWasLoaded(int level)
         {
             this.CalledOnLevelWasLoaded(level);
         }
-        #endif
+        #endif*/
 
         void CalledOnLevelWasLoaded(int level)
         {
             // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
-            if (!Physics.Raycast(transform.position, -Vector3.up, 5f))
-            {
-                transform.position = new Vector3(0f, 5f, 0f);
-            }
-
             GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
+            
             _uiGo.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
+            
         }
 
-        #if UNITY54ORNEWER
+        /*#if UNITY54ORNEWER
         public override void OnDisable()
         {
             // Always call the base to remove callbacks
@@ -84,7 +85,7 @@ namespace RogueCaml
         {
             this.CalledOnLevelWasLoaded(scene.buildIndex);
         }
-        #endif
+        #endif*/
 
         void Start()
         {
@@ -99,10 +100,10 @@ namespace RogueCaml
             }
 
             //a la fin
-            #if UNITY54ORNEWER
+            /*#if UNITY54ORNEWER
             // Unity 5.4 has a new scene management. register a method to call CalledOnLevelWasLoaded.
             UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
-            #endif
+            #endif*/
         }
 
         void Awake()
@@ -130,7 +131,6 @@ namespace RogueCaml
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
-            
         }
     }
 }

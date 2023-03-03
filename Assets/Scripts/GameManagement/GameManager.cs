@@ -14,6 +14,7 @@ namespace RogueCaml
 
         [Tooltip("The prefab to use for representing the player")]
         public GameObject playerPrefab;
+        public GameObject weaponPrefab;
 
         void Start()
         {
@@ -28,6 +29,7 @@ namespace RogueCaml
                     Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
                     // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
                     PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector2(0f,0f), Quaternion.identity, 0);
+                    PhotonNetwork.Instantiate(this.weaponPrefab.name, new Vector2(0f,0f), Quaternion.identity, 0);
                 }
                 else
                 {
