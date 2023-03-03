@@ -36,9 +36,18 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
     }
 
     // Update is called once per frame
-    void Update()
+    public void Update()
     {
-        
+        if(Health <= 0)
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
+    public void TakeDommage(int amount)
+    {
+        Health -= amount;
     }
 }
 }

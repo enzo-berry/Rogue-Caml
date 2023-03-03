@@ -19,7 +19,7 @@ public class SwordScript : Item
     //public Transform transform;
     public int coolDown;
     public int angle;
-    public int Dommage;
+    public int Dammage;
 
 
     private Vector2 xaxe = new Vector2(1,0);

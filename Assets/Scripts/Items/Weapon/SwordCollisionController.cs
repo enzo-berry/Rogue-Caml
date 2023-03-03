@@ -5,7 +5,7 @@ using UnityEngine;
 namespace RogueCaml{
 public class SwordCollisionController : MonoBehaviour
 {
-    public EnnemiesManager me;
+    public SwordScript me;
 
     // Start is called before the first frame update
     private void OnCollisionEnter2D(Collision2D collision)
@@ -27,6 +27,12 @@ public class SwordCollisionController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         Debug.Log("trigger enter", this);
+
+        if(collision.gameObject.CompareTag("Ennemy"))
+        {
+            Debug.Log("test", this);
+            collision.gameObject.SendMessage("TakeDommage", me.Dammage, SendMessageOptions.RequireReceiver);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)

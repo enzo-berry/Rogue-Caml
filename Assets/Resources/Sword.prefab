@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 6967046120743027856}
   - component: {fileID: 4435951063462099800}
   - component: {fileID: 7122183106312743728}
+  - component: {fileID: 1627762022}
   m_Layer: 0
   m_Name: Sword
   m_TagString: ItemW
@@ -129,7 +130,7 @@ MonoBehaviour:
   render: {fileID: 2301505430143218719}
   coolDown: 0
   angle: 0
-  Dommage: 1
+  Dammage: 1
 --- !u!114 &3318950470493670531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -223,3 +224,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd35d08b75bbd6c4b818c4eeeab09740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1627762022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2301505430143218688}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15d5169180ae1de4192a1193b719b95c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  me: {fileID: 2301505430143218713}
