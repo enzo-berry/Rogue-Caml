@@ -38,6 +38,10 @@ namespace RogueCaml
             float h = Input.GetAxis("Horizontal");
             float v = Input.GetAxis("Vertical");
             animator.SetFloat("speed", h * h + v * v);
+            animator.SetBool("up", v > 0);
+            animator.SetBool("down", v < 0);
+            animator.SetBool("right", h > 0);
+            animator.SetBool("left", h < 0);
         }
 
         
