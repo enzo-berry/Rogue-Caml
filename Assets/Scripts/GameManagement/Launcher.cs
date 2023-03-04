@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Photon.Pun;
 using Photon.Realtime;
-
+using UnityEngine.UI;
 
 namespace RogueCaml
 {
@@ -22,6 +22,9 @@ namespace RogueCaml
         [Tooltip("The UI Label to inform the user that the connection is in progress")]
         [SerializeField]
         private GameObject progressLabel;
+        [Tooltip("The UI input field for playername")]
+        [SerializeField]
+        private InputField PlayerName_input;
 
         bool isConnecting;
 
@@ -72,6 +75,10 @@ namespace RogueCaml
         {
             progressLabel.SetActive(true);
             controlPanel.SetActive(false);
+            PhotonNetwork.NickName = PlayerName_input.text == "" ? "Player " : PlayerName_input.text;
+            Debug.Log("Attempting to connect with Nickname: " + PhotonNetwork.NickName);
+
+
             // we check if we are connected or not, we join if we are , else we initiate the connection to the server.
             if (PhotonNetwork.IsConnected)
             {
