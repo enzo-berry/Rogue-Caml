@@ -137,23 +137,17 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: speed
   - Type: 4
-    SynchronizeType: 1
-    Name: OnFire
+    SynchronizeType: 0
+    Name: up
   - Type: 4
-    SynchronizeType: 1
-    Name: Alive
+    SynchronizeType: 0
+    Name: down
   - Type: 4
-    SynchronizeType: 1
-    Name: Dommage
-  - Type: 1
-    SynchronizeType: 1
-    Name: Horizontal
-  - Type: 1
-    SynchronizeType: 1
-    Name: Vertical
+    SynchronizeType: 0
+    Name: right
   - Type: 4
-    SynchronizeType: 1
-    Name: attacking
+    SynchronizeType: 0
+    Name: left
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
