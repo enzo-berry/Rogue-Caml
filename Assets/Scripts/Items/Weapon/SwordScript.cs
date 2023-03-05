@@ -11,8 +11,8 @@ using Photon.Realtime;
 
 
 namespace RogueCaml{
-public class SwordScript : Item
-{
+public class SwordScript : Item, IPunObservable
+    {
     //public EdgeCollider2D collider;
     public PlayerManager target;
     public SpriteRenderer render;
