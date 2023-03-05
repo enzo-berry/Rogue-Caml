@@ -16,6 +16,12 @@ namespace RogueCaml
         void Start()
         {
             animator = GetComponent<Animator>();
+            
+            //Set the initial position of the Player at startup
+            animator.SetBool("up", false);
+            animator.SetBool("down", true);
+            animator.SetBool("right", false);
+            animator.SetBool("left", false);
             if(!animator)
             {
                 Debug.LogError("PlayerAnimatorManager is Missing Animator component", this);
