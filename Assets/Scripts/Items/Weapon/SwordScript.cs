@@ -17,22 +17,42 @@ public class SwordScript : Item
     public PlayerManager target;
     public SpriteRenderer render;
     //public Transform transform;
-    public int coolDown;
+    public float coolDown;
     public int angle;
     public int Dammage;
 
+    private int sens;
+
 
     private Vector2 xaxe = new Vector2(1,0);
+    private Vector2 direction = new Vector2(0f,0f);
     private Vector3 mousePosition;
     private float alpha = 0;
+
+
+    public bool attacking = false;
+    private float wait;
 
     //private PlayerManager owner
     // Start is called before the first frame update
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        
-    }
+    #region IPunObservable implementation
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                // We own this player: send the others our data
+                //stream.SendNext(attacking);
+            }
+            else
+            {
+                // Network player, receive data
+                //this.attacking = (bool)stream.ReceiveNext();
+            }
+        }
+
+    #endregion
     
     void Start()
     {
@@ -47,25 +67,87 @@ public class SwordScript : Item
     {
         if(target != null)
         {
-            Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            Vector2 tmp = target.rb.position;
+            /*if(!attacking)
+            {   Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 tmp = target.rb.position;
 
-            Vector2 v = mp - tmp;
+                Vector2 v = mp - tmp;
 
-            alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
-            Vector2 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+                alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+                direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
             
-            this.transform.position = target.rb.position + direction;
+                this.transform.position = target.rb.position + direction;
 
-            alpha *= (float)(180f/Math.PI);
-            alpha -= 45f;
+                alpha *= (float)(180f/Math.PI);
+                alpha -= 45f;
 
-            transform.eulerAngles = new Vector3(0f,0f,alpha);
+                transform.eulerAngles = new Vector3(0f,0f, alpha);
+            }*/
         }
-        
-        //Vector3 =
-        //transform.Rotate(0,0,180);
-        
+        if(target.photonView.IsMine && Input.GetMouseButtonDown(0))
+        {
+            Attaque();
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if(attacking)
+        {
+            if(Time.time - wait < coolDown)
+            {
+                alpha = (float)((alpha + sens * (angle * Time.fixedDeltaTime / coolDown)));
+                transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);
+
+                alpha *= (float)(Math.PI/180f);
+
+                direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+                this.transform.position = target.rb.position + direction;
+
+                alpha *= (float)(180f/Math.PI);
+                /*
+                direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+
+                this.transform.position = target.rb.position + direction;
+
+                alpha *= (float)(180f/Math.PI);
+                //alpha -= 45f;
+
+                transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);*/
+            }
+            else
+            {
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                attacking = false;
+            }
+        }
+    }
+
+    public void Attaque()
+    {
+        if(!attacking)
+        {
+            Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            sens = mp.x>0?-1:1;
+
+            Vector2 tmp = target.rb.position;
+            Vector2 v = mp - tmp;
+            alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+            alpha = (float)(alpha + (-sens * Math.PI / 2));
+
+            direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+
+            this.transform.position = target.rb.position + direction;
+            alpha *= (float)(180f/Math.PI);
+
+            transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);
+
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            wait = Time.time;
+            attacking = true;
+            
+        }
     }
 
     void Awake()
@@ -81,15 +163,7 @@ public class SwordScript : Item
         DontDestroyOnLoad(this.gameObject);
     }
 
-    void FixedUpdate()
-    {
-        
-    }
-
-    void Attaque()
-    {
-        
-    }
+    
 
     public void Pickup(PlayerManager _target)
     {
@@ -99,6 +173,7 @@ public class SwordScript : Item
             return;
         }
             // Cache references for efficiency
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;
         target = _target;
 
 
