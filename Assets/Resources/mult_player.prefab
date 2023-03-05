@@ -137,19 +137,19 @@ MonoBehaviour:
     SynchronizeType: 1
     Name: speed
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: up
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: down
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: right
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 1
     Name: left
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 1
     LayerIndex: 0
 --- !u!95 &6597274883100566492
 Animator:
