@@ -43,12 +43,12 @@ public class SwordScript : Item
             if (stream.IsWriting)
             {
                 // We own this player: send the others our data
-                //stream.SendNext(attacking);
+                stream.SendNext(attacking);
             }
             else
             {
                 // Network player, receive data
-                //this.attacking = (bool)stream.ReceiveNext();
+                this.attacking = (bool)stream.ReceiveNext();
             }
         }
 
@@ -94,7 +94,8 @@ public class SwordScript : Item
     {
         if(attacking)
         {
-            if(Time.time - wait < coolDown)
+            gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            if (Time.time - wait < coolDown)
             {
                 alpha = (float)((alpha + sens * (angle * Time.fixedDeltaTime / coolDown)));
                 transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);
