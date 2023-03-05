@@ -50,14 +50,11 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
 
     void FixedUpdate()
     {
-        
-     
-
         PlayerManager[] players = FindObjectsOfType<PlayerManager>();
         Vector2 v = new Vector2(0f,0f);
         double d = 10000000000000;
 
-        Debug.LogError($"players found : {players.Length}", this);
+        
         
 
         for(int i  = 0; i < players.Length; i++)

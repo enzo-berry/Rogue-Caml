@@ -128,9 +128,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   render: {fileID: 2301505430143218719}
-  coolDown: 0
+  coolDown: 0.5
   angle: 0
-  Dammage: 1
+  Dammage: 2
+  attacking: 0
 --- !u!114 &3318950470493670531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +153,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 7417828424810411905}
   - {fileID: 4435951063462099800}
-  sceneViewId: 0
+  sceneViewId: 3
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &7417828424810411905

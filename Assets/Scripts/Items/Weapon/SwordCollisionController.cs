@@ -28,7 +28,7 @@ public class SwordCollisionController : MonoBehaviour
     {
         Debug.Log("trigger enter", this);
 
-        if(collision.gameObject.CompareTag("Ennemy"))
+        if(collision.gameObject.CompareTag("Ennemy") && me.attacking)
         {
             Debug.Log("test", this);
             collision.gameObject.SendMessage("TakeDommage", me.Dammage, SendMessageOptions.RequireReceiver);
