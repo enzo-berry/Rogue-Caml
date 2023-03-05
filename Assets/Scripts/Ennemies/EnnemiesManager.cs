@@ -34,7 +34,7 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
     // Start is called before the first frame update
     void Start()
     {
-            ;
+        
     }
 
     // Update is called once per frame
@@ -42,7 +42,7 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if(Health <= 0)
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
 
 
