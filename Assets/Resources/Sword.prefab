@@ -128,8 +128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 0}
   render: {fileID: 2301505430143218719}
-  coolDown: 0.5
-  angle: 0
+  coolDown: 0.25
+  angle: 180
   Dammage: 2
   attacking: 0
 --- !u!114 &3318950470493670531

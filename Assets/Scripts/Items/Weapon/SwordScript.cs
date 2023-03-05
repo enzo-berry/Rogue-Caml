@@ -21,6 +21,8 @@ public class SwordScript : Item
     public int angle;
     public int Dammage;
 
+    private int sens;
+
 
     private Vector2 xaxe = new Vector2(1,0);
     private Vector2 direction = new Vector2(0f,0f);
@@ -41,12 +43,12 @@ public class SwordScript : Item
             if (stream.IsWriting)
             {
                 // We own this player: send the others our data
-                stream.SendNext(attacking);
+                //stream.SendNext(attacking);
             }
             else
             {
                 // Network player, receive data
-                this.attacking = (bool)stream.ReceiveNext();
+                //this.attacking = (bool)stream.ReceiveNext();
             }
         }
 
@@ -65,7 +67,7 @@ public class SwordScript : Item
     {
         if(target != null)
         {
-            if(!attacking)
+            /*if(!attacking)
             {   Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 tmp = target.rb.position;
 
@@ -80,7 +82,7 @@ public class SwordScript : Item
                 alpha -= 45f;
 
                 transform.eulerAngles = new Vector3(0f,0f, alpha);
-            }
+            }*/
         }
         if(target.photonView.IsMine && Input.GetMouseButtonDown(0))
         {
@@ -94,9 +96,24 @@ public class SwordScript : Item
         {
             if(Time.time - wait < coolDown)
             {
+                alpha = (float)((alpha + sens * (angle * Time.fixedDeltaTime / coolDown)));
+                transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);
+
+                alpha *= (float)(Math.PI/180f);
+
+                direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
                 this.transform.position = target.rb.position + direction;
-                transform.Rotate(new Vector3(0,0, -angle / coolDown * Time.fixedDeltaTime));
-                Debug.LogError($"{-(angle / coolDown) * Time.fixedDeltaTime}", this);
+
+                alpha *= (float)(180f/Math.PI);
+                /*
+                direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+
+                this.transform.position = target.rb.position + direction;
+
+                alpha *= (float)(180f/Math.PI);
+                //alpha -= 45f;
+
+                transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);*/
             }
             else
             {
@@ -110,10 +127,26 @@ public class SwordScript : Item
     {
         if(!attacking)
         {
+            Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            sens = mp.x>0?-1:1;
+
+            Vector2 tmp = target.rb.position;
+            Vector2 v = mp - tmp;
+            alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+            alpha = (float)(alpha + (-sens * Math.PI / 2));
+
+            direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+
+            this.transform.position = target.rb.position + direction;
+            alpha *= (float)(180f/Math.PI);
+
+            transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);
+
             gameObject.GetComponent<SpriteRenderer>().enabled = true;
             wait = Time.time;
             attacking = true;
-            transform.Rotate(new Vector3(0,0, angle / 2));
+            
         }
     }
 
