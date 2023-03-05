@@ -122,10 +122,10 @@ public class SwordScript : Item, IPunObservable
                 attacking = false;
             }
         }
-        else 
+        else if(target != null)
         {
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            }
+        }
     }
 
     public void Attaque()
