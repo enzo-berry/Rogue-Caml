@@ -116,12 +116,16 @@ public class SwordScript : Item, IPunObservable
 
                 transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);*/
             }
-            else
+            else if(target.photonView.IsMine)
             {
                 gameObject.GetComponent<SpriteRenderer>().enabled = false;
                 attacking = false;
             }
         }
+        else 
+        {
+                gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            }
     }
 
     public void Attaque()
