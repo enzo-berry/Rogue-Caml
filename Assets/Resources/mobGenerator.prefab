@@ -71,6 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5261ded7e6527b4a8d9ebd570694b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  difficulty: 25
   bc: {fileID: 3211953398627413034}
   ennemyPrefab: {fileID: 5613556170333750058, guid: 2042fb041ac741d43a2a22f884b6c7ac, type: 3}
+  ennemies_per_round: 3
+  delta_between_rounds: 8
