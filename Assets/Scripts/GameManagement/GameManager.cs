@@ -100,7 +100,7 @@ namespace RogueCaml
                 return;
             }
             Debug.LogFormat("PhotonNetwork : Loading Level_1 with {0} players", PhotonNetwork.CurrentRoom.PlayerCount);
-            PhotonNetwork.LoadLevel("level_1");
+            PhotonNetwork.JoinOrCreateRoom("level_1", new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
         }
 
         #endregion
