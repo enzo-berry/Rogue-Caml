@@ -42,7 +42,7 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
     {
         if(Health <= 0)
         {
-            PhotonNetwork.Destroy(this.gameObject);
+            Destroy(this.gameObject);
         }
 
 
