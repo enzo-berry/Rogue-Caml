@@ -20,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/test_simon_network/Room for 4.unity
     guid: dcd5ab9438b90c94182f5d734b0b9a26
+  - enabled: 1
+    path: Assets/Scenes/Levels/level_1.unity
+    guid: e0469d7053e1afc4eabd068a9add96e3
   m_configObjects: {}
