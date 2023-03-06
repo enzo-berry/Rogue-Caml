@@ -30,7 +30,7 @@ public class SwordCollisionController : MonoBehaviour
 
         if(collision.gameObject.CompareTag("Ennemy") && me.attacking)
         {
-            Debug.Log("test", this);
+            Debug.Log("Sending dammage to ennemy.", this);
             collision.gameObject.SendMessage("TakeDommage", me.Dammage, SendMessageOptions.RequireReceiver);
         }
     }

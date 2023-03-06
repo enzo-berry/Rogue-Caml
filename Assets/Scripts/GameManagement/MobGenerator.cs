@@ -24,8 +24,8 @@ namespace RogueCaml{
         float timer = 0;
 
         //Spawner
-        public int ennemies_per_round = 5;
-        public int delta_between_rounds = 8;
+        public int ennemies_per_round;
+        public int delta_between_rounds;
 
         // Update is called once per frame
         void Update()
@@ -44,7 +44,7 @@ namespace RogueCaml{
         // Start is called before the first frame update
         void Start()
         {
-            SpawnVague();
+            
         }
 
         //private void OnTriggerEnter2D(Collider2D collision)
