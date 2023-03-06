@@ -131,11 +131,11 @@ namespace RogueCaml
             Debug.Log("PUN Basics Tutorial/Launcher: OnJoinedRoom() called by PUN. Now this client is in a room.");
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
-                Debug.Log("We load the 'Room for 1' ");
+                Debug.Log("We load the 'level_1' ");
 
                 // #Critical
                 // Load the Room Level.
-                PhotonNetwork.LoadLevel("Room for 1");
+                PhotonNetwork.LoadLevel("level_1");
 
 
             }
