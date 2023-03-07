@@ -32,10 +32,14 @@ public class PauseMenu : MonoBehaviour
         is_paused = true;
         
     }
-    void Resume()
+    public void Resume()
     {
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1;
         is_paused = false;
+    }
+    public void MainMenuButton()
+    {
+        // a implementer avec photon
     }
 }
