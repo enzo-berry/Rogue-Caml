@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
+using Photon.Realtime;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -40,6 +43,12 @@ public class PauseMenu : MonoBehaviour
     }
     public void MainMenuButton()
     {
-        // a implementer avec photon
+        if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
+        {
+            Debug.Log("We load the 'Launcher' ");
+            PhotonNetwork.LoadLevel("Launcher");
+            PhotonNetwork.JoinRoom("Launcher");
+
+        }
     }
 }
