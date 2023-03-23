@@ -40,7 +40,7 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
     // Update is called once per frame
     public void Update()
     {
-        if(Health <= 0)
+        if(Health <= 0 && PhotonNetwork.IsMasterClient)
         {
             PhotonNetwork.Destroy(this.gameObject);
         }
@@ -69,7 +69,7 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
         float alpha = alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
         Vector2 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
         
-        rb.MovePosition(rb.position + direction * moveSpeed * Time.fixedDeltaTime);
+        rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * direction);
     }
 
 
