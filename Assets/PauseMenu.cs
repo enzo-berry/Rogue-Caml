@@ -14,7 +14,7 @@ public class PauseMenu : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape)) //touche ECHAP pour déclencher le "PauseMenu"
         {
             if (is_paused)
             {
@@ -46,8 +46,8 @@ public class PauseMenu : MonoBehaviour
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
             Debug.Log("We load the 'Launcher' ");
-            PhotonNetwork.LoadLevel("Launcher");
-            PhotonNetwork.JoinRoom("Launcher");
+            PhotonNetwork.LoadLevel("MainMenu");
+            PhotonNetwork.JoinRoom("MainMenu");
 
         }
     }
