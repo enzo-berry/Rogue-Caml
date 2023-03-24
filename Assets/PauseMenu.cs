@@ -45,11 +45,9 @@ public class PauseMenu : MonoBehaviour
     {
         if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
         {
-            string MenuName = "StartMenu";
-            Debug.Log($"We load the '{MenuName}' ");
-            PhotonNetwork.LoadLevel(MenuName);
-            PhotonNetwork.JoinRoom(MenuName);
-            //PhotonNetwork.Disconnect(); <-- à corriger pour déconnecter le joueur quand il quitte le jeu
+            Debug.Log("We load the 'Launcher' ");
+            PhotonNetwork.LoadLevel("MainMenu");
+            PhotonNetwork.JoinRoom("MainMenu");
 
         }
     }
