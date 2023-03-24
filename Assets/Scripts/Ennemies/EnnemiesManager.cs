@@ -14,7 +14,6 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
     public float moveSpeed = 5f;
     public Rigidbody2D rb;
 
-
     public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.IsWriting)
@@ -29,8 +28,6 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
         }
     }
 
-    
-
     // Start is called before the first frame update
     void Start()
     {
@@ -44,8 +41,6 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
         {
             PhotonNetwork.Destroy(this.gameObject);
         }
-
-
     }
 
     void FixedUpdate()
@@ -54,12 +49,9 @@ public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
         Vector2 v = new Vector2(0f,0f);
         double d = 10000000000000;
 
-        
-        
-
         for(int i  = 0; i < players.Length; i++)
         {
-            if(Distance(players[i].transform.position - transform.position) < d);
+            if(Distance(players[i].transform.position - transform.position) < d)
             {
                 v = players[i].transform.position - transform.position;
                 d = Distance(v);

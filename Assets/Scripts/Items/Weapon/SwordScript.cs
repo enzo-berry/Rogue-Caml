@@ -8,14 +8,13 @@ using Photon.Pun;
 using Photon.Realtime;
 
 
-
-
-namespace RogueCaml{
-    public class SwordScript : Item, IPunObservable
-        {
+namespace RogueCaml
+{
+    public class SwordScript : Item, IPunObservable 
+    {
         //public EdgeCollider2D collider;
-        public PlayerManager target;
-        public SpriteRenderer render;
+        public PlayerManager Owner;
+        public SpriteRenderer spriteRenderer;
         //public Transform transform;
         public float coolDown;
         public int angle;
@@ -56,8 +55,7 @@ namespace RogueCaml{
     
         void Start()
         {
-        
-
+            spriteRenderer = GetComponent<SpriteRenderer>();
             //collider.SetActive(false);
             //render.SetActive(false);
         }
@@ -65,7 +63,7 @@ namespace RogueCaml{
         // Update is called once per frame
         void Update()
         {
-            if(target == null)
+            if(Owner == null)
             {
                 /*if(!attacking)
                 {   Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -84,7 +82,7 @@ namespace RogueCaml{
                     transform.eulerAngles = new Vector3(0f,0f, alpha);
                 }*/
             }
-            else if(target.photonView.IsMine && Input.GetMouseButtonDown(0))
+            else if(Owner.photonView.IsMine && Input.GetMouseButtonDown(0))
             {
                 Attaque();
             }
@@ -94,7 +92,7 @@ namespace RogueCaml{
         {
             if(attacking)
             {
-                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                //spriteRenderer.enabled = true;
                 if (Time.time - wait < coolDown)
                 {
                     alpha = (float)((alpha + sens * (angle * Time.fixedDeltaTime / coolDown)));
@@ -103,7 +101,7 @@ namespace RogueCaml{
                     alpha *= (float)(Math.PI/180f);
 
                     direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
-                    this.transform.position = target.rb.position + direction;
+                    this.transform.position = Owner.rb.position + direction;
 
                     alpha *= (float)(180f/Math.PI);
                     /*
@@ -116,15 +114,15 @@ namespace RogueCaml{
 
                     transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);*/
                 }
-                else if(target.photonView.IsMine)
+                else if(Owner.photonView.IsMine)
                 {
-                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                    //spriteRenderer.enabled = false;
                     attacking = false;
                 }
             }
-            else if(target != null)
+            else if(Owner != null)
             {
-                    gameObject.GetComponent<SpriteRenderer>().enabled = false;
+                //spriteRenderer.enabled = false;
             }
         }
 
@@ -136,19 +134,19 @@ namespace RogueCaml{
 
                 sens = mp.x>0?-1:1;
 
-                Vector2 tmp = target.rb.position;
+                Vector2 tmp = Owner.rb.position;
                 Vector2 v = mp - tmp;
                 alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
                 alpha = (float)(alpha + (-sens * Math.PI / 2));
 
                 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
 
-                this.transform.position = target.rb.position + direction;
+                this.transform.position = Owner.rb.position + direction;
                 alpha *= (float)(180f/Math.PI);
 
                 transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);
 
-                gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                //spriteRenderer.enabled = true;
                 wait = Time.time;
                 attacking = true;
             
@@ -170,7 +168,7 @@ namespace RogueCaml{
 
     
 
-        public void Pickup(PlayerManager _target)
+        public override void Pickup(PlayerManager _target)
         {
             if (_target == null)
             {
@@ -178,16 +176,16 @@ namespace RogueCaml{
                 return;
             }
                 // Cache references for efficiency
-            gameObject.GetComponent<SpriteRenderer>().enabled = false;
-            target = _target;
+            //spriteRenderer.enabled = false;
+            Owner = _target;
 
 
-            this.gameObject.tag = "Weapon";
+            this.gameObject.tag = "Equiped";
         }
 
         public void Drop()
         {
-            target = null;
+            Owner = null;
             this.gameObject.tag = "ItemW";
         }
 

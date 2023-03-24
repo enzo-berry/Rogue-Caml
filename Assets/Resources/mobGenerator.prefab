@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3211953398627413034}
   - component: {fileID: -8411331027121240931}
   m_Layer: 0
-  m_Name: mobGenerator
+  m_Name: MobGenerator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

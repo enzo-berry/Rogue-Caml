@@ -4,8 +4,9 @@ using UnityEngine;
 
 using Photon.Pun;
 using Photon.Realtime;
+using Unity.VisualScripting;
 
-namespace RogueCaml
+namespace RogueCaml 
 {
     public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     {
@@ -17,13 +18,11 @@ namespace RogueCaml
         public int Health = 3;
 
         public Rigidbody2D rb;
-        Vector2 movement;
-
-        
+        private Vector2 movement;
 
         [Tooltip("The Player's UI GameObject Prefab")]
         [SerializeField]
-        public GameObject PlayerUiPrefab;
+        public GameObject PlayerStatsUI;
         public GameObject weapon;
 
 
@@ -62,14 +61,14 @@ namespace RogueCaml
         }
         #endif*/
 
-        void CalledOnLevelWasLoaded(int level)
-        {
-            // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
-            GameObject _uiGo = Instantiate(this.PlayerUiPrefab);
-            
-            _uiGo.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
-            
-        }
+        //void CalledOnLevelWasLoaded(int level)
+        //{
+        //    // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
+        //    GameObject _uiGo = Instantiate(this.PlayerStatsUI);
+
+        //    _uiGo.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
+
+        //}
 
         /*#if UNITY54ORNEWER
         public override void OnDisable()
@@ -89,10 +88,13 @@ namespace RogueCaml
 
         void Start()
         {
-            if (PlayerUiPrefab != null)
+            rb = GetComponent<Rigidbody2D>();
+
+
+            if (PlayerStatsUI != null)
             {
-                GameObject _uiGo =  Instantiate(PlayerUiPrefab);
-                _uiGo.SendMessage ("SetTarget", this, SendMessageOptions.RequireReceiver);
+                GameObject _uiGo = Instantiate(PlayerStatsUI);
+                _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
             }
             else
             {
@@ -131,6 +133,7 @@ namespace RogueCaml
         {
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
+
         }
     }
 }

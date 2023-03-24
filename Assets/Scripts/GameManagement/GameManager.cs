@@ -1,11 +1,11 @@
 using System;
 using System.Collections;
-
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
 using Photon.Pun;
 using Photon.Realtime;
+using TMPro;
+using UnityEngine.UI;
 
 namespace RogueCaml
 {
@@ -15,93 +15,91 @@ namespace RogueCaml
         [Tooltip("The prefab to use for representing the player")]
         public GameObject playerPrefab;
         public GameObject weaponPrefab;
+        public Canvas levelCanvas;
 
+        private void Awake()
+        {
+            // Make this GameObject persistent across all scenes
+            DontDestroyOnLoad(gameObject);
+        }
+
+        //Since we use GameManager in everyscene we make condition to know from where it is instanciated, will be splitted in two different scripts later on.
         void Start()
         {
-            if (playerPrefab == null)
+            PhotonNetwork.AutomaticallySyncScene = true;
+
+            if (!PhotonNetwork.IsConnected)//If script is loaded in menu.
             {
-                Debug.LogError("<Color=Red><a>Missing</a></Color> playerPrefab Reference. Please set it up in GameObject 'Game Manager'",this);
+                PhotonNetwork.ConnectUsingSettings();
+
             }
-            else
+            else if (PhotonNetwork.IsConnectedAndReady)//If script is loaded in level.
             {
-                if(PlayerManager.LocalPlayerInstance == null)
-                {
-                    Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
-                    // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-                    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector2(0f,0f), Quaternion.identity, 0);
-                    PhotonNetwork.Instantiate(this.weaponPrefab.name, new Vector2(0f,0f), Quaternion.identity, 0);
-                }
-                else
-                {
-                    Debug.LogFormat("Ignoring scene load for {0}", SceneManagerHelper.ActiveSceneName);
-                }
+                PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
             }
         }
 
-        
+        void Update()
+        {
+
+        }
 
         #region Photon Callbacks
 
-        /// &lt;summary&gt;
-        /// Called when the local player left the room. We need to load the launcher scene.
-        /// &lt;/summary&gt;
+        //When connected to server
+        public override void OnConnectedToMaster()
+        {
+            Debug.Log("Connected to Master");
+        }
+
+        public override void OnJoinedRoom()
+        {
+            //If not master player will automaticly join scene because of AutomaticallySyncScene bool.
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.LoadLevel("level_1");
+            }
+            PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
+        }
+
         public override void OnLeftRoom()
         {
-            SceneManager.LoadScene(0);
-        }
-
-        public override void OnPlayerEnteredRoom(Player other)
-        {
-            Debug.LogFormat("OnPlayerEnteredRoom() {0}", other.NickName); // not seen if you're the player connecting
-
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Debug.LogFormat("OnPlayerEnteredRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
-
-                LoadArena();
-            }
-
-
-        }
-
-        public override void OnPlayerLeftRoom(Player other)
-        {
-            Debug.LogFormat("OnPlayerLeftRoom() {0}", other.NickName); // seen when other disconnects
-
-            if (PhotonNetwork.IsMasterClient)
-            {
-                Debug.LogFormat("OnPlayerLeftRoom IsMasterClient {0}", PhotonNetwork.IsMasterClient); // called before OnPlayerLeftRoom
-
-                LoadArena();
-            }
-
-
+            SceneManager.LoadScene("MainMenu");
         }
 
         #endregion
 
+
         #region Public Methods
+        public void QuitGame()
+        {
+            PhotonNetwork.Disconnect();
+            Application.Quit();
+        }
 
         public void LeaveRoom()
         {
+            Debug.Log("Leaving room.");
             PhotonNetwork.LeaveRoom();
         }
 
+        public void ConnectPlayer(string pseudo)
+        {
+            //if (PlayerController.LocalPlayerInstance == null)
+            //{
+            //    Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
+            //    // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
+            //    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector2(0f, 0f), Quaternion.identity, 0);
+            //    //PhotonNetwork.Instantiate(this.weaponPrefab.name, new Vector2(0f, 0f), Quaternion.identity, 0);
+            //}
+            PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
+            Debug.Log($"Connecting to room with pseudo {PhotonNetwork.NickName}");
+            PhotonNetwork.JoinOrCreateRoom("default", new RoomOptions() { MaxPlayers = 4}, TypedLobby.Default);
+        }
         #endregion
 
 
         #region Private Methods
-
-        void LoadArena()
-        {
-            if (!PhotonNetwork.IsMasterClient)
-            {
-                Debug.LogError("PhotonNetwork : Trying to Load a level but we are not the master Client");
-                return;
-            }
-            Debug.LogFormat("PhotonNetwork : Loading Level_1 with {0} players", PhotonNetwork.CurrentRoom.PlayerCount);
-            PhotonNetwork.JoinOrCreateRoom("level_1", new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
-        }
 
         #endregion
 
