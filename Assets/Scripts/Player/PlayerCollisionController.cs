@@ -9,7 +9,7 @@ namespace RogueCaml
 {
     public class PlayerCollisionController : MonoBehaviourPunCallbacks
     {
-         public PlayerManager playerController;
+        public PlayerManager playerController;
 
         void Start()
         {
@@ -31,7 +31,6 @@ namespace RogueCaml
         {
             //Debug.Log("collision exit", this);
         }
-
 
         private void OnTriggerEnter2D(Collider2D collision)
         {

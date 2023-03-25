@@ -18,7 +18,7 @@ using Photon.Realtime;
 
 namespace RogueCaml
 {
-    public class SwordScript : Item, IPunObservable
+    public class Sword : Item, IPunObservable
     {
         //public EdgeCollider2D collider;
         public PlayerManager Owner;
@@ -29,7 +29,6 @@ namespace RogueCaml
         public int Dammage;
 
         private int sens;
-
 
         private Vector2 xaxe = new Vector2(1, 0);
         private Vector2 direction = new Vector2(0f, 0f);
@@ -61,6 +60,20 @@ namespace RogueCaml
         }
 
         #endregion
+        //Called when GameStarts.
+        void Awake()
+        {
+            //I dont understand this part, why would sword actualize LocaPlayerInstance ?
+                // #Important
+                // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
+                if (photonView.IsMine)
+                {
+                    PlayerManager.LocalPlayerInstance = this.gameObject;
+                }
+
+            //We dont destroy Sword object on scene changement.
+            DontDestroyOnLoad(this.gameObject);
+        }
 
         void Start()
         {
@@ -69,7 +82,6 @@ namespace RogueCaml
             //render.SetActive(false);
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (Owner == null)
@@ -162,20 +174,6 @@ namespace RogueCaml
             }
         }
 
-        void Awake()
-        {
-            // #Important
-            // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
-            if (photonView.IsMine)
-            {
-                PlayerManager.LocalPlayerInstance = this.gameObject;
-            }
-
-            // #Critical
-            // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
-            DontDestroyOnLoad(this.gameObject);
-        }
-
         public override void Pickup(PlayerManager Player)
         {
             if (Player == null)
@@ -200,6 +198,8 @@ namespace RogueCaml
             return f > 0 ? 1 : f == 0 ? 0 : -1;
         }
 
+
+        //Moved SwordCollisionController functions here, will be easier since we wont use after updates.
         private void OnTriggerEnter2D(Collider2D collision)
         {
             //Debug.Log("trigger enter", this);
@@ -211,5 +211,30 @@ namespace RogueCaml
             }
         }
 
+        // Start is called before the first frame update
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            //Debug.Log("collision enter", this);
+        }
+
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            //Debug.Log("collision stay", this);
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            //Debug.Log("collision exit", this);
+        }
+
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            //Debug.Log("trigger stay", this);
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            //Debug.Log("trigger exit", this);
+        }
     }
 }

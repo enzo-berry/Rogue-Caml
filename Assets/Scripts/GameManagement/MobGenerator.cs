@@ -12,10 +12,10 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace RogueCaml{
+namespace RogueCaml 
+{
     public class MobGenerator : MonoBehaviour
     {
-        public BoxCollider2D bc;
         public GameObject ennemyPrefab;
 
         float timer = 0;
@@ -24,10 +24,12 @@ namespace RogueCaml{
         public int ennemies_per_round;
         public int delta_between_rounds;
 
+        private BoxCollider2D boxCollider;
+
         // Start is called before the first frame update
         void Start()
         {
-
+            boxCollider = GetComponent<BoxCollider2D>();
         }
 
 
@@ -47,7 +49,7 @@ namespace RogueCaml{
 
         private void SpawnVague()
         {
-            Vector2 size = bc.size;
+            Vector2 size = boxCollider.size;
 
             for (int j = 0; j < ennemies_per_round; j++)
             {

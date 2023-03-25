@@ -24,6 +24,7 @@ namespace RogueCaml
         //Since we use GameManager in everyscene we make condition to know from where it is instanciated, will be splitted in two different scripts later on.
         void Start()
         {
+            //If we are not connected to server. Server != Rooms.
             if (!PhotonNetwork.IsConnected)
             {
                 PhotonNetwork.ConnectUsingSettings();

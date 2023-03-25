@@ -24,10 +24,36 @@ namespace RogueCaml
         [SerializeField]
         public GameObject weapon;
 
+        void Start()
+        {
+            rigidBody = GetComponent<Rigidbody2D>();
+        }
+
+        void Update()
+        {
+            //If that PlayerObject is my player.
+            if (photonView.IsMine)
+            {
+                ProcessInputs();
+            }
+        }
+
+        //When game get launched
+        void Awake()
+        {
+            if (photonView.IsMine)
+            {
+                //We set instance of LocalPlayer to var.
+                PlayerManager.LocalPlayerInstance = this.gameObject;
+            }
+            //PlayerGame object won't be destroyed on changing scene.
+            DontDestroyOnLoad(this.gameObject);
+        }
 
         #region IPunObservable implementation
 
-        //SyncingHealth
+        //SyncingHealth using OnPhotonSerializeView.
+        //Could be done in a graphical way just like the Animations ?
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
@@ -44,65 +70,6 @@ namespace RogueCaml
 
         #endregion
 
-        // Update is called once per frame
-        void Update()
-        {
-            if (photonView.IsMine)
-            {
-                ProcessInputs();
-            }
-        }
-
-        /*#if !UNITY_5_4_OR_NEWER
-        /// <summary>See CalledOnLevelWasLoaded. Outdated in Unity 5.4.</summary>
-        void OnLevelWasLoaded(int level)
-        {
-            this.CalledOnLevelWasLoaded(level);
-        }
-        #endif*/
-
-        //void CalledOnLevelWasLoaded(int level)
-        //{
-        //    // check if we are outside the Arena and if it's the case, spawn around the center of the arena in a safe zone
-        //    GameObject _uiGo = Instantiate(this.PlayerStatsUI);
-
-        //    _uiGo.SendMessage("SetTarget",this, SendMessageOptions.RequireReceiver);
-
-        //}
-
-        /*#if UNITY54ORNEWER
-        public override void OnDisable()
-        {
-            // Always call the base to remove callbacks
-            base.OnDisable ();
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded -= OnSceneLoaded;
-        }
-        #endif
-
-        #if UNITY54ORNEWER
-        void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, UnityEngine.SceneManagement.LoadSceneMode loadingMode)
-        {
-            this.CalledOnLevelWasLoaded(scene.buildIndex);
-        }
-        #endif*/
-
-        void Start()
-        {
-            rigidBody = GetComponent<Rigidbody2D>();
-        }
-
-        void Awake()
-        {
-            // #Important
-            // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
-            if (photonView.IsMine)
-            {
-                PlayerManager.LocalPlayerInstance = this.gameObject;
-            }
-            // #Critical
-            // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
-            DontDestroyOnLoad(this.gameObject);
-        }
 
         void FixedUpdate()
         {
@@ -119,6 +86,7 @@ namespace RogueCaml
 
             if (Input.GetKey(KeyCode.Mouse0))
             {
+                //Send a RPC to all connected clients, basicly calls AttackTESTSync method for every client connected.
                 photonView.RPC("AttackTESTSync", RpcTarget.All, PhotonNetwork.NickName);
             }
         }
@@ -130,6 +98,7 @@ namespace RogueCaml
             Debug.Log($"Player {PlayerAttacked} just attacked ! ");
         }
 
+        //Better to use a Getter to keep rigidBody var private.
         public Rigidbody2D GetRigidBody()
         {
             return rigidBody;
