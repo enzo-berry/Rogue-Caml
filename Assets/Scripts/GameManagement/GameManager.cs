@@ -15,8 +15,6 @@ namespace RogueCaml
         [Tooltip("The prefab to use for representing the player")]
         public GameObject playerPrefab;
         public GameObject weaponPrefab;
-        public Canvas levelCanvas;
-
         private void Awake()
         {
             // Make this GameObject persistent across all scenes
@@ -26,16 +24,10 @@ namespace RogueCaml
         //Since we use GameManager in everyscene we make condition to know from where it is instanciated, will be splitted in two different scripts later on.
         void Start()
         {
-            PhotonNetwork.AutomaticallySyncScene = true;
-
-            if (!PhotonNetwork.IsConnected)//If script is loaded in menu.
+            if (!PhotonNetwork.IsConnected)
             {
                 PhotonNetwork.ConnectUsingSettings();
-
-            }
-            else if (PhotonNetwork.IsConnectedAndReady)//If script is loaded in level.
-            {
-                PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
+                PhotonNetwork.AutomaticallySyncScene = true;
             }
         }
 

@@ -8,9 +8,17 @@ using Photon.Pun;
 using Photon.Realtime;
 
 
+/*ToRecode:
+ * use RPC for attack rather than OnPhotonSerializeView.
+ * RPC : Better for ponctual events and syncing actions: ex: sword attacking
+ * OnPhotonSerializeView : Better for fast sync ex: coords/health.
+ * 
+ * Don't hardcode coordonates, maybe prefer using animations.
+*/
+
 namespace RogueCaml
 {
-    public class SwordScript : Item, IPunObservable 
+    public class SwordScript : Item, IPunObservable
     {
         //public EdgeCollider2D collider;
         public PlayerManager Owner;
@@ -23,8 +31,8 @@ namespace RogueCaml
         private int sens;
 
 
-        private Vector2 xaxe = new Vector2(1,0);
-        private Vector2 direction = new Vector2(0f,0f);
+        private Vector2 xaxe = new Vector2(1, 0);
+        private Vector2 direction = new Vector2(0f, 0f);
         private Vector3 mousePosition;
         private float alpha = 0;
 
@@ -33,26 +41,27 @@ namespace RogueCaml
         private float wait;
 
         //private PlayerManager owner
-        // Start is called before the first frame update
+        //Start is called before the first frame update
+
 
         #region IPunObservable implementation
 
-            public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
             {
-                if (stream.IsWriting)
-                {
-                    // We own this player: send the others our data
-                    stream.SendNext(attacking);
-                }
-                else
-                {
-                    // Network player, receive data
-                    this.attacking = (bool)stream.ReceiveNext();
-                }
+                // We own this player: send the others our data
+                stream.SendNext(attacking);
             }
+            else
+            {
+                // Network player, receive data
+                this.attacking = (bool)stream.ReceiveNext();
+            }
+        }
 
         #endregion
-    
+
         void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
@@ -63,7 +72,7 @@ namespace RogueCaml
         // Update is called once per frame
         void Update()
         {
-            if(Owner == null)
+            if (Owner == null)
             {
                 /*if(!attacking)
                 {   Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -82,7 +91,7 @@ namespace RogueCaml
                     transform.eulerAngles = new Vector3(0f,0f, alpha);
                 }*/
             }
-            else if(Owner.photonView.IsMine && Input.GetMouseButtonDown(0))
+            else if (Owner.photonView.IsMine && Input.GetMouseButtonDown(0))
             {
                 Attaque();
             }
@@ -90,20 +99,20 @@ namespace RogueCaml
 
         void FixedUpdate()
         {
-            if(attacking)
+            if (attacking)
             {
-                //spriteRenderer.enabled = true;
+                spriteRenderer.enabled = true;
                 if (Time.time - wait < coolDown)
                 {
                     alpha = (float)((alpha + sens * (angle * Time.fixedDeltaTime / coolDown)));
-                    transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);
+                    transform.eulerAngles = new Vector3(0f, 0f, alpha - 45f);
 
-                    alpha *= (float)(Math.PI/180f);
+                    alpha *= (float)(Math.PI / 180f);
 
                     direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
-                    this.transform.position = Owner.rb.position + direction;
+                    this.transform.position = Owner.GetRigidBody().position + direction;
 
-                    alpha *= (float)(180f/Math.PI);
+                    alpha *= (float)(180f / Math.PI);
                     /*
                     direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
 
@@ -114,42 +123,42 @@ namespace RogueCaml
 
                     transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);*/
                 }
-                else if(Owner.photonView.IsMine)
+                else if (Owner.photonView.IsMine)
                 {
-                    //spriteRenderer.enabled = false;
+                    spriteRenderer.enabled = false;
                     attacking = false;
                 }
             }
-            else if(Owner != null)
+            else if (Owner != null)
             {
-                //spriteRenderer.enabled = false;
+                spriteRenderer.enabled = false;
             }
         }
 
         public void Attaque()
         {
-            if(!attacking)
+            if (!attacking)
             {
                 Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-                sens = mp.x>0?-1:1;
+                sens = mp.x > 0 ? -1 : 1;
 
-                Vector2 tmp = Owner.rb.position;
+                Vector2 tmp = Owner.GetRigidBody().position;
                 Vector2 v = mp - tmp;
-                alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+                alpha = (float)(v.x == 0 ? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y / v.x)) + (Signe(v.x) == -1 ? Math.PI : 0));
                 alpha = (float)(alpha + (-sens * Math.PI / 2));
 
                 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
 
-                this.transform.position = Owner.rb.position + direction;
-                alpha *= (float)(180f/Math.PI);
+                this.transform.position = Owner.GetRigidBody().position + direction;
+                alpha *= (float)(180f / Math.PI);
 
-                transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);
+                transform.eulerAngles = new Vector3(0f, 0f, alpha - 45f);
 
                 //spriteRenderer.enabled = true;
                 wait = Time.time;
                 attacking = true;
-            
+
             }
         }
 
@@ -161,25 +170,22 @@ namespace RogueCaml
             {
                 PlayerManager.LocalPlayerInstance = this.gameObject;
             }
-                // #Critical
-                // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
+
+            // #Critical
+            // we flag as don't destroy on load so that instance survives level synchronization, thus giving a seamless experience when levels load.
             DontDestroyOnLoad(this.gameObject);
         }
 
-    
-
-        public override void Pickup(PlayerManager _target)
+        public override void Pickup(PlayerManager Player)
         {
-            if (_target == null)
+            if (Player == null)
             {
                 Debug.LogError("<Color=Red><a>Missing</a></Color> PlayMakerManager target for PlayerUI.SetTarget.", this);
                 return;
             }
-                // Cache references for efficiency
+            // Cache references for efficiency
             //spriteRenderer.enabled = false;
-            Owner = _target;
-
-
+            Owner = Player;
             this.gameObject.tag = "Equiped";
         }
 
@@ -189,9 +195,20 @@ namespace RogueCaml
             this.gameObject.tag = "ItemW";
         }
 
-        int Signe(float f) 
+        int Signe(float f)
         {
-            return f>0? 1 : f==0? 0 : -1;
+            return f > 0 ? 1 : f == 0 ? 0 : -1;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            //Debug.Log("trigger enter", this);
+
+            if (collision.gameObject.CompareTag("Enemy") && attacking)
+            {
+                Debug.Log("Sending dammage to ennemy.", this);
+                collision.gameObject.SendMessage("TakeDommage", Dammage, SendMessageOptions.RequireReceiver);
+            }
         }
 
     }

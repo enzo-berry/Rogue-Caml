@@ -6,9 +6,9 @@ TagManager:
   tags:
   - ally
   - Weapon
-  - Ennemy
   - Unequipped
   - Equiped
+  - Enemy
   layers:
   - Default
   - TransparentFX

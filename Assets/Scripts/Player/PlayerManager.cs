@@ -6,7 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using Unity.VisualScripting;
 
-namespace RogueCaml 
+namespace RogueCaml
 {
     public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
     {
@@ -17,17 +17,17 @@ namespace RogueCaml
         public int attaqueSpeed = 1;
         public int Health = 3;
 
-        public Rigidbody2D rb;
+        private Rigidbody2D rigidBody;
         private Vector2 movement;
 
         [Tooltip("The Player's UI GameObject Prefab")]
         [SerializeField]
-        public GameObject PlayerStatsUI;
         public GameObject weapon;
 
 
         #region IPunObservable implementation
 
+        //SyncingHealth
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
@@ -47,7 +47,7 @@ namespace RogueCaml
         // Update is called once per frame
         void Update()
         {
-            if(photonView.IsMine)
+            if (photonView.IsMine)
             {
                 ProcessInputs();
             }
@@ -88,24 +88,7 @@ namespace RogueCaml
 
         void Start()
         {
-            rb = GetComponent<Rigidbody2D>();
-
-
-            if (PlayerStatsUI != null)
-            {
-                GameObject _uiGo = Instantiate(PlayerStatsUI);
-                _uiGo.SendMessage("SetTarget", this, SendMessageOptions.RequireReceiver);
-            }
-            else
-            {
-                Debug.LogWarning("<Color=Red><a>Missing</a></Color> PlayerUiPrefab reference on player Prefab.", this);
-            }
-
-            //a la fin
-            /*#if UNITY54ORNEWER
-            // Unity 5.4 has a new scene management. register a method to call CalledOnLevelWasLoaded.
-            UnityEngine.SceneManagement.SceneManager.sceneLoaded += OnSceneLoaded;
-            #endif*/
+            rigidBody = GetComponent<Rigidbody2D>();
         }
 
         void Awake()
@@ -123,9 +106,9 @@ namespace RogueCaml
 
         void FixedUpdate()
         {
-            if(photonView.IsMine)
+            if (photonView.IsMine)
             {
-                rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
+                rigidBody.MovePosition(rigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
             }
         }
 
@@ -134,6 +117,22 @@ namespace RogueCaml
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                photonView.RPC("AttackTESTSync", RpcTarget.All, PhotonNetwork.NickName);
+            }
+        }
+
+        //Called when a PlayerAttacks.
+        [PunRPC]
+        void AttackTESTSync(string PlayerAttacked)
+        {
+            Debug.Log($"Player {PlayerAttacked} just attacked ! ");
+        }
+
+        public Rigidbody2D GetRigidBody()
+        {
+            return rigidBody;
         }
     }
 }

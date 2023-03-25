@@ -126,8 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d051a758442a24c979a154c7301bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  render: {fileID: 2301505430143218719}
+  Owner: {fileID: 0}
+  spriteRenderer: {fileID: 0}
   coolDown: 0.25
   angle: 180
   Dammage: 2
@@ -238,4 +238,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15d5169180ae1de4192a1193b719b95c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  me: {fileID: 2301505430143218713}
+  swordScript: {fileID: 2301505430143218713}

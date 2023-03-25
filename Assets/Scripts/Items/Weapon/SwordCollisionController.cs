@@ -2,47 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RogueCaml{
-public class SwordCollisionController : MonoBehaviour
+namespace RogueCaml
 {
-    public SwordScript me;
-
-    // Start is called before the first frame update
-    private void OnCollisionEnter2D(Collision2D collision)
+    public class SwordCollisionController : MonoBehaviour
     {
-        //Debug.Log("collision enter", this);
-    }
+        //Dont use for now.
 
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        //Debug.Log("collision stay", this);
-    }
+        public SwordScript swordScript;
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        //Debug.Log("collision exit", this);
-    }
-
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //Debug.Log("trigger enter", this);
-
-        if(collision.gameObject.CompareTag("Ennemy") && me.attacking)
+        // Start is called before the first frame update
+        private void OnCollisionEnter2D(Collision2D collision)
         {
-            Debug.Log("Sending dammage to ennemy.", this);
-            collision.gameObject.SendMessage("TakeDommage", me.Dammage, SendMessageOptions.RequireReceiver);
+            //Debug.Log("collision enter", this);
+        }
+
+        private void OnCollisionStay2D(Collision2D collision)
+        {
+            //Debug.Log("collision stay", this);
+        }
+
+        private void OnCollisionExit2D(Collision2D collision)
+        {
+            //Debug.Log("collision exit", this);
+        }
+
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            //
+        }
+
+        private void OnTriggerStay2D(Collider2D collision)
+        {
+            //Debug.Log("trigger stay", this);
+        }
+
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            //Debug.Log("trigger exit", this);
         }
     }
-
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        //Debug.Log("trigger stay", this);
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        //Debug.Log("trigger exit", this);
-    }
-}
 }

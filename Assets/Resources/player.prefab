@@ -8,7 +8,7 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6340805809113597239}
+  - component: {fileID: 4906302331703944729}
   - component: {fileID: 6340805809113597238}
   - component: {fileID: 186945734}
   - component: {fileID: 186945735}
@@ -16,9 +16,10 @@ GameObject:
   - component: {fileID: 841372470}
   - component: {fileID: 5718020299936524067}
   - component: {fileID: 841372472}
-  - component: {fileID: 3302154829412797363}
   - component: {fileID: 6340805809262794232}
   - component: {fileID: 3855203704953900120}
+  - component: {fileID: 4645388708500181506}
+  - component: {fileID: 3302154829412797363}
   m_Layer: 0
   m_Name: player
   m_TagString: ally
@@ -26,8 +27,8 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6340805809113597239
-Transform:
+--- !u!224 &4906302331703944729
+RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -41,6 +42,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0.32, y: 0.48}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!212 &6340805809113597238
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -220,24 +226,6 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 1
   m_UseLocal: 1
---- !u!114 &3302154829412797363
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6340805809113597259}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 665ae1e7212eb0f4c996470b469e6740, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  attaqueSpeed: 1
-  Health: 3
-  rb: {fileID: 841372470}
-  PlayerStatsUI: {fileID: 7619197174301073097, guid: d9936d48b1d8dc34cafdd73ed7f03b13, type: 3}
-  weapon: {fileID: 0}
 --- !u!61 &6340805809262794232
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -277,3 +265,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
+--- !u!222 &4645388708500181506
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340805809113597259}
+  m_CullTransparentMesh: 1
+--- !u!114 &3302154829412797363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6340805809113597259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 665ae1e7212eb0f4c996470b469e6740, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  attaqueSpeed: 1
+  Health: 3
+  weapon: {fileID: 0}
