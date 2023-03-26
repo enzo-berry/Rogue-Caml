@@ -1,47 +1,45 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
 using Photon.Pun;
-using Photon.Realtime;
-using UnityEngine.UI;
+using RogueCaml;
+using Unity.VisualScripting;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool isEnabled = false;
-
-    private GameObject pauseMenuUI;
-
-    void Start()
-    {
-        pauseMenuUI = this.gameObject;
-    }
+    public GameObject pauseMenu;
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape)) //touche ECHAP pour déclencher le "PauseMenu"
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (isEnabled)
-            {
-                Disable();
-            }
-            else
-            {
-                Enable();
-            }
+            if (LevelManager.gameisPaused) Resume();
+            else Paused();
         }
     }
 
-    void Enable()
+    void Paused()
     {
-        //avec arret 
-        pauseMenuUI.SetActive(true);
-        isEnabled = true;
-        
+        PlayerManager.movement = Vector2.zero;
+        pauseMenu.SetActive(true);
+        LevelManager.gameisPaused = true;
     }
-    public void Disable()
+    
+    public void Resume()
     {
-        pauseMenuUI.SetActive(false);
-        isEnabled = false;
+        pauseMenu.SetActive(false);
+        LevelManager.gameisPaused = false;
     }
+
+    public void LoadMainMenu()
+    {
+        PhotonNetwork.LeaveRoom();
+        LevelManager.gameisPaused = false;
+        pauseMenu.SetActive(false);
+        SceneManager.LoadScene("MainMenu");
+    }
+
+
 }
