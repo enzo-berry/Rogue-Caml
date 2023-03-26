@@ -18,7 +18,7 @@ namespace RogueCaml
         public int Health = 3;
 
         private Rigidbody2D rigidBody;
-        private Vector2 movement;
+        public static Vector2 movement;
 
         [Tooltip("The Player's UI GameObject Prefab")]
         [SerializeField]
@@ -32,7 +32,7 @@ namespace RogueCaml
         void Update()
         {
             //If that PlayerObject is my player.
-            if (photonView.IsMine)
+            if (photonView.IsMine && !LevelManager.gameisPaused)
             {
                 ProcessInputs();
             }

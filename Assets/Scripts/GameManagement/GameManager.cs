@@ -13,12 +13,21 @@ namespace RogueCaml
     {
 
         [Tooltip("The prefab to use for representing the player")]
+        public static GameManager Instance { get; private set; }
         public GameObject playerPrefab;
         public GameObject weaponPrefab;
         private void Awake()
         {
-            // Make this GameObject persistent across all scenes
-            DontDestroyOnLoad(gameObject);
+            //if first time we load
+            if (Instance == null)
+            {
+                Instance = this;
+                DontDestroyOnLoad(gameObject);
+            }//If try to get loaded again.
+            else
+            {
+                Destroy(gameObject);
+            }
         }
 
         //Since we use GameManager in everyscene we make condition to know from where it is instanciated, will be splitted in two different scripts later on.

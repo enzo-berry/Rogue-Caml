@@ -25,6 +25,9 @@ namespace RogueCaml
         // Update is called once per frame
         void Update()
         {
+            if (LevelManager.gameisPaused)
+                return;
+
             if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
             {
                 return;
