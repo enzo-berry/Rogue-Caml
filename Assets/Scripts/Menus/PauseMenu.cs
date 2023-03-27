@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
 
     void Paused()
     {
+        Debug.Log("Game paused !");
         PlayerManager.movement = Vector2.zero;
         pauseMenu.SetActive(true);
         LevelManager.gameisPaused = true;
@@ -29,6 +30,7 @@ public class PauseMenu : MonoBehaviour
     
     public void Resume()
     {
+        Debug.Log("Game resumed !");
         pauseMenu.SetActive(false);
         LevelManager.gameisPaused = false;
     }

@@ -27,9 +27,16 @@ public class MainMenu : MonoBehaviourPunCallbacks
 
     public void PlayButtonHandler()
     {
-        playButton.interactable = false;
         string pseudo = inputField.text;
-        gameManager.ConnectPlayer(pseudo);
+        if (pseudo == "") Debug.Log("No pseudo entered !");
+        else
+        {
+            Debug.Log($"Connect process for {pseudo}");
+            playButton.interactable = false;
+            gameManager.ConnectPlayer(pseudo);
+        }
+
+
     }
 
     public void ExitButtonHandler()
