@@ -37,41 +37,9 @@ namespace RogueCaml
             {
                 return;
             }
-            
 
-            float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
-
-            if (v > 0)
-            {
-                animator.SetBool("up", true);
-                animator.SetBool("down", false);
-                animator.SetBool("right", false);
-                animator.SetBool("left", false);
-            }
-            else if (v < 0)
-            {
-                animator.SetBool("up", false);
-                animator.SetBool("down", true);
-                animator.SetBool("right", false);
-                animator.SetBool("left", false);
-            }
-            else if (h > 0)
-            {
-                animator.SetBool("up", false);
-                animator.SetBool("down", false);
-                animator.SetBool("right", true);
-                animator.SetBool("left", false);
-            }
-            else if (h < 0)
-            {
-                animator.SetBool("up", false);
-                animator.SetBool("down", false);
-                animator.SetBool("right", false);
-                animator.SetBool("left", true);
-            }
-            
-            animator.SetFloat("speed", h * h + v * v);
+            float h = Input.GetAxis("Horizontal"); //Calculate horizontal speed
+            float v = Input.GetAxis("Vertical");   //Calculate vertical speed
         }
 
 
