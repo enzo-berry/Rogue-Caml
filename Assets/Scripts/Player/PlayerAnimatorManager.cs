@@ -40,15 +40,16 @@ namespace RogueCaml
 
             float h = Input.GetAxis("Horizontal"); //Calculate horizontal speed
             float v = Input.GetAxis("Vertical");   //Calculate vertical speed
-
             animator.SetFloat("speed", h * h + v * v);
+
+
 
             if (Input.GetKeyDown(KeyCode.DownArrow))
             {
                 animator.SetBool("down", true);
                 animator.SetBool("up", false);
                 animator.SetBool("left", false);
-                animator.SetBool("right", false);
+                
             }
             if (Input.GetKeyDown(KeyCode.UpArrow))
             {
