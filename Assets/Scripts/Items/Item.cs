@@ -7,6 +7,8 @@ using Photon.Realtime;
 
 namespace RogueCaml
 {
+    
+    
     public abstract class Item : MonoBehaviourPunCallbacks
     {
         // Start is called before the first frame update

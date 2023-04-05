@@ -88,6 +88,7 @@ namespace RogueCaml
             {
                 //Send a RPC to all connected clients, basicly calls AttackTESTSync method for every client connected.
                 photonView.RPC("AttackTESTSync", RpcTarget.All, PhotonNetwork.NickName);
+                
             }
         }
 
@@ -95,6 +96,10 @@ namespace RogueCaml
         [PunRPC]
         void AttackTESTSync(string PlayerAttacked)
         {
+            if (weapon is not null)
+            {
+                weapon.GetComponent<Weapon>().Attaque(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+            }
             Debug.Log($"Player {PlayerAttacked} just attacked ! ");
         }
 

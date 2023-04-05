@@ -6,6 +6,7 @@ using System;
 
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.UIElements;
 
 
 /*ToRecode:
@@ -18,48 +19,31 @@ using Photon.Realtime;
 
 namespace RogueCaml
 {
-    public class Sword : Item, IPunObservable
+    public class Sword : Weapon
     {
         //public EdgeCollider2D collider;
-        public PlayerManager Owner;
-        public SpriteRenderer spriteRenderer;
+        
+        
         //public Transform transform;
-        public float coolDown;
+        
         public int angle;
         public int Dammage;
 
         private int sens;
+        
+        private Vector2 Direction = new Vector2(0f, 0f);
+        private Vector3 MousePosition;
+        private float Alpha = 0;
 
-        private Vector2 xaxe = new Vector2(1, 0);
-        private Vector2 direction = new Vector2(0f, 0f);
-        private Vector3 mousePosition;
-        private float alpha = 0;
 
-
-        public bool attacking = false;
+        
         private float wait;
 
         //private PlayerManager owner
         //Start is called before the first frame update
 
 
-        #region IPunObservable implementation
-
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (stream.IsWriting)
-            {
-                // We own this player: send the others our data
-                stream.SendNext(attacking);
-            }
-            else
-            {
-                // Network player, receive data
-                this.attacking = (bool)stream.ReceiveNext();
-            }
-        }
-
-        #endregion
+        
         //Called when GameStarts.
         void Awake()
         {
@@ -92,20 +76,20 @@ namespace RogueCaml
 
                     Vector2 v = mp - tmp;
 
-                    alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
-                    direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+                    Alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+                    direction = new Vector2((float)(Math.Cos(Alpha)), (float)Math.Sin(Alpha));
             
                     this.transform.position = target.rb.position + direction;
 
-                    alpha *= (float)(180f/Math.PI);
-                    alpha -= 45f;
+                    Alpha *= (float)(180f/Math.PI);
+                    Alpha -= 45f;
 
-                    transform.eulerAngles = new Vector3(0f,0f, alpha);
+                    transform.eulerAngles = new Vector3(0f,0f, Alpha);
                 }*/
             }
             else if (Owner.photonView.IsMine && Input.GetMouseButtonDown(0))
             {
-                Attaque();
+                //Attaque(); //gerer par le player maintenant
             }
         }
 
@@ -116,24 +100,24 @@ namespace RogueCaml
                 spriteRenderer.enabled = true;
                 if (Time.time - wait < coolDown)
                 {
-                    alpha = (float)((alpha + sens * (angle * Time.fixedDeltaTime / coolDown)));
-                    transform.eulerAngles = new Vector3(0f, 0f, alpha - 45f);
+                    Alpha = (float)((Alpha + sens * (angle * Time.fixedDeltaTime / coolDown)));
+                    transform.eulerAngles = new Vector3(0f, 0f, Alpha - 45f);
 
-                    alpha *= (float)(Math.PI / 180f);
+                    Alpha *= (float)(Math.PI / 180f);
 
-                    direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
-                    this.transform.position = Owner.GetRigidBody().position + direction;
+                    Direction = new Vector2((float)(Math.Cos(Alpha)), (float)Math.Sin(Alpha));
+                    this.transform.position = Owner.GetRigidBody().position + Direction;
 
-                    alpha *= (float)(180f / Math.PI);
+                    Alpha *= (float)(180f / Math.PI);
                     /*
-                    direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+                    direction = new Vector2((float)(Math.Cos(Alpha)), (float)Math.Sin(Alpha));
 
                     this.transform.position = target.rb.position + direction;
 
-                    alpha *= (float)(180f/Math.PI);
-                    //alpha -= 45f;
+                    Alpha *= (float)(180f/Math.PI);
+                    //Alpha -= 45f;
 
-                    transform.eulerAngles = new Vector3(0f,0f, alpha - 45f);*/
+                    transform.eulerAngles = new Vector3(0f,0f, Alpha - 45f);*/
                 }
                 else if (Owner.photonView.IsMine)
                 {
@@ -147,25 +131,26 @@ namespace RogueCaml
             }
         }
 
-        public void Attaque()
+        public override void  Attaque(Vector2 direction)
         {
             if (!attacking)
             {
-                Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                
+                Vector2 mp = direction;
 
                 sens = mp.x > 0 ? -1 : 1;
 
                 Vector2 tmp = Owner.GetRigidBody().position;
                 Vector2 v = mp - tmp;
-                alpha = (float)(v.x == 0 ? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y / v.x)) + (Signe(v.x) == -1 ? Math.PI : 0));
-                alpha = (float)(alpha + (-sens * Math.PI / 2));
+                Alpha = (float)(v.x == 0 ? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y / v.x)) + (Signe(v.x) == -1 ? Math.PI : 0));
+                Alpha = (float)(Alpha + (-sens * Math.PI / 2));
 
-                direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+                direction = new Vector2((float)(Math.Cos(Alpha)), (float)Math.Sin(Alpha));
 
                 this.transform.position = Owner.GetRigidBody().position + direction;
-                alpha *= (float)(180f / Math.PI);
+                Alpha *= (float)(180f / Math.PI);
 
-                transform.eulerAngles = new Vector3(0f, 0f, alpha - 45f);
+                transform.eulerAngles = new Vector3(0f, 0f, Alpha - 45f);
 
                 //spriteRenderer.enabled = true;
                 wait = Time.time;
