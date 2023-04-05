@@ -23,11 +23,6 @@ namespace RogueCaml
         {
             throw new System.NotImplementedException();
         }
-        
-        public override void Pickup(PlayerManager target)
-        {
-            throw new System.NotImplementedException();
-        }
 
         #region IPunObservable implementation
 
@@ -46,5 +41,26 @@ namespace RogueCaml
         }
 
         #endregion
+        
+        void Start()
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+            //collider.SetActive(false);
+            //render.SetActive(false);
+        }
+        public override void Pickup(PlayerManager Player)
+        {
+            if (Player == null)
+            {
+                Debug.LogError("<Color=Red><a>Missing</a></Color> PlayMakerManager target for PlayerUI.SetTarget.", this);
+                return;
+            }
+            // Cache references for efficiency
+            //spriteRenderer.enabled = false;
+            Owner = Player;
+            this.gameObject.tag = "Equiped";
+        }
     }
+    
+    
 }

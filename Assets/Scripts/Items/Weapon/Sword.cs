@@ -133,7 +133,7 @@ namespace RogueCaml
 
         public override void  Attaque(Vector2 direction)
         {
-            if (!attacking && photonView.IsMine)
+            if (!attacking && Owner.photonView.IsMine)
             {
                 
                 Vector2 mp = direction;
@@ -159,18 +159,7 @@ namespace RogueCaml
             }
         }
 
-        public override void Pickup(PlayerManager Player)
-        {
-            if (Player == null)
-            {
-                Debug.LogError("<Color=Red><a>Missing</a></Color> PlayMakerManager target for PlayerUI.SetTarget.", this);
-                return;
-            }
-            // Cache references for efficiency
-            //spriteRenderer.enabled = false;
-            Owner = Player;
-            this.gameObject.tag = "Equiped";
-        }
+        
 
         public void Drop()
         {

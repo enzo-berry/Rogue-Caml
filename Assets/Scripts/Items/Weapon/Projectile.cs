@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 namespace RogueCaml{
-public class Projectile : MonoBehaviour
+public class Projectile : MonoBehaviourPunCallbacks
 {
     public Vector2 direction = new Vector2(0,0);
 
@@ -25,12 +25,13 @@ public class Projectile : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        rb.position += speed * Time.fixedDeltaTime * direction;
+        if(photonView.IsMine)
+            rb.position += speed * Time.fixedDeltaTime * direction;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.tag != tag  && PhotonNetwork.IsMasterClient)
+        if(col.gameObject.CompareTag(tag)  && PhotonNetwork.IsMasterClient)
             PhotonNetwork.Destroy(this.gameObject);
     }
 }
