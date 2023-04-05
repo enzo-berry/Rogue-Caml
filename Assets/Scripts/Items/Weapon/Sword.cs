@@ -133,7 +133,7 @@ namespace RogueCaml
 
         public override void  Attaque(Vector2 direction)
         {
-            if (!attacking)
+            if (!attacking && photonView.IsMine)
             {
                 
                 Vector2 mp = direction;
