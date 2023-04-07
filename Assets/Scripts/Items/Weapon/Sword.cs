@@ -32,7 +32,7 @@ namespace RogueCaml
         private int sens;
         
         private Vector2 Direction = new Vector2(0f, 0f);
-        private Vector3 MousePosition;
+        //private Vector3 MousePosition;
         private float Alpha = 0;
 
 
@@ -87,10 +87,10 @@ namespace RogueCaml
                     transform.eulerAngles = new Vector3(0f,0f, Alpha);
                 }*/
             }
-            else if (Owner.photonView.IsMine && Input.GetMouseButtonDown(0))
-            {
+            //else if (Owner.photonView.IsMine && Input.GetMouseButtonDown(0))
+            //{
                 //Attaque(); //gerer par le player maintenant
-            }
+            //}
         }
 
         void FixedUpdate()

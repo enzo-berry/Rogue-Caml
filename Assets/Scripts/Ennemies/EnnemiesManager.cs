@@ -6,6 +6,7 @@ using System;
 
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.Serialization;
 
 namespace RogueCaml 
 {
@@ -14,6 +15,9 @@ namespace RogueCaml
         public int Health = 5;
         public float moveSpeed = 5f;
         public Rigidbody2D rb;
+
+        [FormerlySerializedAs("target")] 
+        public GameObject Target;
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
@@ -32,7 +36,7 @@ namespace RogueCaml
         // Start is called before the first frame update
         void Start()
         {
-        
+            setTarget();
         }
 
         // Update is called once per frame
@@ -45,25 +49,37 @@ namespace RogueCaml
             }
         }
 
+        private char waiting = '\0';
         void FixedUpdate()
         {
+            waiting++;
+            if(waiting == 20)
+            {
+                waiting = '\0';
+                setTarget();
+            }
+
+            Vector2 v = Target.transform.position - transform.position;
+            
+            float alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+            Vector2 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+        
+            rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * direction);
+        }
+
+        protected void setTarget()
+        {
             PlayerManager[] players = FindObjectsOfType<PlayerManager>();
-            Vector2 v = new Vector2(0f,0f);
             double d = 10000000000000;
 
             for (int i = 0; i < players.Length; i++)
             {
                 if (Distance(players[i].transform.position - transform.position) < d)
                 {
-                    v = players[i].transform.position - transform.position;
-                    d = Distance(v);
+                    Target = players[i].gameObject;
+                    d = Distance(Target.transform.position - transform.position);
                 }
             }
-
-            float alpha = alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
-            Vector2 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
-        
-            rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * direction);
         }
 
         public void Kill()
@@ -76,12 +92,12 @@ namespace RogueCaml
             Health -= amount;
         }
 
-        double Distance(Vector2 v)
+        protected double Distance(Vector2 v)
         {
             return (float)(Math.Sqrt(v.x * v.x + v.y * v.y));
         }
 
-        int Signe(float f) 
+        protected int Signe(float f) 
         {
             return f>0? 1 : f==0? 0 : -1;
         }

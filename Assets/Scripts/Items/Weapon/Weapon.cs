@@ -17,6 +17,8 @@ namespace RogueCaml
         public bool attacking = false; //defini si l'epee est en train d'attaquer
         public SpriteRenderer spriteRenderer; //
         public float coolDown; //temps entre 2 attaques
+
+        public float range;
         
 
         public virtual void Attaque(Vector2 direction)
