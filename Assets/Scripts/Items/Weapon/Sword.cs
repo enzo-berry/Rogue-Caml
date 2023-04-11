@@ -19,6 +19,8 @@ using UnityEngine.UIElements;
 
 namespace RogueCaml
 {
+    
+    
     public class Sword : Weapon
     {
         //public EdgeCollider2D collider;
@@ -37,7 +39,7 @@ namespace RogueCaml
 
 
         
-        private float wait;
+        
 
         //private PlayerManager owner
         //Start is called before the first frame update
@@ -133,6 +135,11 @@ namespace RogueCaml
 
         public override void  Attaque(Vector2 direction)
         {
+            int Signe(float f)
+            {
+                return f > 0 ? 1 : f == 0 ? 0 : -1;
+            }
+            
             if (!attacking && Owner.photonView.IsMine)
             {
                 
@@ -167,10 +174,7 @@ namespace RogueCaml
             this.gameObject.tag = "ItemW";
         }
 
-        int Signe(float f)
-        {
-            return f > 0 ? 1 : f == 0 ? 0 : -1;
-        }
+        
 
 
         //Moved SwordCollisionController functions here, will be easier since we wont use after updates.

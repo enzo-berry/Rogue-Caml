@@ -19,7 +19,7 @@ namespace RogueCaml
         public float coolDown; //temps entre 2 attaques
 
         public float range;
-        
+        protected float wait;
 
         public virtual void Attaque(Vector2 direction)
         {

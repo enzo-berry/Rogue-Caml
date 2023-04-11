@@ -19,19 +19,19 @@ public class Projectile : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
         if(photonView.IsMine)
-            rb.position += speed * Time.fixedDeltaTime * direction;
+            transform.position += speed * Time.fixedDeltaTime * (Vector3)direction;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.gameObject.CompareTag(tag)  && PhotonNetwork.IsMasterClient)
+        if(!col.gameObject.CompareTag(tag) && !col.gameObject.CompareTag("Equiped") && PhotonNetwork.IsMasterClient)
             PhotonNetwork.Destroy(this.gameObject);
     }
 }

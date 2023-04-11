@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -84,11 +85,20 @@ namespace RogueCaml
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
-            if (Input.GetKey(KeyCode.Mouse0))
+            if (Input.GetKey(KeyCode.Mouse0) && weapon is not null)
             {
                 //Send a RPC to all connected clients, basicly calls AttackTESTSync method for every client connected.
-                photonView.RPC("AttackTESTSync", RpcTarget.All, PhotonNetwork.NickName);
+                //photonView.RPC("AttackTESTSync", RpcTarget.All, PhotonNetwork.NickName);
                 
+                Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                Vector2 tmp = transform.position;
+
+                Vector2 v = mp - tmp;
+
+                float alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+                Vector2 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+                
+                weapon.SendMessage("Attaque", direction, SendMessageOptions.RequireReceiver);
             }
         }
 
@@ -107,6 +117,11 @@ namespace RogueCaml
         public Rigidbody2D GetRigidBody()
         {
             return rigidBody;
+        }
+        
+        int Signe(float f)
+        {
+            return f > 0 ? 1 : f == 0 ? 0 : -1;
         }
     }
 }
