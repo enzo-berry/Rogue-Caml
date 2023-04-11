@@ -42,35 +42,34 @@ namespace RogueCaml
             float v = Input.GetAxis("Vertical");   //Calculate vertical speed
             animator.SetFloat("speed", h * h + v * v);
 
-
-
-            if (Input.GetKeyDown(KeyCode.DownArrow))
-            {
-                animator.SetBool("down", true);
-                animator.SetBool("up", false);
-                animator.SetBool("left", false);
-                
-            }
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+            if (h > 0 && v == 0)
             {
                 animator.SetBool("down", false);
-                animator.SetBool("up", true);
+                animator.SetBool("up", false);
                 animator.SetBool("left", false);
-                animator.SetBool("right", false);
+                animator.SetBool("right", true);
             }
-            if (Input.GetKeyDown (KeyCode.LeftArrow) && !Input.GetKeyDown(KeyCode.DownArrow) && !Input.GetKeyDown(KeyCode.UpArrow)) 
+            if (h < 0 && v == 0)
             {
                 animator.SetBool("down", false);
                 animator.SetBool("up", false);
                 animator.SetBool("left", true);
                 animator.SetBool("right", false);
             }
-            if (Input.GetKeyDown(KeyCode.RightArrow) && !Input.GetKeyDown(KeyCode.DownArrow) && !Input.GetKeyDown(KeyCode.UpArrow))
+            if (v < 0)
             {
-                animator.SetBool("down", false);
+                animator.SetBool("down", true);
                 animator.SetBool("up", false);
                 animator.SetBool("left", false);
-                animator.SetBool("right", true);
+                animator.SetBool("right", false);
+
+            }
+            if (v > 0)
+            {
+                animator.SetBool("down", false);
+                animator.SetBool("up", true);
+                animator.SetBool("left", false);
+                animator.SetBool("right", false);
             }
         }
 
