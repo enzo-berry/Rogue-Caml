@@ -18,8 +18,8 @@ public class Projectile : MonoBehaviourPunCallbacks
     
     // Start is called before the first frame update
     void Start()
-    {
-        
+    {  
+        transform.Rotate(direction, 0f);
     }
 
     // Update is called once per frame

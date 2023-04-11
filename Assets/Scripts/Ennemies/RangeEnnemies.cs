@@ -23,14 +23,7 @@ namespace RogueCaml
         }
 
         // Update is called once per frame
-        public void Update()
-        {
-            //Master client will handle killing enemies.
-            if(Health <= 0 && PhotonNetwork.IsMasterClient)
-            {
-                Kill();
-            }
-        }
+        
 
         private char waiting = '\0';
         void FixedUpdate()

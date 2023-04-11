@@ -58,7 +58,7 @@ namespace RogueCaml
                 return;
             }
             // Cache references for efficiency
-            //spriteRenderer.enabled = false;
+            spriteRenderer.enabled = false;
             Owner = Player;
             this.gameObject.tag = "Equiped";
         }

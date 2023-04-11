@@ -22,10 +22,13 @@ namespace RogueCaml
             {
                 wait = Time.time;
                 attacking = true;
+                transform.position = Owner.transform.position + (Vector3)direction;
                 GameObject b =
                     PhotonNetwork.Instantiate(ProjectilePrefab.name, transform.position + (Vector3)direction, Quaternion.identity);
-
-                b.GetComponent<Projectile>().direction = direction;
+                
+                Projectile p = b.GetComponent<Projectile>();
+                p.direction = direction;
+                b.transform.right = (direction);
             }
         }
     }
