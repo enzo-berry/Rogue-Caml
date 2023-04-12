@@ -9,11 +9,12 @@ public class ComputerManager : MonoBehaviour
     AudioSource audioData;
     public bool isInRange;
     public KeyCode keyInteraction;
-    public UnityEvent interactAction;
+    public GameObject panel;
     // Start is called before the first frame update
     void Start()
     {
         audioData = GetComponent<AudioSource>();
+        panel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -28,7 +29,15 @@ public class ComputerManager : MonoBehaviour
         {
             if (Input.GetKeyDown(keyInteraction))
             {
-                interactAction.Invoke();
+                if (panel.activeInHierarchy == false)
+                {
+                    panel.SetActive(true);
+                }
+                else
+                {
+                    panel.SetActive(false);
+                }
+                
             }
         }
     }
@@ -45,6 +54,7 @@ public class ComputerManager : MonoBehaviour
         if (collision.gameObject.CompareTag("ally"))
         {
             isInRange = false;
+            panel.SetActive(false);
             Debug.Log("Player exit computer collider");
         }
     }

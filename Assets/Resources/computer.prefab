@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7813922936084293302}
   - component: {fileID: 2442197680423789882}
   - component: {fileID: 3250455330268773398}
+  - component: {fileID: 3774701765034886682}
   m_Layer: 0
   m_Name: computer
   m_TagString: Untagged
@@ -194,3 +195,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5fe39142dc6e02f41a5f7699a9474fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isInRange: 0
+  keyInteraction: 101
+  interactAction:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!58 &3774701765034886682
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3582383605393781203}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.02982213, y: 0}
+  serializedVersion: 2
+  m_Radius: 4
