@@ -19,11 +19,6 @@ public class ComputerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Interfered with Sword Attack, so commented.
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    audioData.Play();
-        //}
         if (isInRange)
         {
             if (Input.GetKeyDown(keyInteraction))
