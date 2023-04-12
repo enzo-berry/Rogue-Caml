@@ -28,23 +28,6 @@ namespace RogueCaml
 
         // Update is called once per frame
         
-        void FixedUpdate()
-        {
-            waiting++;
-            if(waiting == 15)
-            {
-                waiting = '\0';
-                setTarget();
-            }
-            else if (waiting%5 == 0)
-            {
-                setDirection();
-                Weapon.Attaque(TargetDirection);
-            }
-            
-            
-            rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * direction);
-        }
         
     }
 

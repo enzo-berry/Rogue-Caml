@@ -77,9 +77,12 @@ namespace RogueCaml
             if (waiting % 5 == 0)
             {
                 setDirection();
+                if(Weapon)
+                    Weapon.Attaque(TargetDirection);
             }
-            
-            rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * direction);
+
+            transform.position += (Vector3)(moveSpeed * Time.fixedDeltaTime * direction);
+            //rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * direction);
         }
 
         protected void setTarget()
@@ -99,7 +102,7 @@ namespace RogueCaml
 
         public void Kill()
         {
-            if(Weapon is not null) PhotonNetwork.Destroy(this.Weapon.gameObject);
+            if(Weapon) PhotonNetwork.Destroy(this.Weapon.gameObject);
             PhotonNetwork.Destroy(this.gameObject);
         }
 
