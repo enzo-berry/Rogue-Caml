@@ -39,7 +39,7 @@ namespace RogueCaml
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            //Debug.Log("trigger stay", this);
+            Debug.Log("trigger stay", this);
             if (Input.GetButton("Fire1"))
             {
                 //Equiping weapon
