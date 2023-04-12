@@ -25,7 +25,7 @@ namespace RogueCaml
 
         public Vector2 direction;
         protected Vector2 TargetDirection;
-        protected float RandomRotation = 180f; 
+        protected float RandomRotation = 180f;
         
         
         public GameObject WeaponPrefab;
@@ -131,7 +131,9 @@ namespace RogueCaml
             TargetDirection = new Vector2(direction.x, direction.y);
 
             if (Distance(v) < Weapon.range) direction = -direction;
-
+            
+            
+            
             //direction = Quaternion.AngleAxis(Random.Range(-RandomRotation, RandomRotation), Vector3.left) * direction;
         }
 
