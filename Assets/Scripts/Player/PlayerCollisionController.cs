@@ -45,7 +45,7 @@ namespace RogueCaml
                 //Equiping weapon
                 if (collision.gameObject.CompareTag("Unequipped") && playerController.weapon==null)
                 {
-                    collision.gameObject.SendMessage("Pickup", playerController, SendMessageOptions.RequireReceiver);
+                    collision.gameObject.SendMessage("Pickup", gameObject, SendMessageOptions.RequireReceiver);
                     playerController.weapon = collision.gameObject;
                 }
             }

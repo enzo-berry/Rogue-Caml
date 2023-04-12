@@ -13,8 +13,8 @@ namespace RogueCaml
     {
         private float securityRange;
 
-        public GameObject WeaponPrefab;
-        private Weapon Weapon;
+        
+        //pour ajouter un peu de random pour le deplacement
         
         // Start is called before the first frame update
         void Start()
@@ -22,33 +22,31 @@ namespace RogueCaml
             setTarget();
             Weapon = PhotonNetwork.Instantiate(WeaponPrefab.name, Vector3.zero, quaternion.identity)
                 .GetComponent<Weapon>();
-            
-            
+            Weapon.Pickup(this.gameObject);
+            range = Weapon.range * 0.5f;
         }
 
         // Update is called once per frame
         
-
-        private char waiting = '\0';
         void FixedUpdate()
         {
             waiting++;
-            if(waiting == 10)
+            if(waiting == 15)
             {
                 waiting = '\0';
                 setTarget();
             }
-
-            Vector2 v = Target.transform.position - transform.position;
+            else if (waiting%5 == 0)
+            {
+                setDirection();
+                Weapon.Attaque(TargetDirection);
+            }
             
-
-            float alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
-            Vector2 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
-
-            if (Distance(Target.transform.position - transform.position) < Weapon.range) direction = -direction; 
-
+            
             rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * direction);
         }
         
     }
+
+    
 }

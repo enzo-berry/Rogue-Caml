@@ -7,6 +7,8 @@ using System;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.Serialization;
+using UnityEngine.UIElements;
+using Random = UnityEngine.Random;
 
 namespace RogueCaml 
 {
@@ -14,10 +16,22 @@ namespace RogueCaml
     {
         public int Health = 5;
         public float moveSpeed = 5f;
-        public Rigidbody2D rb;
-
+        protected float range;
         [FormerlySerializedAs("target")] 
         public GameObject Target;
+        protected char waiting = '\0';
+        
+        protected Rigidbody2D rb;
+
+        public Vector2 direction;
+        protected Vector2 TargetDirection;
+        protected float RandomRotation = 180f; 
+        
+        
+        public GameObject WeaponPrefab;
+        protected Weapon Weapon;
+        
+        
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
@@ -37,6 +51,7 @@ namespace RogueCaml
         void Start()
         {
             setTarget();
+            setDirection();
         }
 
         // Update is called once per frame
@@ -49,7 +64,7 @@ namespace RogueCaml
             }
         }
 
-        private char waiting = '\0';
+        
         void FixedUpdate()
         {
             waiting++;
@@ -59,11 +74,11 @@ namespace RogueCaml
                 setTarget();
             }
 
-            Vector2 v = Target.transform.position - transform.position;
+            if (waiting % 5 == 0)
+            {
+                setDirection();
+            }
             
-            float alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
-            Vector2 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
-        
             rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * direction);
         }
 
@@ -84,6 +99,7 @@ namespace RogueCaml
 
         public void Kill()
         {
+            if(Weapon is not null) PhotonNetwork.Destroy(this.Weapon.gameObject);
             PhotonNetwork.Destroy(this.gameObject);
         }
 
@@ -100,6 +116,20 @@ namespace RogueCaml
         protected int Signe(float f) 
         {
             return f>0? 1 : f==0? 0 : -1;
+        }
+        
+        protected void setDirection()
+        {
+            Vector2 v = Target.transform.position - transform.position;
+                
+            float alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+            direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
+
+            TargetDirection = new Vector2(direction.x, direction.y);
+
+            if (Distance(Target.transform.position - transform.position) < Weapon.range) direction = -direction;
+
+            //direction = Quaternion.AngleAxis(Random.Range(-RandomRotation, RandomRotation), Vector3.left) * direction;
         }
 
     }
