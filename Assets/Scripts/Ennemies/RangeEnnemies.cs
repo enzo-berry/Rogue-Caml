@@ -23,13 +23,9 @@ namespace RogueCaml
             Weapon = PhotonNetwork.Instantiate(WeaponPrefab.name, Vector3.zero, quaternion.identity)
                 .GetComponent<Weapon>();
             Weapon.Pickup(this.gameObject);
-            range = Weapon.range * 0.5f;
+            range = Weapon.range;
         }
 
         // Update is called once per frame
-        
-        
     }
-
-    
 }

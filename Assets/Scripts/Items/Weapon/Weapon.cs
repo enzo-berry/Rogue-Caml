@@ -18,7 +18,7 @@ namespace RogueCaml
         public SpriteRenderer spriteRenderer; //
         public float coolDown; //temps entre 2 attaques
 
-        public static float range;
+        public float range;
         protected float wait;
 
         public virtual void Attaque(Vector2 direction)

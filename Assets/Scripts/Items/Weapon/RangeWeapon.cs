@@ -10,6 +10,13 @@ namespace RogueCaml
     public class RangeWeapon : Weapon
     {
         public GameObject ProjectilePrefab;
+
+        void Start()
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+            range = 0.5f * ProjectilePrefab.GetComponent<Projectile>().speed;
+        }
         
         private void Update()
         {

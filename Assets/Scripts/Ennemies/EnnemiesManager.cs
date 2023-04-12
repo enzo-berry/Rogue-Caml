@@ -125,12 +125,12 @@ namespace RogueCaml
         {
             Vector2 v = Target.transform.position - transform.position;
                 
-            float alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+            float alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
             direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
 
             TargetDirection = new Vector2(direction.x, direction.y);
 
-            if (Distance(Target.transform.position - transform.position) < Weapon.range) direction = -direction;
+            if (Distance(v) < Weapon.range) direction = -direction;
 
             //direction = Quaternion.AngleAxis(Random.Range(-RandomRotation, RandomRotation), Vector3.left) * direction;
         }
