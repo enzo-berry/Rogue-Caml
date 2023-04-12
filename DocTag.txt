@@ -9,11 +9,13 @@ a : oui
 	w : weapon
 		e : equiped
 		n : unequiped
-b : non
+	p :
+		e : ennemies
+		a : ally
 c : peut-etre (si ça depend du "clan")
 	d : dammagable
 		e : ennemies
 		a : ally
-
+autre : non
 
 

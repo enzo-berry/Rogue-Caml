@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2179180430500274453}
   m_Layer: 0
   m_Name: Weapon
-  m_TagString: Unequipped
+  m_TagString: awn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

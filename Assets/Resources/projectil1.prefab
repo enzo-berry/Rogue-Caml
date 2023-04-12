@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5862918618904040512}
   m_Layer: 0
   m_Name: projectil1
-  m_TagString: ally
+  m_TagString: apo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -141,7 +141,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
+  Owner: {fileID: 0}
   speed: 15
+  Dammage: 0
 --- !u!61 &5602014818701153575
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -10,8 +10,9 @@ namespace RogueCaml{
 public class Projectile : MonoBehaviourPunCallbacks
 {
     public Vector2 direction = new Vector2(0,0);
-
+    public GameObject Owner;
     public float speed;
+    public int Dammage;
 
     [Serialize] private Rigidbody2D rb;
     
@@ -31,9 +32,19 @@ public class Projectile : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        
-        if(!col.gameObject.CompareTag(tag) && !col.gameObject.CompareTag("Equiped") && PhotonNetwork.IsMasterClient)
+        if (col.gameObject.tag[0] != 'c')
+        {
+            if (col.gameObject.tag[1] != Owner.tag[1])
+            {
+                col.SendMessage("TakeDommage", Dammage, SendMessageOptions.RequireReceiver);
+                PhotonNetwork.Destroy(this.gameObject);
+            }
+            
+        }
+        else
+        {
             PhotonNetwork.Destroy(this.gameObject);
+        }
     }
 }
 }

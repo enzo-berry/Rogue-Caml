@@ -34,6 +34,8 @@ namespace RogueCaml
                     PhotonNetwork.Instantiate(ProjectilePrefab.name, transform.position + (Vector3)direction, Quaternion.identity);
                 
                 Projectile p = b.GetComponent<Projectile>();
+                b.tag = $"ap{Owner.tag[2]}";
+                p.Owner = Owner;
                 p.direction = direction;
                 b.transform.right = (direction);
             }
