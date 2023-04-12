@@ -31,6 +31,7 @@ public class Projectile : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter2D(Collider2D col)
     {
+        
         if(!col.gameObject.CompareTag(tag) && !col.gameObject.CompareTag("Equiped") && PhotonNetwork.IsMasterClient)
             PhotonNetwork.Destroy(this.gameObject);
     }

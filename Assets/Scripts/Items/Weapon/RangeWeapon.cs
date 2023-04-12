@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RogueCaml
@@ -9,7 +10,6 @@ namespace RogueCaml
     public class RangeWeapon : Weapon
     {
         public GameObject ProjectilePrefab;
-
         
         private void Update()
         {

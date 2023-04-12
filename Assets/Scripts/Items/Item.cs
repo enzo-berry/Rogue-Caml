@@ -12,7 +12,7 @@ namespace RogueCaml
     public abstract class Item : MonoBehaviourPunCallbacks
     {
         // Start is called before the first frame update
-        public abstract void Pickup(PlayerManager target);
+        public abstract void Pickup(GameObject target);
 
         //public abstract void Drop();
     }

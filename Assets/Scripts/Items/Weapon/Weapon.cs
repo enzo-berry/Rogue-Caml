@@ -13,12 +13,12 @@ namespace RogueCaml
     
     public class Weapon : Item, IPunObservable
     {
-        public PlayerManager Owner; //proprietaire de l'epee
+        public GameObject Owner; //proprietaire de l'epee
         public bool attacking = false; //defini si l'epee est en train d'attaquer
         public SpriteRenderer spriteRenderer; //
         public float coolDown; //temps entre 2 attaques
 
-        public float range;
+        public static float range;
         protected float wait;
 
         public virtual void Attaque(Vector2 direction)
@@ -50,7 +50,7 @@ namespace RogueCaml
             //collider.SetActive(false);
             //render.SetActive(false);
         }
-        public override void Pickup(PlayerManager Player)
+        public override void Pickup(GameObject Player)
         {
             if (Player == null)
             {

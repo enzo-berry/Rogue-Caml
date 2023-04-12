@@ -108,7 +108,7 @@ namespace RogueCaml
                     Alpha *= (float)(Math.PI / 180f);
 
                     Direction = new Vector2((float)(Math.Cos(Alpha)), (float)Math.Sin(Alpha));
-                    this.transform.position = Owner.GetRigidBody().position + Direction;
+                    this.transform.position = Owner.transform.position + (Vector3)Direction;
 
                     Alpha *= (float)(180f / Math.PI);
                     /*
@@ -121,7 +121,7 @@ namespace RogueCaml
 
                     transform.eulerAngles = new Vector3(0f,0f, Alpha - 45f);*/
                 }
-                else if (Owner.photonView.IsMine)
+                else if (photonView.IsMine)
                 {
                     spriteRenderer.enabled = false;
                     attacking = false;
@@ -140,24 +140,22 @@ namespace RogueCaml
                 return f > 0 ? 1 : f == 0 ? 0 : -1;
             }
             
-            if (!attacking && Owner.photonView.IsMine)
+            if (!attacking && photonView.IsMine)
             {
                 
                 Vector2 mp = direction;
 
                 sens = mp.x > 0 ? -1 : 1;
 
-                Vector2 tmp = Owner.GetRigidBody().position;
-                Vector2 v = mp - tmp;
-                Alpha = (float)(v.x == 0 ? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y / v.x)) + (Signe(v.x) == -1 ? Math.PI : 0));
+                
+                Alpha = (float)(direction.x == 0 ? (float)(90 * Signe(direction.y)) : Math.Atan((float)(direction.y / direction.x)) + (Signe(direction.x) == -1 ? Math.PI : 0));
                 Alpha = (float)(Alpha + (-sens * Math.PI / 2));
 
-                direction = new Vector2((float)(Math.Cos(Alpha)), (float)Math.Sin(Alpha));
-
-                this.transform.position = Owner.GetRigidBody().position + direction;
+                this.transform.position = Owner.transform.position + (Vector3)direction;
                 Alpha *= (float)(180f / Math.PI);
 
-                transform.eulerAngles = new Vector3(0f, 0f, Alpha - 45f);
+                transform.right = direction;
+                transform.Rotate(new Vector3(0,0, angle/2));
 
                 //spriteRenderer.enabled = true;
                 wait = Time.time;
