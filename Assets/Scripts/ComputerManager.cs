@@ -20,17 +20,13 @@ public class ComputerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Interfered with Sword Attack, so commented.
-        //if (Input.GetKeyDown(KeyCode.Mouse0))
-        //{
-        //    audioData.Play();
-        //}
         if (isInRange)
         {
             if (Input.GetKeyDown(keyInteraction))
             {
                 if (panel.activeInHierarchy == false)
                 {
+                    audioData.Play();
                     panel.SetActive(true);
                 }
                 else
@@ -46,7 +42,6 @@ public class ComputerManager : MonoBehaviour
         if (collision.gameObject.CompareTag("ally"))
         {
             isInRange = true;
-            Debug.Log("Player enter computer collider");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -55,7 +50,6 @@ public class ComputerManager : MonoBehaviour
         {
             isInRange = false;
             panel.SetActive(false);
-            Debug.Log("Player exit computer collider");
         }
     }
 }
