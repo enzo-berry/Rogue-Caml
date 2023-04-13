@@ -144,6 +144,7 @@ MonoBehaviour:
   Owner: {fileID: 0}
   speed: 15
   Dammage: 1
+  Team: 0
 --- !u!61 &5602014818701153575
 BoxCollider2D:
   m_ObjectHideFlags: 0

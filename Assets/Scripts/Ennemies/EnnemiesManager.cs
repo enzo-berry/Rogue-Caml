@@ -132,7 +132,7 @@ namespace RogueCaml
             
             
             
-            //direction = Quaternion.AngleAxis(Random.Range(-RandomRotation, RandomRotation), Vector3.left) * direction;
+            direction = Quaternion.AngleAxis(Random.Range(-RandomRotation, RandomRotation), Vector3.up) * direction;
         }
 
     }
