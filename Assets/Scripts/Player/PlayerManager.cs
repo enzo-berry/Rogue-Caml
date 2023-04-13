@@ -53,19 +53,7 @@ namespace RogueCaml
 
         //SyncingHealth using OnPhotonSerializeView.
         //Could be done in a graphical way just like the Animations ?
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (stream.IsWriting)
-            {
-                // We own this player: send the others our data
-                stream.SendNext(Health);
-            }
-            else
-            {
-                // Network player, receive data
-                this.Health = (int)stream.ReceiveNext();
-            }
-        }
+        
 
         #endregion
 

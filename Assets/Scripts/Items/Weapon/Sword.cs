@@ -49,16 +49,7 @@ namespace RogueCaml
         //Called when GameStarts.
         void Awake()
         {
-            //I dont understand this part, why would sword actualize LocaPlayerInstance ?
-                // #Important
-                // used in GameManager.cs: we keep track of the localPlayer instance to prevent instantiation when levels are synchronized
-                if (photonView.IsMine)
-                {
-                    PlayerManager.LocalPlayerInstance = this.gameObject;
-                }
-
-            //We dont destroy Sword object on scene changement.
-            DontDestroyOnLoad(this.gameObject);
+            
         }
 
         void Start()

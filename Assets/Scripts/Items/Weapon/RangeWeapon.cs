@@ -35,6 +35,7 @@ namespace RogueCaml
                 
                 Projectile p = b.GetComponent<Projectile>();
                 b.tag = $"ap{Owner.tag[2]}";
+                p.Team = Owner.tag[2];
                 p.Owner = Owner;
                 p.direction = direction;
                 b.transform.right = (direction);

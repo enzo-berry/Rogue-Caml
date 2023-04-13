@@ -14,6 +14,8 @@ public class Projectile : MonoBehaviourPunCallbacks
     public float speed;
     public int Dammage;
 
+    public char Team;
+
     [Serialize] private Rigidbody2D rb;
     
     
@@ -26,17 +28,18 @@ public class Projectile : MonoBehaviourPunCallbacks
     // Update is called once per frame
     void FixedUpdate()
     {
+        //if(Owner == null) PhotonNetwork.Destroy(this.gameObject);
         if(photonView.IsMine)
             transform.position += speed * Time.fixedDeltaTime * (Vector3)direction;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log($"collision pro: {Owner.tag} vs {col.gameObject.tag}");
+        //Debug.Log($"collision pro: {Owner.tag} vs {col.gameObject.tag}");
         if (col.gameObject.tag[0] != 'a') //si pas de type a (donc non transparant aux balles)
         {
-            Debug.Log($"collision pro: {Owner.tag} vs {col.gameObject.tag}");
-            if (col.gameObject.tag[0] == 'c' && col.gameObject.tag[2] != Owner.tag[2]) //si il sont de clan different
+            //Debug.Log($"collision pro: {Owner.tag} vs {col.gameObject.tag}");
+            if (col.gameObject.tag[0] == 'c' && col.gameObject.tag[2] != Team) //si il sont de clan different
             {
                 col.SendMessage("TakeDommage", Dammage, SendMessageOptions.RequireReceiver);
                 PhotonNetwork.Destroy(this.gameObject);

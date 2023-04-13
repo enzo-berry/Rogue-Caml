@@ -16,6 +16,8 @@ namespace RogueCaml
         public static GameManager Instance { get; private set; }
         public GameObject playerPrefab;
         public GameObject weaponPrefab;
+
+        public static int difficulty = 0;
         private void Awake()
         {
             //if first time we load
