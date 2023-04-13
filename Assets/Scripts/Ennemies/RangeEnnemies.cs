@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using RogueCaml;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -22,6 +23,8 @@ namespace RogueCaml
             setTarget();
             Weapon = PhotonNetwork.Instantiate(WeaponPrefab.name, Vector3.zero, quaternion.identity)
                 .GetComponent<Weapon>();
+
+            Weapon.coolDown *= (1 + (100 - GameManager.difficulty) / 100);
             Weapon.Pickup(this.gameObject);
             range = Weapon.range;
         }
