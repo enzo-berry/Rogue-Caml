@@ -32,18 +32,16 @@ public class Projectile : MonoBehaviourPunCallbacks
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag[0] != 'c')
+        Debug.Log($"collision pro: {Owner.tag} vs {col.gameObject.tag}");
+        if (col.gameObject.tag[0] != 'a') //si pas de type a (donc non transparant aux balles)
         {
-            if (col.gameObject.tag[1] != Owner.tag[1])
+            Debug.Log($"collision pro: {Owner.tag} vs {col.gameObject.tag}");
+            if (col.gameObject.tag[0] == 'c' && col.gameObject.tag[2] != Owner.tag[2]) //si il sont de clan different
             {
                 col.SendMessage("TakeDommage", Dammage, SendMessageOptions.RequireReceiver);
                 PhotonNetwork.Destroy(this.gameObject);
             }
-            
-        }
-        else
-        {
-            PhotonNetwork.Destroy(this.gameObject);
+            else if(col.gameObject.tag[0] != 'c') PhotonNetwork.Destroy(this.gameObject);
         }
     }
 }
