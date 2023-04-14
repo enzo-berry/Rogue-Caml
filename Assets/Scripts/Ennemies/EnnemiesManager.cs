@@ -56,7 +56,7 @@ namespace RogueCaml
         public void Update()
         {
             //Master client will handle killing enemies.
-            if(Health <= 0 && PhotonNetwork.IsMasterClient)
+            if(Health <= 0 && photonView.IsMine)
             {
                 Kill();
             }
