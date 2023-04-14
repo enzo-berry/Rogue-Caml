@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: -2985417093705772410}
   m_Layer: 0
   m_Name: enemy
-  m_TagString: Enemy
+  m_TagString: cde
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -185,7 +185,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Health: 5
   moveSpeed: 3
-  rb: {fileID: 7353404767461781001}
+  Target: {fileID: 0}
+  direction: {x: 0, y: 0}
+  WeaponPrefab: {fileID: 0}
 --- !u!114 &7353404767461780993
 MonoBehaviour:
   m_ObjectHideFlags: 0

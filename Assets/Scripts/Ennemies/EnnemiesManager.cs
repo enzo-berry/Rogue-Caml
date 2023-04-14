@@ -12,10 +12,8 @@ using Random = UnityEngine.Random;
 
 namespace RogueCaml 
 {
-    public class EnnemiesManager : MonoBehaviourPunCallbacks, IPunObservable
+    public class EnnemiesManager : Entity
     {
-        public int Health = 5;
-        public float moveSpeed = 5f;
         protected float range;
         [FormerlySerializedAs("target")] 
         public GameObject Target;
@@ -134,7 +132,7 @@ namespace RogueCaml
             
             
             
-            //direction = Quaternion.AngleAxis(Random.Range(-RandomRotation, RandomRotation), Vector3.left) * direction;
+            direction = Quaternion.AngleAxis(Random.Range(-RandomRotation, RandomRotation), Vector3.up) * direction;
         }
 
     }

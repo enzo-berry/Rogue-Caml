@@ -9,14 +9,12 @@ using Unity.VisualScripting;
 
 namespace RogueCaml
 {
-    public class PlayerManager : MonoBehaviourPunCallbacks, IPunObservable
+    public class PlayerManager : Entity
     {
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
-
-        public float moveSpeed = 5f;
+        
         public int attaqueSpeed = 1;
-        public int Health = 3;
 
         private Rigidbody2D rigidBody;
         public static Vector2 movement;
@@ -55,19 +53,7 @@ namespace RogueCaml
 
         //SyncingHealth using OnPhotonSerializeView.
         //Could be done in a graphical way just like the Animations ?
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (stream.IsWriting)
-            {
-                // We own this player: send the others our data
-                stream.SendNext(Health);
-            }
-            else
-            {
-                // Network player, receive data
-                this.Health = (int)stream.ReceiveNext();
-            }
-        }
+        
 
         #endregion
 
