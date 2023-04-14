@@ -27,11 +27,11 @@ public class ComputerManager : MonoBehaviour
                 if (panel.activeInHierarchy == false)
                 {
                     audioData.Play();
-                    panel.SetActive(true);
+                    panel.SetActive(true); //modifier ici pour adapter l'affichage en fonction du niveau
                 }
                 else
                 {
-                    panel.SetActive(false);
+                    panel.SetActive(false); //modifier ici pour adapter l'affichage en fonction du niveau
                 }
                 
             }
@@ -52,4 +52,5 @@ public class ComputerManager : MonoBehaviour
             panel.SetActive(false);
         }
     }
+
 }
