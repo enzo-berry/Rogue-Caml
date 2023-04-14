@@ -96,10 +96,32 @@ namespace RogueCaml
             //}
             PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
             Debug.Log($"Connecting to room with pseudo {PhotonNetwork.NickName}");
-            PhotonNetwork.JoinOrCreateRoom("default", new RoomOptions() { MaxPlayers = 4}, TypedLobby.Default);
+            PhotonNetwork.JoinOrCreateRoom("default", new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
         }
         #endregion
 
+
+        public void JoinRandomRoom(string pseudo)
+        {
+            PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
+            Debug.Log($"Connecting to room with pseudo {PhotonNetwork.NickName}");
+            PhotonNetwork.JoinOrCreateRoom("default", new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
+        }
+
+        public void CreatePrivate(string pseudo, string roomName)
+        {
+            PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
+            Debug.Log($"Connecting to room with pseudo {PhotonNetwork.NickName}");
+            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 4, IsVisible = false }, TypedLobby.Default);
+        }
+
+        public void JoinPrivate(string pseudo, string roomName)
+        {
+            PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
+            Debug.Log($"Connecting to room with pseudo {PhotonNetwork.NickName}");
+            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 4, IsVisible = false }, TypedLobby.Default);
+        }
+        
 
         #region Private Methods
 
