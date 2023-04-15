@@ -264,7 +264,7 @@ Transform:
   m_Children:
   - {fileID: 1433020864}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &335108385 stripped
 Transform:
@@ -11810,7 +11810,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1528107507
 RectTransform:
   m_ObjectHideFlags: 0
