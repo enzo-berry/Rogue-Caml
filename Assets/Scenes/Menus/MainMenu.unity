@@ -454,6 +454,14 @@ PrefabInstance:
       propertyPath: m_Color.r
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 636167809821422679, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 983215586}
+    - target: {fileID: 636167809821422679, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitButtonHandler
+      objectReference: {fileID: 0}
     - target: {fileID: 636167810923358183, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
       propertyPath: m_fontColor.b
       value: 1
@@ -597,6 +605,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 636167811384448993, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
   m_PrefabInstance: {fileID: 983215584}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &983215586 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 636167811384448992, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
+  m_PrefabInstance: {fileID: 983215584}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1557493125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 83a6b2725f83e1b40b356d5b27304e7f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1013187022
 GameObject:
   m_ObjectHideFlags: 0
