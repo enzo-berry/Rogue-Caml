@@ -364,6 +364,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SettingsPannel
       objectReference: {fileID: 0}
+    - target: {fileID: 2401507301572342035, guid: 0d12d13fdd892804db184dcb0a2360b5, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2401507302544623399, guid: 0d12d13fdd892804db184dcb0a2360b5, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -550,6 +554,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuPannel
       objectReference: {fileID: 0}
+    - target: {fileID: 636167811384449006, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
 --- !u!224 &983215585 stripped
@@ -617,9 +625,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1013187022}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.2267652, y: -1.2309815, z: 90}
+  m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -972,7 +980,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1583557668327825076, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2097252549082978612, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
