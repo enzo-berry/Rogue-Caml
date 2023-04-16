@@ -13,12 +13,17 @@ namespace RogueCaml
         public GameManager gameManager;
         // Start is called before the first frame update
         public TMP_Text text;
-        public Slider slider;
+        public Scrollbar scrollbar;
 
-        private void UpdateDifficulty()
+        private void Start()
+        {
+            gameManager = GameManager.Instance;
+        }
+
+        public void UpdateDifficulty()
         {
             //gameManager.difficulty = (int)(slider.value * 100);
-            text.text = ((int)(slider.value * 100)).ToString();
+            text.text = ((int)(scrollbar.value * 100)).ToString();
         }
     }
 }
