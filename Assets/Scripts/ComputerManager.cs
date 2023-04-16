@@ -49,7 +49,10 @@ public class ComputerManager : MonoBehaviour
         if (collision.gameObject.CompareTag("ally"))
         {
             isInRange = false;
-            panel.SetActive(false);
+            if (!panel.gameObject.CompareTag("Piece"))
+            {
+                panel.SetActive(false);
+            }
         }
     }
 
