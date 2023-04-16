@@ -11,11 +11,15 @@ namespace RogueCaml
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        //Since this script is static it could be better to retrieve it dynamicly:
+        //To dynamicly retrieve this script you can call
+        //GameObject.Find("GameManager").GetComponent("GameManager");
 
         [Tooltip("The prefab to use for representing the player")]
         public static GameManager Instance { get; private set; }
         public GameObject playerPrefab;
         public GameObject weaponPrefab;
+
         private void Awake()
         {
             //if first time we load
@@ -36,8 +40,8 @@ namespace RogueCaml
             //If we are not connected to server. Server != Rooms.
             if (!PhotonNetwork.IsConnected)
             {
-                PhotonNetwork.ConnectUsingSettings();
                 PhotonNetwork.AutomaticallySyncScene = true;
+                PhotonNetwork.ConnectUsingSettings();
             }
         }
 
@@ -45,6 +49,28 @@ namespace RogueCaml
         {
 
         }
+
+        #region GameFunctions
+
+        //comment me this function for IDE
+
+        /// <summary>
+        /// Teleports all players to new room.
+        /// CAN ONLY BE CALLED BY MASTER CLIENT !
+        /// </summary>
+        /// <param name="roomname">The room to teleport.</param>
+        /// <returns>true if called by MasterClient, false if not</returns>
+        public bool SwitchRoom(string roomname)
+        {
+            if (PhotonNetwork.IsMasterClient){
+                PhotonNetwork.LoadLevel(roomname);
+                return true;
+            }
+            
+            return false;
+        }
+
+        #endregion
 
         #region Photon Callbacks
 
