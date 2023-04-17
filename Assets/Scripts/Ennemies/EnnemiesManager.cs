@@ -29,21 +29,6 @@ namespace RogueCaml
         public GameObject WeaponPrefab;
         protected Weapon Weapon;
         
-        
-
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            if (stream.IsWriting)
-            {
-                // We own this player: send the others our data
-                stream.SendNext(Health);
-            }
-            else
-            {
-                    // Network player, receive data
-                this.Health = (int)stream.ReceiveNext();
-            }
-        }
 
         // Start is called before the first frame update
         void Start()
@@ -104,10 +89,7 @@ namespace RogueCaml
             PhotonNetwork.Destroy(this.gameObject);
         }
 
-        public void TakeDommage(int amount)
-        {
-            Health -= amount;
-        }
+        
 
         protected double Distance(Vector2 v)
         {
