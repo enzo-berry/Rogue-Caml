@@ -87,7 +87,7 @@ namespace RogueCaml
             PhotonNetwork.LeaveRoom();
         }
 
-        public void ConnectPlayer(string pseudo)
+        public void ConnectPlayer(string pseudo, string roomGame)
         {
             //if (PlayerController.LocalPlayerInstance == null)
             //{
@@ -97,8 +97,8 @@ namespace RogueCaml
             //    //PhotonNetwork.Instantiate(this.weaponPrefab.name, new Vector2(0f, 0f), Quaternion.identity, 0);
             //}
             PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
-            Debug.Log($"Connecting to room with pseudo {PhotonNetwork.NickName}");
-            PhotonNetwork.JoinOrCreateRoom("default", new RoomOptions() { MaxPlayers = 4}, TypedLobby.Default);
+            Debug.Log($"Connecting to room {roomGame} with pseudo {PhotonNetwork.NickName}");
+            PhotonNetwork.JoinOrCreateRoom(roomGame, new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
         }
         #endregion
 
