@@ -85,7 +85,7 @@ namespace RogueCaml
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
-            if (Input.GetKey(KeyCode.Mouse0) && weapon is not null)
+            if (weapon && Input.GetKey(KeyCode.Mouse0))
             {
                 //Send a RPC to all connected clients, basicly calls AttackTESTSync method for every client connected.
                 //photonView.RPC("AttackTESTSync", RpcTarget.All, PhotonNetwork.NickName);
