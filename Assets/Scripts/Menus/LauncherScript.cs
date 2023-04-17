@@ -25,7 +25,9 @@ namespace RogueCaml
             {
                 b.interactable = false;
             }
-            gameManager.ConnectPlayer(pseudo, gameName.text);
+            
+            if (gameName.text == "") Debug.Log("Please enter valid room name!");
+            else gameManager.ConnectPlayer(pseudo, gameName.text);
         }
 
         public void randomHandler()

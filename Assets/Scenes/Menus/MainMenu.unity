@@ -739,7 +739,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 636167811384449006, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
@@ -1305,7 +1305,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 922384866768605340, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 922384866768605340, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 922384866768605340, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -2.3
       objectReference: {fileID: 0}
     - target: {fileID: 1145478784325074588, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1329,7 +1337,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1583557668327825076, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2097252549082978612, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -1431,6 +1439,30 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6842498579077233694, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_fontSize
+      value: 19.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6842498579077233694, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 19.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995752693661178413, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_fontSize
+      value: 19.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995752693661178413, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 19.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341310301958986306, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_fontSize
+      value: 19.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7341310301958986306, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 19.7
+      objectReference: {fileID: 0}
     - target: {fileID: 7378341605963968329, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: gameManager
       value: 
@@ -1442,6 +1474,22 @@ PrefabInstance:
     - target: {fileID: 7775789860317552815, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8083812825492539797, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8083812825492539797, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8083812825492539797, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 13.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8083812825492539797, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -3.3
       objectReference: {fileID: 0}
     - target: {fileID: 8204932603004136044, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: m_Pivot.x
@@ -1527,9 +1575,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8257147081477281981, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -1.4
+      objectReference: {fileID: 0}
     - target: {fileID: 8455066575380447454, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: m_text
-      value: Code de la partie
+      value: Code (private only)
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
