@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Levels/waiting_scene.unity
     guid: dd3f8ee868032f14ea0d1a31d448fabc
+  - enabled: 1
+    path: Assets/Scenes/Levels/level_2.unity
+    guid: 944989dd67d201b44a5d23eba0adc6e4
   m_configObjects: {}
