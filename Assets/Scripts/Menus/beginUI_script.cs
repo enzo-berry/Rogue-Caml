@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using RogueCaml;
 using TMPro;
 using UnityEngine;
@@ -17,6 +18,8 @@ namespace RogueCaml
 
         private void Start()
         {
+            //if(PhotonNetwork.IsMasterClient)
+            this.gameObject.SetActive(true);
             gameManager = GameManager.Instance;
         }
 
