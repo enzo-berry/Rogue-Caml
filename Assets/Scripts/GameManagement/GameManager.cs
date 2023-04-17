@@ -69,7 +69,7 @@ namespace RogueCaml
             //If not master player will automaticly join scene because of AutomaticallySyncScene bool.
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("level_1");
+                PhotonNetwork.LoadLevel("waiting_scene");
             }
             PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
         }
