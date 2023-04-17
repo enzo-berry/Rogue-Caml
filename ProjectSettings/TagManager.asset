@@ -16,6 +16,8 @@ TagManager:
   - apo
   - ape
   - apa
+  - Piece
+  - awe
   layers:
   - Default
   - TransparentFX
