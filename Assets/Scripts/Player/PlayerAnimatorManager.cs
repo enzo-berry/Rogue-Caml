@@ -42,14 +42,14 @@ namespace RogueCaml
             float v = Input.GetAxis("Vertical");   //Calculate vertical speed
             animator.SetFloat("speed", h * h + v * v);
 
-            if (h > 0 && v == 0)
+            if (h > 0)
             {
                 animator.SetBool("down", false);
                 animator.SetBool("up", false);
                 animator.SetBool("left", false);
                 animator.SetBool("right", true);
             }
-            if (h < 0 && v == 0)
+            if (h < 0)
             {
                 animator.SetBool("down", false);
                 animator.SetBool("up", false);
