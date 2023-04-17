@@ -18,8 +18,8 @@ namespace RogueCaml
 
         private void Start()
         {
-            if(PhotonNetwork.IsMasterClient)
-                this.gameObject.SetActive(true);
+            //if(PhotonNetwork.IsMasterClient)
+            this.gameObject.SetActive(true);
             gameManager = GameManager.Instance;
         }
 
