@@ -13,18 +13,6 @@ public class MainMenu : MonoBehaviourPunCallbacks
     public TMP_InputField inputField;
     public Button playButton;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void PlayButtonHandler()
     {
         string pseudo = inputField.text;
@@ -33,10 +21,8 @@ public class MainMenu : MonoBehaviourPunCallbacks
         {
             Debug.Log($"Connect process for {pseudo}");
             playButton.interactable = false;
-            gameManager.ConnectPlayer(pseudo);
+            gameManager.ConnectPlayer(pseudo, "default");
         }
-
-
     }
 
     public void ExitButtonHandler()

@@ -59,7 +59,7 @@ namespace RogueCaml
             //If not master player will automaticly join scene because of AutomaticallySyncScene bool.
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("level_1");
+                PhotonNetwork.LoadLevel("waiting_scene");
             }
             PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
         }
@@ -85,7 +85,7 @@ namespace RogueCaml
             PhotonNetwork.LeaveRoom();
         }
 
-        public void ConnectPlayer(string pseudo)
+        public void ConnectPlayer(string pseudo, string roomGame)
         {
             //if (PlayerController.LocalPlayerInstance == null)
             //{
@@ -95,33 +95,12 @@ namespace RogueCaml
             //    //PhotonNetwork.Instantiate(this.weaponPrefab.name, new Vector2(0f, 0f), Quaternion.identity, 0);
             //}
             PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
-            Debug.Log($"Connecting to room with pseudo {PhotonNetwork.NickName}");
-            PhotonNetwork.JoinOrCreateRoom("default", new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
+            Debug.Log($"Connecting to room {roomGame} with pseudo {PhotonNetwork.NickName}");
+            PhotonNetwork.JoinOrCreateRoom(roomGame, new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
         }
         #endregion
-
-
-        public void JoinRandomRoom(string pseudo)
-        {
-            PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
-            Debug.Log($"Connecting to room with pseudo {PhotonNetwork.NickName}");
-            PhotonNetwork.JoinOrCreateRoom("default", new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
-        }
-
-        public void CreatePrivate(string pseudo, string roomName)
-        {
-            PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
-            Debug.Log($"Connecting to room with pseudo {PhotonNetwork.NickName}");
-            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 4, IsVisible = false }, TypedLobby.Default);
-        }
-
-        public void JoinPrivate(string pseudo, string roomName)
-        {
-            PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
-            Debug.Log($"Connecting to room with pseudo {PhotonNetwork.NickName}");
-            PhotonNetwork.JoinOrCreateRoom(roomName, new RoomOptions() { MaxPlayers = 4, IsVisible = false }, TypedLobby.Default);
-        }
         
+
 
         #region Private Methods
 
