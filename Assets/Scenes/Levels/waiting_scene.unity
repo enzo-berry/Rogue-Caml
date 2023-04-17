@@ -3012,6 +3012,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 548657893999418408, guid: b4eec0b3d93fe8c47a528935c63e5931, type: 3}
+      propertyPath: gameManager
+      value: 
+      objectReference: {fileID: -1455766958398840814, guid: 1f43c645c510bfe4083e37b5f03c1bfc, type: 3}
+    - target: {fileID: 548657893999418408, guid: b4eec0b3d93fe8c47a528935c63e5931, type: 3}
       propertyPath: MasterChoice
       value: 
       objectReference: {fileID: 1526653282}
@@ -3515,7 +3519,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 923452599}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 548657893999418408, guid: b4eec0b3d93fe8c47a528935c63e5931, type: 3}
+        m_TargetAssemblyTypeName: RogueCaml.WaitingManager, Assembly-CSharp
+        m_MethodName: InstantiateGame
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &923452599
 MonoBehaviour:
   m_ObjectHideFlags: 0

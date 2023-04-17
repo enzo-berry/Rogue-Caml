@@ -9,6 +9,7 @@ namespace RogueCaml
     public class WaitingManager : MonoBehaviour
     {
         public Canvas MasterChoice;
+        public GameManager gameManager;
         // Start is called before the first frame update
         void Start()
         {
@@ -26,5 +27,10 @@ namespace RogueCaml
   
 
         }
+        public void InstantiateGame()
+        {
+            Debug.Log("Ca marche pas mais on test qd mm ");
+            gameManager = GameManager.Instance;
+        } 
     }
 }
