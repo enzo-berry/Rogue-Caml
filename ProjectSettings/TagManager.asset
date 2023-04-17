@@ -9,6 +9,13 @@ TagManager:
   - Unequipped
   - Equiped
   - Enemy
+  - cde
+  - cda
+  - awn
+  - ap
+  - apo
+  - ape
+  - apa
   layers:
   - Default
   - TransparentFX

@@ -11,12 +11,13 @@ using Random = UnityEngine.Random;
 using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
+using ExitGames.Client.Photon;
 
 namespace RogueCaml 
 {
     public class MobGenerator : MonoBehaviour
     {
-        public GameObject ennemyPrefab;
+        public GameObject[] ennemyPrefab;
 
         float timer = 0;
 
@@ -54,7 +55,7 @@ namespace RogueCaml
             for (int j = 0; j < ennemies_per_round; j++)
             {
                 //For now we spawn the mobs on the mobspawner.
-                PhotonNetwork.Instantiate(this.ennemyPrefab.name, transform.position, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(this.ennemyPrefab[(int)Random.Range(0f, (float)ennemyPrefab.Length)].name, transform.position, Quaternion.identity, 0);
             }
 
         }

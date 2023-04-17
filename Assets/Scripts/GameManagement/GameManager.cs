@@ -11,15 +11,13 @@ namespace RogueCaml
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
-        //Since this script is static it could be better to retrieve it dynamicly:
-        //To dynamicly retrieve this script you can call
-        //GameObject.Find("GameManager").GetComponent("GameManager");
 
         [Tooltip("The prefab to use for representing the player")]
         public static GameManager Instance { get; private set; }
         public GameObject playerPrefab;
         public GameObject weaponPrefab;
 
+        public static int difficulty = 0;
         private void Awake()
         {
             //if first time we load
@@ -40,8 +38,8 @@ namespace RogueCaml
             //If we are not connected to server. Server != Rooms.
             if (!PhotonNetwork.IsConnected)
             {
-                PhotonNetwork.AutomaticallySyncScene = true;
                 PhotonNetwork.ConnectUsingSettings();
+                PhotonNetwork.AutomaticallySyncScene = true;
             }
         }
 
@@ -49,28 +47,6 @@ namespace RogueCaml
         {
 
         }
-
-        #region GameFunctions
-
-        //comment me this function for IDE
-
-        /// <summary>
-        /// Teleports all players to new room.
-        /// CAN ONLY BE CALLED BY MASTER CLIENT !
-        /// </summary>
-        /// <param name="roomname">The room to teleport.</param>
-        /// <returns>true if called by MasterClient, false if not</returns>
-        public bool SwitchRoom(string roomname)
-        {
-            if (PhotonNetwork.IsMasterClient){
-                PhotonNetwork.LoadLevel(roomname);
-                return true;
-            }
-            
-            return false;
-        }
-
-        #endregion
 
         #region Photon Callbacks
 
@@ -85,7 +61,7 @@ namespace RogueCaml
             //If not master player will automaticly join scene because of AutomaticallySyncScene bool.
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("waiting_scene");
+                PhotonNetwork.LoadLevel("level_1");
             }
             PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
         }
@@ -111,7 +87,7 @@ namespace RogueCaml
             PhotonNetwork.LeaveRoom();
         }
 
-        public void ConnectPlayer(string pseudo, string roomGame)
+        public void ConnectPlayer(string pseudo)
         {
             //if (PlayerController.LocalPlayerInstance == null)
             //{
@@ -121,11 +97,10 @@ namespace RogueCaml
             //    //PhotonNetwork.Instantiate(this.weaponPrefab.name, new Vector2(0f, 0f), Quaternion.identity, 0);
             //}
             PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
-            Debug.Log($"Connecting to room {roomGame} with pseudo {PhotonNetwork.NickName}");
-            PhotonNetwork.JoinOrCreateRoom(roomGame, new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
+            Debug.Log($"Connecting to room with pseudo {PhotonNetwork.NickName}");
+            PhotonNetwork.JoinOrCreateRoom("default", new RoomOptions() { MaxPlayers = 4}, TypedLobby.Default);
         }
         #endregion
-        
 
 
         #region Private Methods

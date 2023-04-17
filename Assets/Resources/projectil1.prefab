@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 5862918618904040512}
   m_Layer: 0
   m_Name: projectil1
-  m_TagString: ally
+  m_TagString: apo
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 21300000, guid: 48fd9f39665789b499b0b895ccdeda7c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -141,7 +141,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
-  speed: 20
+  Owner: {fileID: 0}
+  speed: 15
+  Dammage: 1
+  Team: 0
 --- !u!61 &5602014818701153575
 BoxCollider2D:
   m_ObjectHideFlags: 0

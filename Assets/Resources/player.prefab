@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 3302154829412797363}
   m_Layer: 0
   m_Name: player
-  m_TagString: ally
+  m_TagString: cda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -285,7 +285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665ae1e7212eb0f4c996470b469e6740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 3
   moveSpeed: 5
   attaqueSpeed: 1
-  Health: 3
   weapon: {fileID: 0}

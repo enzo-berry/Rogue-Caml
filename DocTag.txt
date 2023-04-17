@@ -1,0 +1,21 @@
+Bienvenue sur la doc des tags:
+
+
+1ere lettre
+Pour savoir si les projectiles passent ou touche
+
+a : oui
+	i : item
+	w : weapon
+		e : equiped
+		n : unequiped
+	p :
+		e : ennemies
+		a : ally
+c : peut-etre (si ça depend du "clan")
+	d : dammagable
+		e : ennemies
+		a : ally
+autre : non
+
+

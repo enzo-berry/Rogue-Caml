@@ -39,13 +39,13 @@ namespace RogueCaml
 
         private void OnTriggerStay2D(Collider2D collision)
         {
-            Debug.Log("trigger stay", this);
+            //Debug.Log("trigger stay", this);
             if (Input.GetButton("Fire1"))
             {
                 //Equiping weapon
-                if (collision.gameObject.CompareTag("Unequipped") && playerController.weapon==null)
+                if (collision.gameObject.CompareTag("awn") && playerController.weapon==null)
                 {
-                    collision.gameObject.SendMessage("Pickup", playerController, SendMessageOptions.RequireReceiver);
+                    collision.gameObject.SendMessage("Pickup", gameObject, SendMessageOptions.RequireReceiver);
                     playerController.weapon = collision.gameObject;
                 }
             }

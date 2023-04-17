@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Photon.Pun;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace RogueCaml
@@ -10,6 +11,12 @@ namespace RogueCaml
     {
         public GameObject ProjectilePrefab;
 
+        void Start()
+        {
+            spriteRenderer = GetComponent<SpriteRenderer>();
+
+            range = 0.5f * ProjectilePrefab.GetComponent<Projectile>().speed;
+        }
         
         private void Update()
         {
@@ -27,6 +34,9 @@ namespace RogueCaml
                     PhotonNetwork.Instantiate(ProjectilePrefab.name, transform.position + (Vector3)direction, Quaternion.identity);
                 
                 Projectile p = b.GetComponent<Projectile>();
+                b.tag = $"ap{Owner.tag[2]}";
+                p.Team = Owner.tag[2];
+                p.Owner = Owner;
                 p.direction = direction;
                 b.transform.right = (direction);
             }
