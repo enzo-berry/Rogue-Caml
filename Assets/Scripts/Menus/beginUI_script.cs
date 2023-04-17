@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Photon.Pun;
 using RogueCaml;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,9 +19,14 @@ namespace RogueCaml
 
         private void Start()
         {
-            if(!PhotonNetwork.IsMasterClient)
-                this.gameObject.SetActive(false);
+            //if(!PhotonNetwork.IsMasterClient)
+                this.gameObject.SetActive(true);
             gameManager = GameManager.Instance;
+
+        }
+        public void Update()
+        {
+            this.gameObject.SetActive(true);
         }
 
         public void UpdateDifficulty()
