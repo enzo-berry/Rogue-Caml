@@ -21,6 +21,15 @@ namespace RogueCaml
         private void Update()
         {
             if (attacking) attacking = Time.time - wait < coolDown;
+
+            if (Hidden)
+            {
+                spriteRenderer.enabled = false;
+            }
+            else
+            {
+                spriteRenderer.enabled = true;
+            }
         }
 
         public override void Attaque(Vector2 direction)
