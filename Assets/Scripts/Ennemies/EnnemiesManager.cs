@@ -93,7 +93,7 @@ namespace RogueCaml
 
         protected double Distance(Vector2 v)
         {
-            return (float)(Math.Sqrt(v.x * v.x + v.y * v.y));
+            return (float)Math.Sqrt(v.x * v.x + v.y * v.y);
         }
 
         protected int Signe(float f) 
@@ -110,7 +110,7 @@ namespace RogueCaml
 
             TargetDirection = new Vector2(direction.x, direction.y);
 
-            if (Distance(v) < Weapon.range) direction = -direction;
+            if (Distance(v) < range) direction = -direction;
             
             
             

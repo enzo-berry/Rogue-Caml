@@ -135,6 +135,16 @@ namespace RogueCaml
             return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{++level}");
         }
 
+        public void StartGame()
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.CurrentRoom.IsOpen = false;
+                PhotonNetwork.CurrentRoom.IsVisible = false;
+                NextLevel();
+            }
+        }
+
         #endregion
 
         

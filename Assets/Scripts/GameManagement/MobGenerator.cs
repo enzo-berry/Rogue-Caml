@@ -24,12 +24,17 @@ namespace RogueCaml
         //Spawner
         public int ennemies_per_round;
         public int delta_between_rounds;
+        public int nb_rounds;
+        private int count_round;
 
         private BoxCollider2D boxCollider;
+
+        public GameObject[] doors;
 
         // Start is called before the first frame update
         void Start()
         {
+            if(!PhotonNetwork.IsMasterClient) this.gameObject.SetActive(false);
             boxCollider = GetComponent<BoxCollider2D>();
         }
 
@@ -57,8 +62,6 @@ namespace RogueCaml
                 //For now we spawn the mobs on the mobspawner.
                 PhotonNetwork.Instantiate(this.ennemyPrefab[(int)Random.Range(0f, (float)ennemyPrefab.Length)].name, transform.position, Quaternion.identity, 0);
             }
-
         }
-        
     }
 }
