@@ -160,7 +160,7 @@ namespace RogueCaml
         {
             //Debug.Log("trigger enter", this);
 
-            if (collision.gameObject.CompareTag("Enemy") && attacking)
+            if (collision.gameObject.CompareTag("cde") && attacking)
             {
                 Debug.Log("Sending dammage to ennemy.", this);
                 collision.gameObject.SendMessage("TakeDommage", Dammage, SendMessageOptions.RequireReceiver);

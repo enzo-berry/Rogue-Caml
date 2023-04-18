@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 3211953398627413034}
   - component: {fileID: -8411331027121240931}
   m_Layer: 0
-  m_Name: MobGenerator
-  m_TagString: Untagged
+  m_Name: mobGenerator
+  m_TagString: ap
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 3211953398627413028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.08, y: 12.17, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -46,7 +46,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -8.467005, y: -3.584311}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -57,7 +57,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 20, y: 10}
+  m_Size: {x: 3.0659904, y: 2.8313782}
   m_EdgeRadius: 0
 --- !u!114 &-8411331027121240931
 MonoBehaviour:
@@ -71,7 +71,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5261ded7e6527b4a8d9ebd570694b04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bc: {fileID: 3211953398627413034}
-  ennemyPrefab: {fileID: 5613556170333750058, guid: 2042fb041ac741d43a2a22f884b6c7ac, type: 3}
+  ennemyPrefab:
+  - {fileID: 2097732365749384529, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+  - {fileID: 5613556170333750058, guid: 2042fb041ac741d43a2a22f884b6c7ac, type: 3}
   ennemies_per_round: 3
   delta_between_rounds: 8
+  nb_rounds: 3
+  doors: []
