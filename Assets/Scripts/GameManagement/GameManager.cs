@@ -52,11 +52,6 @@ namespace RogueCaml
             }
         }
 
-        void Update()
-        {
-
-        }
-
         #region Photon Callbacks
 
         //When connected to server
@@ -135,7 +130,9 @@ namespace RogueCaml
 
         public static bool NextLevel()
         {
+            
             return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{++level}");
+            
         }
 
         public void StartGame()

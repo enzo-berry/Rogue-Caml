@@ -42,7 +42,7 @@ namespace RogueCaml
         // Update is called once per frame
         void Update()
         {
-            if (count_round < nb_rounds && countEnnemy >= 0)
+            if (count_round < nb_rounds && countEnnemy <= 0)
             {
                 SpawnVague();
             }
@@ -69,6 +69,7 @@ namespace RogueCaml
 
         private void SpawnVague()
         {
+            count_round++;
             //Vector2 size = boxCollider.size;
             countEnnemy = ennemies_per_round;
             for (int j = 0; j < ennemies_per_round; j++)
