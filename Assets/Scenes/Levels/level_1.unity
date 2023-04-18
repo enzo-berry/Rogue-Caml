@@ -1593,6 +1593,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3250455330268773398, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
+      propertyPath: panel
+      value: 
+      objectReference: {fileID: 7943364247501561470, guid: 9fd41378f843b4a4381108b296e565d9, type: 3}
     - target: {fileID: 3582383605393781203, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
       propertyPath: m_Name
       value: computer (1)
@@ -11939,6 +11943,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3250455330268773398, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
+      propertyPath: panel
+      value: 
+      objectReference: {fileID: 7943364247501561470, guid: 9fd41378f843b4a4381108b296e565d9, type: 3}
     - target: {fileID: 3582383605393781203, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
       propertyPath: m_Name
       value: computer
