@@ -18,6 +18,8 @@ namespace RogueCaml
         [FormerlySerializedAs("target")] 
         public GameObject Target;
         protected char waiting = '\0';
+
+        public MobGenerator mobGenerator;
         
         protected Rigidbody2D rb;
 
@@ -85,6 +87,7 @@ namespace RogueCaml
         public void Kill()
         {
             if(Weapon) PhotonNetwork.Destroy(this.Weapon.gameObject);
+            if(mobGenerator) mobGenerator.EnnemyDied();
             PhotonNetwork.Destroy(this.gameObject);
         }
 

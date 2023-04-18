@@ -20,11 +20,9 @@ namespace RogueCaml
     {
         public GameObject[] ennemyPrefab;
 
-        float timer = 0;
-
         //Spawner
         public int ennemies_per_round;
-        public int delta_between_rounds;
+        //public int delta_between_rounds;
         public int nb_rounds;
         private int count_round;
         private int countEnnemy;
@@ -72,11 +70,11 @@ namespace RogueCaml
         private void SpawnVague()
         {
             //Vector2 size = boxCollider.size;
-
+            countEnnemy = ennemies_per_round;
             for (int j = 0; j < ennemies_per_round; j++)
             {
                 //For now we spawn the mobs on the mobspawner.
-                PhotonNetwork.Instantiate(this.ennemyPrefab[(int)Random.Range(0f, (float)ennemyPrefab.Length)].name, transform.position, Quaternion.identity, 0);
+                PhotonNetwork.Instantiate(this.ennemyPrefab[(int)Random.Range(0f, (float)ennemyPrefab.Length)].name, transform.position, Quaternion.identity, 0).GetComponent<EnnemiesManager>().mobGenerator = this;
             }
         }
     }
