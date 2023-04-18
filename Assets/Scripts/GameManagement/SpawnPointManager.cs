@@ -11,7 +11,7 @@ public class SpawnPointManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            foreach (PlayerManager player in GetComponents<PlayerManager>())
+            foreach (PlayerManager player in FindObjectsOfType<PlayerManager>())
             {
                 player.transform.position = transform.position;
             }

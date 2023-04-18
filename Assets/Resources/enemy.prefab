@@ -186,6 +186,7 @@ MonoBehaviour:
   Health: 5
   moveSpeed: 3
   Target: {fileID: 0}
+  mobGenerator: {fileID: 0}
   direction: {x: 0, y: 0}
   WeaponPrefab: {fileID: 0}
 --- !u!114 &7353404767461780993
