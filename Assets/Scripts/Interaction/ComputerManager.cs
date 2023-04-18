@@ -39,14 +39,14 @@ public class ComputerManager : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ally"))
+        if (collision.gameObject.CompareTag("cda"))
         {
             isInRange = true;
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject.CompareTag("ally"))
+        if (collision.gameObject.CompareTag("cda"))
         {
             isInRange = false;
             if (!panel.gameObject.CompareTag("Piece"))

@@ -18,7 +18,7 @@ public class Piece : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
       
-        if (collision.gameObject.CompareTag("ally"))
+        if (collision.gameObject.CompareTag("cda"))
         {
             //add to recompense
             Destroy(this.gameObject);
