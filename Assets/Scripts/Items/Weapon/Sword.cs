@@ -82,7 +82,7 @@ namespace RogueCaml
                 }
                 else if (photonView.IsMine) //Attack finished
                 {
-                    Hidden = false;
+                    Hidden = true;
                     attacking = false;
                 }
             }
