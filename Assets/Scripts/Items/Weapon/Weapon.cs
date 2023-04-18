@@ -62,7 +62,7 @@ namespace RogueCaml
                 return;
             }
             // Cache references for efficiency
-            spriteRenderer.enabled = false;
+            Hidden = true;
             Owner = Player;
             GameObject o = this.gameObject;
             o.tag = "awe";
