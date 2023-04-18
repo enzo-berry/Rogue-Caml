@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,14 +43,23 @@ namespace RogueCaml
         // Update is called once per frame
         void Update()
         {
-            if (timer < delta_between_rounds)
-            {
-                timer += Time.deltaTime;
-            }
-            else
+            if (count_round < nb_rounds && Time.time - timer >= delta_between_rounds)
             {
                 SpawnVague();
-                timer = 0;
+                timer = Time.time;
+                count_round++;
+            }
+            else if (count_round >= nb_rounds)
+            {
+                DisableDoors();
+            }
+        }
+
+        private void DisableDoors()
+        {
+            foreach (GameObject door in doors)
+            {
+                door.SetActive(false);
             }
         }
 
