@@ -2,26 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Piece : MonoBehaviour
+namespace RogueCaml
 {
-    // Start is called before the first frame update
-    void Start()
+    public class Piece : MonoBehaviour
     {
-        
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-      
-        if (collision.gameObject.CompareTag("cda"))
+        // Start is called before the first frame update
+        void Start()
         {
-            //add to recompense
-            Destroy(this.gameObject);
+        
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+        
+        }
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+      
+            if (collision.gameObject.CompareTag("cda"))
+            {
+                GameManager.NextLevel();
+                Destroy(this.gameObject);
+            }
         }
     }
+
+
 }
+
