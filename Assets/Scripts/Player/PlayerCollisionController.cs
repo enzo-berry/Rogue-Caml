@@ -42,7 +42,7 @@ namespace RogueCaml
         {
             if (!playerController.alive) return;
             //Debug.Log("trigger stay", this);
-            if (Input.GetButton("Fire1"))
+            if (Input.GetButtonDown("Fire1"))
             {
                 //Equiping weapon
                 if (collision.gameObject.CompareTag("awn"))
