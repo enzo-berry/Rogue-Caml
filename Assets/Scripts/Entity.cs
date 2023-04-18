@@ -6,8 +6,8 @@ namespace RogueCaml
     {
         public int Health = 5;
         public float moveSpeed = 5f;
-        public float h = 0;
-        public float v = 0;
+        public float Height_mov = 0;
+        public float Width_mov = 0;
         
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
@@ -16,8 +16,8 @@ namespace RogueCaml
                 // We own this player: send the others our data
                 stream.SendNext(Health);
                 stream.SendNext(moveSpeed);
-                stream.SendNext(h);
-                stream.SendNext(v);
+                stream.SendNext(Height_mov);
+                stream.SendNext(Width_mov);
 
             }
             else
@@ -25,8 +25,8 @@ namespace RogueCaml
                 // Network player, receive data
                 this.Health = (int)stream.ReceiveNext();
                 this.moveSpeed = (float)stream.ReceiveNext();
-                this.h = (float)stream.ReceiveNext();
-                this.v = (float)stream.ReceiveNext();
+                this.Height_mov = (float)stream.ReceiveNext();
+                this.Width_mov = (float)stream.ReceiveNext();
             }
         }
         

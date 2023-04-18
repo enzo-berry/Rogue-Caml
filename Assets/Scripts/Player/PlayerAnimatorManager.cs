@@ -41,8 +41,8 @@ namespace RogueCaml
             }
 
 
-            float h = player.h;
-            float v = player.v;
+            float h = player.Height_mov;
+            float v = player.Width_mov;
 
             animator.SetFloat("speed", h * h + v * v);
 
