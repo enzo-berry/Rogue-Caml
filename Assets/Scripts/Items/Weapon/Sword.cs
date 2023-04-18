@@ -30,7 +30,6 @@ namespace RogueCaml
         
         public int angle;
         public int Dammage;
-
         private int sens;
         
         private Vector2 Direction = new Vector2(0f, 0f);
@@ -61,29 +60,7 @@ namespace RogueCaml
 
         void Update()
         {
-            if (Owner == null)
-            {
-                /*if(!attacking)
-                {   Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                    Vector2 tmp = target.rb.position;
 
-                    Vector2 v = mp - tmp;
-
-                    Alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
-                    direction = new Vector2((float)(Math.Cos(Alpha)), (float)Math.Sin(Alpha));
-            
-                    this.transform.position = target.rb.position + direction;
-
-                    Alpha *= (float)(180f/Math.PI);
-                    Alpha -= 45f;
-
-                    transform.eulerAngles = new Vector3(0f,0f, Alpha);
-                }*/
-            }
-            //else if (Owner.photonView.IsMine && Input.GetMouseButtonDown(0))
-            //{
-                //Attaque(); //gerer par le player maintenant
-            //}
         }
 
         void FixedUpdate()
@@ -102,15 +79,6 @@ namespace RogueCaml
                     this.transform.position = Owner.transform.position + (Vector3)Direction;
 
                     Alpha *= (float)(180f / Math.PI);
-                    /*
-                    direction = new Vector2((float)(Math.Cos(Alpha)), (float)Math.Sin(Alpha));
-
-                    this.transform.position = target.rb.position + direction;
-
-                    Alpha *= (float)(180f/Math.PI);
-                    //Alpha -= 45f;
-
-                    transform.eulerAngles = new Vector3(0f,0f, Alpha - 45f);*/
                 }
                 else if (photonView.IsMine)
                 {
@@ -118,10 +86,12 @@ namespace RogueCaml
                     attacking = false;
                 }
             }
-            else if (Owner != null)
+            else
             {
                 spriteRenderer.enabled = false;
             }
+
+
         }
 
         public override void  Attaque(Vector2 direction)
@@ -148,7 +118,6 @@ namespace RogueCaml
                 transform.right = direction;
                 transform.Rotate(new Vector3(0,0, angle/2));
 
-                //spriteRenderer.enabled = true;
                 wait = Time.time;
                 attacking = true;
 
