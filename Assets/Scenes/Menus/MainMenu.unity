@@ -891,6 +891,10 @@ PrefabInstance:
       propertyPath: m_TargetGraphic
       value: 
       objectReference: {fileID: 2121546471}
+    - target: {fileID: 636167809821422679, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ExitButtonHandler
+      objectReference: {fileID: 0}
     - target: {fileID: 636167810923358183, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
       propertyPath: m_fontColor.b
       value: 1
@@ -1830,6 +1834,14 @@ PrefabInstance:
     - target: {fileID: 2097252549082978612, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180820145350384449, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_fontSize
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 2180820145350384449, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 2556667545298674323, guid: c9503cccf0daa7141b106787982bfe68, type: 3}
       propertyPath: m_Text
