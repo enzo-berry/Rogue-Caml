@@ -80,10 +80,14 @@ namespace RogueCaml
 
                     Alpha *= (float)(180f / Math.PI);
                 }
-                else //if (photonView.IsMine)
+                else if (photonView.IsMine)
                 {
                     spriteRenderer.enabled = false;
                     attacking = false;
+                }
+                else
+                {
+                    spriteRenderer.enabled = false;
                 }
             }
             else if (Owner != null)
