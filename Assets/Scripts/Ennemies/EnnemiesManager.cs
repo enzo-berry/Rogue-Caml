@@ -57,12 +57,11 @@ namespace RogueCaml
                 setTarget();
             }
 
-            if (waiting % 5 == 0)
-            {
-                setDirection();
-                if(Weapon)
-                    Weapon.Attaque(TargetDirection);
-            }
+           
+            setDirection();
+            if(Weapon) 
+                Weapon.Attaque(TargetDirection);
+            
 
             transform.position += (Vector3)(moveSpeed * Time.fixedDeltaTime * direction);
             //rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * direction);

@@ -1,5 +1,6 @@
 using Photon.Pun;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace RogueCaml
 {
@@ -60,7 +61,20 @@ namespace RogueCaml
             // Cache references for efficiency
             spriteRenderer.enabled = false;
             Owner = Player;
-            this.gameObject.tag = "awe";
+            GameObject o = this.gameObject;
+            o.tag = "awe";
+            DontDestroyOnLoad(o);
+        }
+        
+        public override void Drop()
+        {
+            transform.position = Owner.transform.position;
+            Owner = null;
+            // Cache references for efficiency
+            spriteRenderer.enabled = true;
+            GameObject o = this.gameObject;
+            o.tag = "awn";
+            SceneManager.MoveGameObjectToScene(o, SceneManager.GetActiveScene());
         }
     }
     

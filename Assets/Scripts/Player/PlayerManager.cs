@@ -23,9 +23,13 @@ namespace RogueCaml
         [SerializeField]
         public GameObject weapon;
 
+        public bool alive = true;
+
         void Start()
         {
             rigidBody = GetComponent<Rigidbody2D>();
+
+            alive = true;
         }
 
         void Update()
@@ -60,9 +64,9 @@ namespace RogueCaml
 
         void FixedUpdate()
         {
-            if (photonView.IsMine)
+            if (photonView.IsMine && alive)
             {
-                rigidBody.MovePosition(rigidBody.position + movement * moveSpeed * Time.fixedDeltaTime);
+                rigidBody.MovePosition(rigidBody.position + moveSpeed * Time.fixedDeltaTime * movement);
             }
         }
 

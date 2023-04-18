@@ -155,17 +155,6 @@ namespace RogueCaml
             }
         }
 
-        
-
-        public void Drop()
-        {
-            Owner = null;
-            this.gameObject.tag = "ItemW";
-        }
-
-        
-
-
         //Moved SwordCollisionController functions here, will be easier since we wont use after updates.
         private void OnTriggerEnter2D(Collider2D collision)
         {

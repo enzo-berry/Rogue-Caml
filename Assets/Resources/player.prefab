@@ -289,3 +289,4 @@ MonoBehaviour:
   moveSpeed: 5
   attaqueSpeed: 1
   weapon: {fileID: 0}
+  alive: 0

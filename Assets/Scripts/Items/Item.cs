@@ -13,6 +13,7 @@ namespace RogueCaml
     {
         // Start is called before the first frame update
         public abstract void Pickup(GameObject target);
+        public abstract void Drop();
 
         //public abstract void Drop();
     }

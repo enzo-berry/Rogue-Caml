@@ -20,9 +20,10 @@ namespace RogueCaml
         // Start is called before the first frame update
         void Start()
         {
+            setTarget();
             if(photonView.IsMine)
             {
-                setTarget();
+                
                 Weapon = PhotonNetwork.Instantiate(WeaponPrefab.name, Vector3.zero, quaternion.identity)
                     .GetComponent<Weapon>();
 

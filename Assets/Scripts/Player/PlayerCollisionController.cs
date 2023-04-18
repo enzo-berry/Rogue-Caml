@@ -40,6 +40,7 @@ namespace RogueCaml
 
         private void OnTriggerStay2D(Collider2D collision)
         {
+            if (!playerController.alive) return;
             //Debug.Log("trigger stay", this);
             if (Input.GetButton("Fire1"))
             {
