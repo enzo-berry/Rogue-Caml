@@ -14,7 +14,7 @@ namespace RogueCaml
         void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
-            Hidden = true;
+            Hidden = false;
             range = 0.5f * ProjectilePrefab.GetComponent<Projectile>().speed;
         }
         
