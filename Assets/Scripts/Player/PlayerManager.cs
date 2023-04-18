@@ -53,15 +53,6 @@ namespace RogueCaml
             DontDestroyOnLoad(this.gameObject);
         }
 
-        #region IPunObservable implementation
-
-        //SyncingHealth using OnPhotonSerializeView.
-        //Could be done in a graphical way just like the Animations ?
-        
-
-        #endregion
-
-
         void FixedUpdate()
         {
             if (photonView.IsMine && alive)
@@ -79,17 +70,19 @@ namespace RogueCaml
             {
                 //Send a RPC to all connected clients, basicly calls AttackTESTSync method for every client connected.
                 //photonView.RPC("AttackTESTSync", RpcTarget.All, PhotonNetwork.NickName);
-                
+
                 Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 Vector2 tmp = transform.position;
 
                 Vector2 v = mp - tmp;
 
-                float alpha = (float)(v.x==0? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y/v.x)) + (Signe(v.x)==-1?Math.PI:0));
+                float alpha = (float)(v.x == 0 ? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y / v.x)) + (Signe(v.x) == -1 ? Math.PI : 0));
                 Vector2 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
-                
+
                 weapon.SendMessage("Attaque", direction, SendMessageOptions.RequireReceiver);
             }
+
+
         }
 
         //Called when a PlayerAttacks.

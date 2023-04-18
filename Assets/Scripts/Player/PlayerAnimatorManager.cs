@@ -9,11 +9,13 @@ namespace RogueCaml
     public class PlayerAnimatorManager : MonoBehaviourPun
     {
         private Animator animator;
+        private PlayerManager player;
         
         #region MonoBehavior Callbacks
         // Start is called before the first frame update
         void Start()
         {
+            player = GetComponent<PlayerManager>();
             animator = GetComponent<Animator>();
             
             if(!animator)
@@ -38,8 +40,10 @@ namespace RogueCaml
                 return;
             }
 
-            float h = Input.GetAxis("Horizontal"); //Calculate horizontal speed
-            float v = Input.GetAxis("Vertical");   //Calculate vertical speed
+
+            float h = player.h;
+            float v = player.v;
+
             animator.SetFloat("speed", h * h + v * v);
 
             if (h > 0)
