@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using Photon.Pun;
 using Photon.Realtime;
+using UnityEngine.PlayerLoop;
 
 namespace RogueCaml
 {
@@ -43,8 +44,12 @@ namespace RogueCaml
             if (Input.GetButton("Fire1"))
             {
                 //Equiping weapon
-                if (collision.gameObject.CompareTag("awn") && playerController.weapon==null)
+                if (collision.gameObject.CompareTag("awn"))
                 {
+                    if (playerController.weapon)
+                    {
+                        playerController.weapon.SendMessage("Drop", SendMessageOptions.RequireReceiver);
+                    }
                     collision.gameObject.SendMessage("Pickup", gameObject, SendMessageOptions.RequireReceiver);
                     playerController.weapon = collision.gameObject;
                 }

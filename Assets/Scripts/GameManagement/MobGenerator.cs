@@ -65,7 +65,7 @@ namespace RogueCaml
 
         private void SpawnVague()
         {
-            Vector2 size = boxCollider.size;
+            //Vector2 size = boxCollider.size;
 
             for (int j = 0; j < ennemies_per_round; j++)
             {
