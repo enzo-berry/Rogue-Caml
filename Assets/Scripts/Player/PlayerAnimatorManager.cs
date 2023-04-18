@@ -30,10 +30,6 @@ namespace RogueCaml
             if (LevelManager.gameisPaused)
                 return;
 
-            if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
-            {
-                return;
-            }
 
             if (!animator)
             {
