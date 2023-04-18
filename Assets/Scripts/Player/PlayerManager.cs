@@ -82,6 +82,8 @@ namespace RogueCaml
                 weapon.SendMessage("Attaque", direction, SendMessageOptions.RequireReceiver);
             }
 
+            float h = Input.GetAxis("Horizontal"); //Calculate horizontal speed
+            float v = Input.GetAxis("Vertical");   //Calculate vertical speed
 
         }
 
