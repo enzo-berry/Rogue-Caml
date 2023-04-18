@@ -27,6 +27,7 @@ namespace RogueCaml
         public int delta_between_rounds;
         public int nb_rounds;
         private int count_round;
+        private int countEnnemy;
 
         private BoxCollider2D boxCollider;
 
@@ -43,16 +44,19 @@ namespace RogueCaml
         // Update is called once per frame
         void Update()
         {
-            if (count_round < nb_rounds && Time.time - timer >= delta_between_rounds)
+            if (count_round < nb_rounds && countEnnemy >= 0)
             {
                 SpawnVague();
-                timer = Time.time;
-                count_round++;
             }
             else if (count_round >= nb_rounds)
             {
                 DisableDoors();
             }
+        }
+
+        public void EnnemyDied()
+        {
+            countEnnemy--;
         }
 
         private void DisableDoors()
@@ -62,6 +66,8 @@ namespace RogueCaml
                 door.SetActive(false);
             }
         }
+        
+        
 
         private void SpawnVague()
         {
