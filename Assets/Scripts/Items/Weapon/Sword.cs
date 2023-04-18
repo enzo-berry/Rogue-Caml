@@ -67,7 +67,7 @@ namespace RogueCaml
         {
             if (attacking)
             {
-                spriteRenderer.enabled = true;
+                Hidden = false;
                 if (Time.time - wait < coolDown)
                 {
                     Alpha = (float)((Alpha + sens * (angle * Time.fixedDeltaTime / coolDown)));
@@ -80,21 +80,17 @@ namespace RogueCaml
 
                     Alpha *= (float)(180f / Math.PI);
                 }
-                else if (photonView.IsMine)
+                else if (photonView.IsMine) //Attack finished
                 {
-                    spriteRenderer.enabled = false;
+                    Hidden = false;
                     attacking = false;
                 }
-                else
-                {
-                    spriteRenderer.enabled = false;
-                }
-            }
-            else if (Owner != null)
-            {
-                spriteRenderer.enabled = false;
             }
 
+            if (Hidden)
+                spriteRenderer.enabled = false;
+            else
+                spriteRenderer.enabled = true;
 
         }
 

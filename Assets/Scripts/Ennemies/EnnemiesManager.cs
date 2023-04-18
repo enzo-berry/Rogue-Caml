@@ -91,8 +91,6 @@ namespace RogueCaml
             PhotonNetwork.Destroy(this.gameObject);
         }
 
-        
-
         protected double Distance(Vector2 v)
         {
             return (float)Math.Sqrt(v.x * v.x + v.y * v.y);

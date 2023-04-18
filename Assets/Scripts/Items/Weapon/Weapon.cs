@@ -36,13 +36,13 @@ namespace RogueCaml
             {
                 // We own this player: send the others our data
                 stream.SendNext(attacking);
-                stream.SendNext(Owner);
+                stream.SendNext(Hidden);
             }
             else
             {
                 // Network player, receive data
                 this.attacking = (bool)stream.ReceiveNext();
-                this.Owner = (GameObject)stream.ReceiveNext();
+                this.Hidden = (bool)stream.ReceiveNext();
             }
         }
 
