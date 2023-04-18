@@ -129,6 +129,7 @@ MonoBehaviour:
   attacking: 0
   spriteRenderer: {fileID: 0}
   coolDown: 0.25
+  Hidden: 0
   range: 0
   angle: 180
   Dammage: 2
