@@ -5,7 +5,7 @@ using System.Collections;
 
 namespace RogueCaml
 {
-    public class PlayerUI : MonoBehaviour
+    public class PlayerUIstats : MonoBehaviour
     {
         #region Private Fields
 

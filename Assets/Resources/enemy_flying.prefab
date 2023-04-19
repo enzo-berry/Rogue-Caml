@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 2255423918358367786}
   - component: {fileID: 4858421197634996539}
   m_Layer: 0
-  m_Name: REnnemies
+  m_Name: enemy_flying
   m_TagString: cde
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

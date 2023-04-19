@@ -9,10 +9,12 @@ namespace RogueCaml
     public class WaitingManager : MonoBehaviour
     {
         public Canvas MasterChoice;
-        public GameManager gameManager;
+        private GameManager gameManager;
         // Start is called before the first frame update
         void Start()
         {
+            gameManager = GetComponent<GameManager>();
+
             MasterChoice.gameObject.SetActive(false);
             if (PhotonNetwork.IsMasterClient)
             {

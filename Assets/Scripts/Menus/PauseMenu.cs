@@ -23,7 +23,6 @@ public class PauseMenu : MonoBehaviour
     public void Paused()
     {
         Debug.Log("Game paused !");
-        PlayerManager.movement = Vector2.zero;
         pauseMenu.SetActive(true);
         LevelManager.gameisPaused = true;
     }

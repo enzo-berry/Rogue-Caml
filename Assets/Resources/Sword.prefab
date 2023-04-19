@@ -18,8 +18,8 @@ GameObject:
   - component: {fileID: 4435951063462099800}
   - component: {fileID: 7122183106312743728}
   m_Layer: 0
-  m_Name: Sword
-  m_TagString: awn
+  m_Name: sword
+  m_TagString: cda
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -125,14 +125,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 26d051a758442a24c979a154c7301bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Owner: {fileID: 0}
-  attacking: 0
   spriteRenderer: {fileID: 0}
-  coolDown: 0.25
-  Hidden: 0
+  currentGameObject: {fileID: 0}
+  owner: {fileID: 0}
+  Hidden: 1
+  dammage: 0
+  cooldown: 0
   range: 0
-  angle: 180
-  Dammage: 2
 --- !u!114 &3318950470493670531
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,7 +151,6 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 2301505430143218713}
   - {fileID: 7417828424810411905}
   - {fileID: 4435951063462099800}
   sceneViewId: 0

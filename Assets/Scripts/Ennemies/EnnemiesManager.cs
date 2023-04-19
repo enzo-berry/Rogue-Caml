@@ -14,6 +14,8 @@ namespace RogueCaml
 {
     public class EnnemiesManager : Entity
     {
+        //Incomprehensible X)
+
         protected float range;
         [FormerlySerializedAs("target")] 
         public GameObject Target;
@@ -21,13 +23,10 @@ namespace RogueCaml
 
         public MobGenerator mobGenerator;
         
-        protected Rigidbody2D rb;
-
         public Vector2 direction;
         protected Vector2 TargetDirection;
         protected float RandomRotation = 180f;
-        
-        
+
         public GameObject WeaponPrefab;
         protected Weapon Weapon;
         
@@ -62,7 +61,7 @@ namespace RogueCaml
            
             setDirection();
             if(Weapon) 
-                Weapon.Attaque(TargetDirection);
+                Weapon.Attack();
             
 
             transform.position += (Vector3)(moveSpeed * Time.fixedDeltaTime * direction);

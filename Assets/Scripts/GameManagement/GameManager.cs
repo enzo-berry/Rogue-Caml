@@ -23,7 +23,6 @@ namespace RogueCaml
 
         public static int level = 0;
         public GameObject playerPrefab;
-        public GameObject weaponPrefab;
         
 
         public static int difficulty = 50;
@@ -67,9 +66,7 @@ namespace RogueCaml
             {
                 PhotonNetwork.LoadLevel("waiting_scene");
             }
-            PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
-            DontDestroyOnLoad(   PhotonNetwork.Instantiate(weaponPrefab.name, new Vector3(0,1,0), Quaternion.identity));
-            
+            PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);            
         }
 
         public override void OnLeftRoom()

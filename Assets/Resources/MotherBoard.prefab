@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1761910631085405085}
   - component: {fileID: -5923656138291938325}
   m_Layer: 0
-  m_Name: MotherBoard
+  m_Name: motherboard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

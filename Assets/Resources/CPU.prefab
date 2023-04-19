@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9131937672384890670}
   - component: {fileID: 1278141635100589048}
   m_Layer: 0
-  m_Name: CPU
+  m_Name: cpu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

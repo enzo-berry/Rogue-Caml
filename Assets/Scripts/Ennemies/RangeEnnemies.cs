@@ -13,10 +13,8 @@ namespace RogueCaml
     public class RangeEnnemies : EnnemiesManager
     {
         private float securityRange;
-
-        
         //pour ajouter un peu de random pour le deplacement
-        
+
         // Start is called before the first frame update
         void Start()
         {
@@ -24,12 +22,12 @@ namespace RogueCaml
             if(photonView.IsMine)
             {
                 
-                Weapon = PhotonNetwork.Instantiate(WeaponPrefab.name, Vector3.zero, quaternion.identity)
-                    .GetComponent<Weapon>();
+                //Weapon = PhotonNetwork.Instantiate(WeaponPrefab.name, Vector3.zero, quaternion.identity)
+                //    .GetComponent<Weapon>();
 
-                Weapon.coolDown *= (1 + (100 - GameManager.difficulty) / 100);
-                Weapon.Pickup(this.gameObject);
-                range = Weapon.range;
+                //Weapon.coolDown *= (1 + (100 - GameManager.difficulty) / 100);
+                //Weapon.Pickup(this.gameObject);
+                //range = Weapon.range;
             }
         }
 

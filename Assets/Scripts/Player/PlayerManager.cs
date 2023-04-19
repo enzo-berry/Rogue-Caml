@@ -2,7 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 using Photon.Pun;
 using Photon.Realtime;
 using Unity.VisualScripting;
@@ -11,37 +10,27 @@ namespace RogueCaml
 {
     public class PlayerManager : Entity
     {
+
+        //objects
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject LocalPlayerInstance;
-        
-        public int attaqueSpeed = 1;
+        List<Collider2D> ObjectsInContactWithPlayer = new List<Collider2D>();
 
-        private Rigidbody2D rigidBody;
-        public static Vector2 movement;
 
-        [Tooltip("The Player's UI GameObject Prefab")]
-        [SerializeField]
-        public GameObject weapon;
-
-        public bool alive = true;
-
-        void Start()
+        public void Start()
         {
-            rigidBody = GetComponent<Rigidbody2D>();
-
-            alive = true;
+            rb = GetComponent<Rigidbody2D>();
         }
 
         void Update()
         {
             //If that PlayerObject is my player.
-            if (photonView.IsMine && !LevelManager.gameisPaused)
+            if (photonView.IsMine && !LevelManager.gameisPaused && alive)
             {
                 ProcessInputs();
             }
         }
 
-        //When game get launched
         void Awake()
         {
             if (photonView.IsMine)
@@ -55,58 +44,67 @@ namespace RogueCaml
 
         void FixedUpdate()
         {
-            if (photonView.IsMine && alive)
+            if (photonView.IsMine && alive && !LevelManager.gameisPaused)
             {
-                rigidBody.MovePosition(rigidBody.position + moveSpeed * Time.fixedDeltaTime * movement);
+                rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * movement);
             }
         }
 
         void ProcessInputs()
         {
+
             movement.x = Input.GetAxisRaw("Horizontal");
             movement.y = Input.GetAxisRaw("Vertical");
 
-            if (weapon && Input.GetKey(KeyCode.Mouse0))
+            //Pickup item
+            if (Input.GetKeyDown(KeyCode.LeftControl) && !weapon)
             {
-                //Send a RPC to all connected clients, basicly calls AttackTESTSync method for every client connected.
-                //photonView.RPC("AttackTESTSync", RpcTarget.All, PhotonNetwork.NickName);
+                //Debug.Log("trigger stay", this);
+                if (Input.GetKeyDown(KeyCode.LeftControl))
+                {
+                    GameObject ItemToPickup = GetObjectInContactWith();
 
-                Vector2 mp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Vector2 tmp = transform.position;
+                    if (ItemToPickup == null) return;
+                    
+                    weapon = ItemToPickup;
+                    int OwnerPhotonViewId = photonView.ViewID;
 
-                Vector2 v = mp - tmp;
-
-                float alpha = (float)(v.x == 0 ? (float)(90 * Signe(v.y)) : Math.Atan((float)(v.y / v.x)) + (Signe(v.x) == -1 ? Math.PI : 0));
-                Vector2 direction = new Vector2((float)(Math.Cos(alpha)), (float)Math.Sin(alpha));
-
-                weapon.SendMessage("Attaque", direction, SendMessageOptions.RequireReceiver);
+                    weapon.GetComponent<PhotonView>().RPC("Pickup", RpcTarget.All, OwnerPhotonViewId);
+                }
             }
 
-            Height_mov = Input.GetAxis("Horizontal"); //Calculate horizontal speed
-            Width_mov = Input.GetAxis("Vertical");   //Calculate vertical speed
-
-        }
-
-        //Called when a PlayerAttacks.
-        [PunRPC]
-        void AttackTESTSync(string PlayerAttacked)
-        {
-            if (weapon is not null)
+            //Attack
+            if (weapon && Input.GetKeyDown(KeyCode.Mouse0))
             {
-                weapon.GetComponent<Weapon>().Attaque(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                weapon.GetComponent<PhotonView>().RPC("Attack", RpcTarget.All);
             }
-            Debug.Log($"Player {PlayerAttacked} just attacked ! ");
         }
 
-        //Better to use a Getter to keep rigidBody var private.
-        public Rigidbody2D GetRigidBody()
+        GameObject GetObjectInContactWith()
         {
-            return rigidBody;
+            foreach(Collider2D collision in ObjectsInContactWithPlayer)
+            {
+                if (!collision.gameObject.tag.Contains("unequiped")) 
+                    continue;
+                else
+                {
+                    return collision.gameObject;
+                }
+            }
+            return null;
         }
-        
-        int Signe(float f)
+
+        //Check when player is in contact with a sword
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            return f > 0 ? 1 : f == 0 ? 0 : -1;
+            ObjectsInContactWithPlayer.Add(collision);
         }
+
+        //same as above but when player is not in contact with a sword
+        private void OnTriggerExit2D(Collider2D collision)
+        {
+            ObjectsInContactWithPlayer.Remove(collision);
+        }
+
     }
 }
