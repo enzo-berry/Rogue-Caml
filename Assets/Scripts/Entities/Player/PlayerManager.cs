@@ -98,7 +98,15 @@ namespace RogueCaml
         [PunRPC]
         void PlayerAttack()
         {
-            weaponscript.Attack(new Vector2());
+            //Get as a Vector2 the direction of the mouse from the player
+            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+
+            //Set direction to only 1 and 0
+            direction.Normalize();
+            
+            
+
+            weaponscript.Attack(direction);
         }
 
         [PunRPC]

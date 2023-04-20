@@ -31,6 +31,12 @@ namespace RogueCaml
 
         void Update()
         {
+            //swords follows owner
+            if (owner != null)
+            {
+                transform.position = owner.transform.position;
+            }
+
             if (isequiped)
                 spriteRenderer.enabled = false;
             else
