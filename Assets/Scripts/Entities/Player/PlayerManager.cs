@@ -16,6 +16,13 @@ namespace RogueCaml
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject OwnedPlayerInstance;
         List<Collider2D> ObjectsInContactWithPlayer = new List<Collider2D>();
+        bool ismine
+        {
+            get
+            {
+                return photonView.IsMine;
+            }
+        }
 
         #region Unity Callbacks
 
@@ -41,7 +48,7 @@ namespace RogueCaml
         void Update()
         {
             //If that PlayerObject is my player.
-            if (photonView.IsMine && !LevelManager.gameisPaused && alive)
+            if (ismine && !LevelManager.gameisPaused && alive)
             {
                 ProcessInputs();
             }
@@ -50,7 +57,7 @@ namespace RogueCaml
 
         void FixedUpdate()
         {
-            if (photonView.IsMine && alive && !LevelManager.gameisPaused)
+            if (ismine && alive && !LevelManager.gameisPaused)
             {
                 rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * movement);
             }
@@ -129,6 +136,7 @@ namespace RogueCaml
         [PunRPC]
         void ClearWeapon() //used when changing scene for now, in order to prevent sync errors.
         {
+            ObjectsInContactWithPlayer.Clear();
             PhotonView.Destroy(weapon);
             weapon = null;
         }
@@ -151,13 +159,15 @@ namespace RogueCaml
         //Check when player is in contact with a sword
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            ObjectsInContactWithPlayer.Add(collision);
+            if (ismine)
+                ObjectsInContactWithPlayer.Add(collision);
         }
 
         //same as above but when player is not in contact with a sword
         private void OnTriggerExit2D(Collider2D collision)
         {
-            ObjectsInContactWithPlayer.Remove(collision);
+            if (ismine)
+                ObjectsInContactWithPlayer.Remove(collision);
         }
 
     }

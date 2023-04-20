@@ -10,7 +10,7 @@ namespace RogueCaml
     public class Pistol : Weapon
     {
         public GameObject ProjectilePrefab;
-        public int cooldown;
+        public int cooldown; //value set in editor
         private int timeSinceLastShot = 0;
 
         void Start()
@@ -21,7 +21,6 @@ namespace RogueCaml
 
         private void Update()
         {
-            timeSinceLastShot += 1;
             if (isequiped)
             {
                 spriteRenderer.enabled = false;
@@ -32,10 +31,22 @@ namespace RogueCaml
             }
         }
 
+        private void FixedUpdate()
+        {
+            if (photonView.IsMine)
+            {
+                if (timeSinceLastShot < cooldown)
+                {
+                    timeSinceLastShot++;
+                }
+            }
+        }
+
         public override void Attack(Vector2 direction)
         {
-            if (photonView.IsMine && timeSinceLastShot > cooldown)
+            if (photonView.IsMine && timeSinceLastShot >= cooldown)
             {
+                timeSinceLastShot = 0;
                 transform.position = owner.transform.position + (Vector3)direction;
                 GameObject ProjectilObjectCreated = PhotonNetwork.Instantiate(ProjectilePrefab.name, transform.position + (Vector3)direction, Quaternion.identity);
                 Projectile ProjectilScriptCreated = ProjectilObjectCreated.GetComponent<Projectile>();

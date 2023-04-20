@@ -4,15 +4,36 @@ using UnityEngine;
 
 public class Server : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    ///*
+    // * This class will be responsible for all server side logic, and will be instantiated on the client master
+    // *
+    // */
 
-    // Update is called once per frame
-    void Update()
-    {
+    //public static Server Instance;
+
+    ////make this obejct perma
+    //void Awake()
+    //{
+    //    if (Instance == null)
+    //    {
+    //        Instance = this;
+    //        DontDestroyOnLoad(gameObject);
+    //    }
+    //    else
+    //    {
+    //        Destroy(gameObject);
+    //    }
+    //}
+
+    //// Start is called before the first frame update
+    //void Start()
+    //{
         
-    }
+    //}
+
+    //// Update is called once per frame
+    //void Update()
+    //{
+        
+    //}
 }

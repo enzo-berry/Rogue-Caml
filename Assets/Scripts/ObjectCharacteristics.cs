@@ -47,13 +47,16 @@ namespace Assets.Scripts
         [Flags]
         public enum Characteristics
         {
-            Entity   =    0b00000001,
+            Entity   =    0b0000000000000001,
             Ennemy   =    0b00000010,
             Player   =    0b00000100,
 
             Item     =    0b00001000,
             Equiped  =    0b00010000,
             Weapon   =    0b00100000,
+            Projectil=    0b01000000,
+
+            Team     =    0b10000000,
         }
     }
 }

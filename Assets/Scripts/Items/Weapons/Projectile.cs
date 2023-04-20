@@ -11,10 +11,8 @@ namespace RogueCaml
     public class Projectile : MonoBehaviourPunCallbacks
     {
         public Vector2 direction = new Vector2(0, 0);
-        public GameObject Owner;
+        public GameObject ParentWeapon; //Weapon that created this projectile
         public float speed;
-
-        public char Team;
 
         [Serialize] private Rigidbody2D rb;
 

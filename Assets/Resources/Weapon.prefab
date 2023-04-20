@@ -100,13 +100,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e189ad784c1704f80bbf9a25462671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Owner: {fileID: 0}
-  attacking: 0
-  spriteRenderer: {fileID: 7678275204727226912}
-  coolDown: 0.5
-  Hidden: 0
-  range: 0
+  characteristics: 0
+  owner: {fileID: 0}
+  dammage: 0
   ProjectilePrefab: {fileID: 3603314980910566130, guid: b914a14a2f6237b4cac6465ea97d1f5f, type: 3}
+  cooldown: 37
 --- !u!114 &1485729102102850510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,7 +140,6 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 3054798592590689040}
   - {fileID: 1485729102102850510}
   sceneViewId: 0
   InstantiationId: 0
