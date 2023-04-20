@@ -119,7 +119,6 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 186945735}
   - {fileID: 841372472}
-  - {fileID: 3302154829412797363}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -139,19 +138,19 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 1
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: speed
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: up
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: down
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: left
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: right
   m_SynchronizeLayers:
   - SynchronizeType: 1

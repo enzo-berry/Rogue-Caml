@@ -126,7 +126,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characteristics: 0
-  Hidden: 1
   owner: {fileID: 0}
   dammage: 0
 --- !u!114 &3318950470493670531

@@ -25,6 +25,7 @@ namespace RogueCaml
         void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
+            currentGameObject = this.gameObject;
             characteristics = Characteristics.Weapon;
         }
 

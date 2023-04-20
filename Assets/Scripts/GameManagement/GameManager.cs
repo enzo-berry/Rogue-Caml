@@ -15,13 +15,16 @@ namespace RogueCaml
         //stats
         public static int level = 0;
         public static int difficulty = 50;
-        //dictionnary, names: keytype value:keycode
-        public static Dictionary<string, KeyCode> key_controls = new Dictionary<string, KeyCode>();
+
+        //keybinds
+        public static Dictionary<string, KeyCode> keybinds = new Dictionary<string, KeyCode>();
 
         //objects
         public static GameManager Instance { get; private set; }
         public GameObject playerPrefab;
 
+
+        //making GameManeger permanenent between scenes
         private void Awake()
         {
             //if first time we load
@@ -40,10 +43,10 @@ namespace RogueCaml
         void Start()
         {
             //defining controls
-            key_controls.Add("attack", KeyCode.Mouse0);
-            key_controls.Add("pickup", KeyCode.LeftControl);
-            key_controls.Add("drop", KeyCode.A);
-            key_controls.Add("interact", KeyCode.E);
+            keybinds.Add("attack", KeyCode.Mouse0);
+            keybinds.Add("pickup", KeyCode.LeftControl);
+            keybinds.Add("drop", KeyCode.A);
+            keybinds.Add("interact", KeyCode.E);
 
             //If we are not connected to server. Server != Rooms.
             if (!PhotonNetwork.IsConnected)

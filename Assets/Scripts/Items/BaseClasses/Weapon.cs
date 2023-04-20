@@ -13,7 +13,7 @@ namespace RogueCaml
      */
     public abstract class Weapon : Item
     {
-        public int dammage;
+        public int dammage; //needs to be initialized in Start() of child class
 
         public abstract void Attack(Vector2 direction);
     }

@@ -19,6 +19,7 @@ namespace RogueCaml
 
         #region Unity Callbacks
 
+        //making player object permanent
         void Awake()
         {
             if (photonView.IsMine)
@@ -30,6 +31,7 @@ namespace RogueCaml
             DontDestroyOnLoad(this.gameObject);
         }
 
+        //Setting player infos
         public void Start()
         {
             rb = GetComponent<Rigidbody2D>();
@@ -61,7 +63,7 @@ namespace RogueCaml
             movement.y = Input.GetAxisRaw("Vertical");
 
             //Pickup item
-            if (Input.GetKeyDown(GameManager.key_controls["pickup"]) && !weapon)
+            if (Input.GetKeyDown(GameManager.keybinds["pickup"]) && !weapon)
             {
                 GameObject ItemToPickup = GetItemInContactWith();
 
@@ -74,7 +76,7 @@ namespace RogueCaml
             }
 
             //Drop item
-            if (Input.GetKeyDown(GameManager.key_controls["drop"]) && weapon)
+            if (Input.GetKeyDown(GameManager.keybinds["drop"]) && weapon)
             {
                 //send PlayerDrop RPC to all players
                 photonView.RPC("PlayerDrop", RpcTarget.All);
@@ -82,7 +84,7 @@ namespace RogueCaml
             }
 
             //Attack
-            if (Input.GetKeyDown(GameManager.key_controls["attack"]) && weapon)
+            if (Input.GetKeyDown(GameManager.keybinds["attack"]) && weapon)
             {
                 //send PlayerAttack RPC to all players
                 photonView.RPC("PlayerAttack", RpcTarget.All);

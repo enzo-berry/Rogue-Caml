@@ -9,7 +9,6 @@ using UnityEngine.Events;
 public class Computer : ObjectCharacteristics
 {
     AudioSource audioData;
-    public bool isInRange;
     public GameObject panel;
     // Start is called before the first frame update
     void Start()

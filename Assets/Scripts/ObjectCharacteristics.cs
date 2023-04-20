@@ -23,9 +23,11 @@ namespace Assets.Scripts
 
 
         //Do this
-            bool isPlayer()
+            bool isPlayer
             {
-                return (characteristics & Player) == characteristics;
+                get{
+                    return (characteristics & Player) == characteristics;
+                }
             }
 
             ...

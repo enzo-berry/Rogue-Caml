@@ -14,7 +14,7 @@ namespace RogueCaml
         public int moveSpeed = 5;
         public int attackSpeed = 1;
 
-        [NonSerialized] public bool alive = true;
+        [NonSerialized] public bool alive = true; //NonSerialazed means it won't be accesible in the inspector.
         [NonSerialized] public Vector2 movement; //A vector2 to store the movement of the player. is used in Update method.
     
     //Unsynced

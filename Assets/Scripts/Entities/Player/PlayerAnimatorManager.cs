@@ -36,7 +36,7 @@ namespace RogueCaml
                 return;
             }
 
-
+            //player.movement is synced
             float horizontal = player.movement.x;
             float vertical = player.movement.y;
 
