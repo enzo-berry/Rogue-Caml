@@ -10,6 +10,8 @@ namespace RogueCaml
     public class Pistol : Weapon
     {
         public GameObject ProjectilePrefab;
+        public int cooldown;
+        private int timeSinceLastShot = 0;
 
         void Start()
         {
@@ -19,6 +21,7 @@ namespace RogueCaml
 
         private void Update()
         {
+            timeSinceLastShot += 1;
             if (isequiped)
             {
                 spriteRenderer.enabled = false;
@@ -31,12 +34,15 @@ namespace RogueCaml
 
         public override void Attack(Vector2 direction)
         {
-            transform.position = owner.transform.position + (Vector3)direction;
-            GameObject ProjectilObjectCreated = PhotonNetwork.Instantiate(ProjectilePrefab.name, transform.position + (Vector3)direction, Quaternion.identity);
-            Projectile ProjectilScriptCreated = ProjectilObjectCreated.GetComponent<Projectile>();
+            if (photonView.IsMine && timeSinceLastShot > cooldown)
+            {
+                transform.position = owner.transform.position + (Vector3)direction;
+                GameObject ProjectilObjectCreated = PhotonNetwork.Instantiate(ProjectilePrefab.name, transform.position + (Vector3)direction, Quaternion.identity);
+                Projectile ProjectilScriptCreated = ProjectilObjectCreated.GetComponent<Projectile>();
 
-            ProjectilScriptCreated.direction = direction;
-            ProjectilObjectCreated.transform.right = (direction);
+                ProjectilScriptCreated.direction = direction;
+                ProjectilObjectCreated.transform.right = (direction);
+            }
         }
     }
 }
