@@ -6,7 +6,6 @@ using UnityEngine;
 
 public class SpawnPointManager : MonoBehaviour
 {
-    // Start is called before the first frame update
     void Start()
     {
         if (PhotonNetwork.IsMasterClient)

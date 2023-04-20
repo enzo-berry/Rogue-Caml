@@ -11,8 +11,10 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        Sword Sword = PhotonNetwork.Instantiate("Sword", new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Sword>();
-        Sword.Hidden = false;
+        if (PhotonNetwork.IsMasterClient)
+        {
+            Sword Sword = PhotonNetwork.Instantiate("Sword", new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Sword>();
+        }
     }
 
     // Start is called before the first frame update

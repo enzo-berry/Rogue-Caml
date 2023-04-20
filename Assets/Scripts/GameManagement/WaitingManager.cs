@@ -29,11 +29,10 @@ namespace RogueCaml
   
 
         }
+
         public void InstantiateGame()
         {
-            //Debug.Log("Ca marche pas mais on test qd mm ");
             gameManager = GameManager.Instance;
-            
             gameManager.StartGame();
         } 
     }

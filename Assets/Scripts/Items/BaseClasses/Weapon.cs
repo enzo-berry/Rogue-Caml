@@ -11,18 +11,10 @@ namespace RogueCaml
      * Attaque a redefinir pour chaque arme
      * 
      */
-    
-    
     public abstract class Weapon : Item
     {
         public int dammage;
-        public float cooldown;
-        public float range;
-        protected float wait;
 
-        [PunRPC]
-        public abstract void Attack();
-
-
+        public abstract void Attack(Vector2 direction);
     }
 }

@@ -271,12 +271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 665ae1e7212eb0f4c996470b469e6740, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characteristics: 0
   Health: 3
-  alive: 1
-  movement: {x: 0, y: 0}
-  Height_mov: 0
-  Width_mov: 0
-  attaqueSpeed: 1
   moveSpeed: 5
-  weapon: {fileID: 0}
-  collider: {fileID: 0}
+  attackSpeed: 1

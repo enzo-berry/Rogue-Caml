@@ -4,20 +4,11 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - ally
-  - Weapon
-  - Unequipped
-  - Equiped
-  - Enemy
-  - cde
+  - Piece
   - cda
   - awn
-  - ap
   - apo
-  - ape
-  - apa
-  - Piece
-  - awe
+  - unequiped
   layers:
   - Default
   - TransparentFX

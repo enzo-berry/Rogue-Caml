@@ -1,3 +1,4 @@
+using Photon.Pun;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -20,11 +21,14 @@ namespace RogueCaml
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-      
-            if (collision.gameObject.CompareTag("cda"))
+
+            PlayerManager playerManager = collision.gameObject.GetComponent<PlayerManager>();
+            if (playerManager == null)
+                return;
+            else
             {
-                GameManager.NextLevel();
-                Destroy(this.gameObject);
+                PhotonNetwork.Destroy(gameObject);
+                GameManager.Instance.NextLevel();
             }
         }
     }

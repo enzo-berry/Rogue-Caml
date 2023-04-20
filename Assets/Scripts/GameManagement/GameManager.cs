@@ -6,26 +6,22 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 namespace RogueCaml
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
-        //Since this script is static it could be better to retrieve it dynamicly:
-        //To dynamicly retrieve this script you can call
-        //GameObject.Find("GameManager").GetComponent("GameManager");
-        
-        
-        
-        
-        [Tooltip("The prefab to use for representing the player")]
-        public static GameManager Instance { get; private set; }
-
+        //stats
         public static int level = 0;
-        public GameObject playerPrefab;
-        
-
         public static int difficulty = 50;
+        //dictionnary, names: keytype value:keycode
+        public static Dictionary<string, KeyCode> key_controls = new Dictionary<string, KeyCode>();
+
+        //objects
+        public static GameManager Instance { get; private set; }
+        public GameObject playerPrefab;
+
         private void Awake()
         {
             //if first time we load
@@ -43,6 +39,12 @@ namespace RogueCaml
         //Since we use GameManager in everyscene we make condition to know from where it is instanciated, will be splitted in two different scripts later on.
         void Start()
         {
+            //defining controls
+            key_controls.Add("attack", KeyCode.Mouse0);
+            key_controls.Add("pickup", KeyCode.LeftControl);
+            key_controls.Add("drop", KeyCode.A);
+            key_controls.Add("interact", KeyCode.E);
+
             //If we are not connected to server. Server != Rooms.
             if (!PhotonNetwork.IsConnected)
             {
@@ -107,29 +109,33 @@ namespace RogueCaml
 
         #region GameFunctions
 
-        //comment me this function for IDE
-
         /// <summary>
         /// Teleports all players to new room.
         /// CAN ONLY BE CALLED BY MASTER CLIENT !
         /// </summary>
         /// <param name="roomname">The room to teleport.</param>
         /// <returns>true if called by MasterClient, false if not</returns>
-        public static bool SwitchRoom(string roomname)
+        public bool SwitchRoom(string roomname)
         {
             if (PhotonNetwork.IsMasterClient){
                 PhotonNetwork.LoadLevel(roomname);
-                return true;
+                //fetch all players scripts
+                PlayerManager[] players = FindObjectsOfType<PlayerManager>();
+
+                //send them an RPC to teleport them to the new room
+                foreach (PlayerManager player in players)
+                {
+                    player.photonView.RPC("ClearWeapon", RpcTarget.All);
+                }
+
             }
 
             return false;
         }
 
-        public static bool NextLevel()
+        public bool NextLevel()
         {
-            
             return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{++level}");
-            
         }
 
         public void StartGame()
@@ -144,7 +150,6 @@ namespace RogueCaml
 
         #endregion
 
-        
 
         #region Private Methods
 
