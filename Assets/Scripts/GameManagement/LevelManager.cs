@@ -13,7 +13,7 @@ public class LevelManager : MonoBehaviour
     {
         if (PhotonNetwork.IsMasterClient)
         {
-            Sword Sword = PhotonNetwork.Instantiate("Sword", new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Sword>();
+            Sword Sword = PhotonNetwork.Instantiate("Pistol", new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Sword>();
         }
     }
 

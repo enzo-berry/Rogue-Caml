@@ -29,5 +29,15 @@ namespace RogueCaml
                 transform.position += speed * Time.fixedDeltaTime * (Vector3)direction;
         }
 
+
+        //when projectil hits wall
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (photonView.IsMine)
+            {
+                //destroy projectile
+                PhotonNetwork.Destroy(gameObject);
+            }
+        }
     }
 }
