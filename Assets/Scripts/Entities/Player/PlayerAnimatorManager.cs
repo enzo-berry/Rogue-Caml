@@ -21,6 +21,13 @@ namespace RogueCaml
         // Update is called once per frame
         void Update()
         {
+            //check if ismine
+            if (!photonView.IsMine)
+            {
+                return;
+            }
+            
+
             if (!animator)
             {
                 return;

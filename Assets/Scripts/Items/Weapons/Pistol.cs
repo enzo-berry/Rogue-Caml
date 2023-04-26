@@ -40,6 +40,8 @@ namespace RogueCaml
                     timeSinceLastShot++;
                 }
             }
+
+
         }
 
         public override void Attack(Vector2 direction)
