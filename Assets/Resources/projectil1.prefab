@@ -141,9 +141,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   direction: {x: 0, y: 0}
-  Owner: {fileID: 0}
+  ParentWeapon: {fileID: 0}
   speed: 15
-  Team: 0
 --- !u!61 &5602014818701153575
 BoxCollider2D:
   m_ObjectHideFlags: 0
