@@ -97,17 +97,49 @@ namespace RogueCaml
 
         public void ConnectPlayer(string pseudo, string roomGame)
         {
-            //if (PlayerController.LocalPlayerInstance == null)
-            //{
-            //    Debug.LogFormat("We are Instantiating LocalPlayer from {0}", Application.loadedLevelName);
-            //    // we're in a room. spawn a character for the local player. it gets synced by using PhotonNetwork.Instantiate
-            //    PhotonNetwork.Instantiate(this.playerPrefab.name, new Vector2(0f, 0f), Quaternion.identity, 0);
-            //    //PhotonNetwork.Instantiate(this.weaponPrefab.name, new Vector2(0f, 0f), Quaternion.identity, 0);
-            //}
-            PhotonNetwork.NickName = pseudo==null ? "Player" : pseudo;
+            PhotonNetwork.NickName = pseudo == null ? "Player" : pseudo;
             Debug.Log($"Connecting to room {roomGame} with pseudo {PhotonNetwork.NickName}");
             PhotonNetwork.JoinOrCreateRoom(roomGame, new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
         }
+
+        /// <summary>
+        /// Delets a gameobject from the network.
+        /// This method sends a RPC the GameObject owner in order to delete it.
+        /// </summary>
+        /// <param name="go">The GameObject to destroy, will be casted to a PhotonView.</param>
+        /// <returns>true if success, false if not</returns>
+        public bool DestroyObject(GameObject go)
+        {
+            PhotonView pv = go.GetComponent<PhotonView>();
+            if (pv == null)
+            {
+                Debug.LogError("GameObject does not have a PhotonView !");
+                return false;
+
+            }
+            //if PhotonView is mine, no need to send a RPC to localclient
+            if (pv.IsMine)
+            {
+                PhotonNetwork.Destroy(pv);
+                return true;
+            }
+
+
+
+            photonView.RPC("DestroyObjectRPC", pv.Owner, pv.ViewID);
+            return true;
+        }
+
+        [PunRPC]
+        private void DestroyObjectRPC(int viewID)
+        {
+            PhotonView targetPhotonView = PhotonView.Find(viewID);
+            if (targetPhotonView != null)
+            {
+                PhotonNetwork.Destroy(targetPhotonView);
+            }
+        }
+
         #endregion
 
         #region GameFunctions

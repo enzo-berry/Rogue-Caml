@@ -37,7 +37,7 @@ namespace RogueCaml
                 transform.position = owner.transform.position;
             }
 
-            if (isequiped)
+            if (IsEquiped)
                 spriteRenderer.enabled = false;
             else
                 spriteRenderer.enabled = true;
@@ -48,6 +48,7 @@ namespace RogueCaml
             Debug.Log("Sword attacked !");
             //annimation
         }
+
 
     }
 }

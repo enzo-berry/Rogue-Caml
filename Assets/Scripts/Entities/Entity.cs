@@ -7,7 +7,7 @@ using Assets.Scripts;
 namespace RogueCaml
 {
     //Used for Player and Mobs
-    public abstract class Entity : ObjectCharacteristics
+    public abstract class Entity : ObjectCharacteristics, IPunObservable
     {
     //Synced in PhotonView
         public int Health = 5;
@@ -16,16 +16,23 @@ namespace RogueCaml
 
         [NonSerialized] public bool alive = true; //NonSerialazed means it won't be accesible in the inspector.
         [NonSerialized] public Vector2 movement; //A vector2 to store the movement of the player. is used in Update method.
-    
+        public bool IsMine
+        {
+            get
+            {
+                return photonView.IsMine;
+            }
+        }
+
     //Unsynced
         //objects
         [NonSerialized] public GameObject weapon = null;
         public Weapon weaponscript => weapon!=null ? weapon.GetComponent<Weapon>() : null;
         protected Rigidbody2D rb;
 
-
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
+
             if (stream.IsWriting)
             {
                 // We own this player: send the others our data
@@ -34,7 +41,6 @@ namespace RogueCaml
                 stream.SendNext(attackSpeed);
                 stream.SendNext(movement);
                 stream.SendNext(alive);
-                stream.SendNext(characteristics);
             }
             else
             {
@@ -44,13 +50,14 @@ namespace RogueCaml
                 attackSpeed = (int)stream.ReceiveNext();
                 movement = (Vector2)stream.ReceiveNext();
                 alive = (bool)stream.ReceiveNext();
-                characteristics = (Characteristics)stream.ReceiveNext();
 
             }
         }
 
+
         public void TakeDommage(int amount)
         {
+            Debug.Log("Entity took " + amount.ToString() + " damage");
             Health -= amount;
         }
 

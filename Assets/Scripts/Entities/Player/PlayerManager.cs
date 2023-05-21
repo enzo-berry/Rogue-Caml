@@ -10,19 +10,12 @@ using Assets.Scripts;
 
 namespace RogueCaml
 {
-    public class PlayerManager : Entity
+    public class PlayerManager : Entity 
     {
         //objects
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         public static GameObject OwnedPlayerInstance;
         List<Collider2D> ObjectsInContactWithPlayer = new List<Collider2D>();
-        bool ismine
-        {
-            get
-            {
-                return photonView.IsMine;
-            }
-        }
 
         #region Unity Callbacks
 
@@ -43,21 +36,31 @@ namespace RogueCaml
         {
             rb = GetComponent<Rigidbody2D>();
             characteristics = Characteristics.Player;
+            IsOnPlayerTeam = true;
         }
 
         void Update()
         {
             //If that PlayerObject is my player.
-            if (ismine && !LevelManager.gameisPaused && alive)
+            if (IsMine && !LevelManager.gameisPaused && alive)
             {
                 ProcessInputs();
             }
-        }
 
+            if (IsMine && Health <= 0)
+            {
+                //Play death animation
+                /////////////////////////
+
+
+                //destroy entity
+                GameManager.Instance.DestroyObject(gameObject);
+            }
+        }
 
         void FixedUpdate()
         {
-            if (ismine && alive && !LevelManager.gameisPaused)
+            if (IsMine && alive && !LevelManager.gameisPaused)
             {
                 rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * movement);
             }
@@ -105,6 +108,9 @@ namespace RogueCaml
         [PunRPC]
         void PlayerAttack()
         {
+            //replace to attack animation
+
+
             //Get as a Vector2 the direction of the mouse from the player
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
@@ -122,14 +128,16 @@ namespace RogueCaml
             //Get item by it's ViewId
             weapon = PhotonView.Find(ItemPhotonId).gameObject;
             weaponscript.owner = this;
-            weaponscript.characteristics = Characteristics.Weapon | Characteristics.Equiped;
+            weaponscript.IsEquiped = true;
+            weaponscript.IsOnPlayerTeam = true;
         }
 
         [PunRPC]
         void PlayerDrop()
         {
             weaponscript.owner = null;
-            weaponscript.characteristics = Characteristics.Weapon;
+            weaponscript.IsEquiped = false;
+            weaponscript.IsOnPlayerTeam = false;//Either one or the other, so just change it.
             weapon = null;
         }
 
@@ -137,7 +145,7 @@ namespace RogueCaml
         void ClearWeapon() //used when changing scene for now, in order to prevent sync errors.
         {
             ObjectsInContactWithPlayer.Clear();
-            PhotonView.Destroy(weapon);
+            PhotonNetwork.Destroy(weapon);
             weapon = null;
         }
 
@@ -150,24 +158,59 @@ namespace RogueCaml
                 Item item = collision.gameObject.GetComponent<Item>();
                 if (item == null)//If couldn't get Item component,
                     continue;
-                if (item.isweapon && !item.isequiped)
+                if (item.IsWeapon && !item.IsEquiped)
                     return collision.gameObject;
             }
             return null;
         }
 
-        //Check when player is in contact with a sword
+        //Check when player is in contact with an object
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (ismine)
+            GameObject gameObject = collision.gameObject;
+
+
+            if (IsMine)
+            {
+
+                ObjectCharacteristics objectCharacteristics = gameObject.GetComponent<ObjectCharacteristics>();
+
+                //damaging
+                if (objectCharacteristics != null && GameManager.level!=0)
+                {
+                    //if (objectCharacteristics.IsWeapon)
+                    //{
+                    //    Weapon weapon = gameObject.GetComponent<Weapon>();
+                    //    if (weapon.isAttacking) //checking if animatin is active
+                    //    {
+                    //        TakeDommage(weapon.dammage);
+                    //    }
+                    //}
+
+                    if (objectCharacteristics.IsProjectil) 
+                    {
+                        Projectil projectil = gameObject.GetComponent<Projectil>();
+                        if (projectil.IsOnPlayerTeam != objectCharacteristics.IsOnPlayerTeam)
+                        {
+                            TakeDommage(projectil.dammage);
+                            GameManager.Instance.DestroyObject(gameObject);
+                        }
+                    }
+                }
+
+                //Used for equiping an Object
                 ObjectsInContactWithPlayer.Add(collision);
+            }
         }
 
-        //same as above but when player is not in contact with a sword
+        //same as above but when player is not in contact with an objcet anymore
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (ismine)
+            if (IsMine)
+            {
+                //Used for equiping an Object
                 ObjectsInContactWithPlayer.Remove(collision);
+            }
         }
 
     }

@@ -47,16 +47,109 @@ namespace Assets.Scripts
         [Flags]
         public enum Characteristics
         {
-            Entity   =    0b0000000000000001,
-            Ennemy   =    0b0000000000000010,
-            Player   =    0b0000000000000100,
+            Entity = 0b0000000000000001,
+            Enemy = 0b0000000000000010,
+            Player = 0b0000000000000100,
 
-            Item     =    0b0000000000001000,
-            Equiped  =    0b0000000000010000,
-            Weapon   =    0b0000000000100000,
-            Projectil=    0b0000000001000000,
+            Item = 0b0000000000001000,
+            Equiped = 0b0000000000010000,
+            Weapon = 0b0000000000100000,
+            Projectil = 0b0000000001000000,
 
-            Team     =    0b0000000010000000,
+            PlayerTeam = 0b0000000010000000,
         }
+
+        public bool IsEntity
+        {
+            get
+            {
+                return (characteristics & Characteristics.Entity) == Characteristics.Entity;
+            }
+        }
+
+        public bool IsEnemy
+        {
+            get
+            {
+                return (characteristics & Characteristics.Enemy) == Characteristics.Enemy;
+            }
+        }
+
+        public bool IsPlayer
+        {
+            get
+            {
+                return (characteristics & Characteristics.Player) == Characteristics.Player;
+            }
+        }
+
+        public bool IsItem
+        {
+            get
+            {
+                return (characteristics & Characteristics.Item) == Characteristics.Item;
+            }
+        }
+
+        public bool IsEquiped
+        {
+            get
+            {
+                return (characteristics & Characteristics.Equiped) == Characteristics.Equiped;
+
+            }
+
+            set
+            {
+                if (value)
+                {
+                    characteristics |= Characteristics.Equiped; // Set the Equiped flag
+                }
+                else
+                {
+                    characteristics &= ~Characteristics.Equiped; // Clear the Equiped flag
+                }
+            }
+        }
+
+        public bool IsWeapon
+        {
+            get
+            {
+                return (characteristics & Characteristics.Weapon) == Characteristics.Weapon;
+
+            }
+        }
+
+        public bool IsProjectil
+        {
+            get
+            {
+                return (characteristics & Characteristics.Projectil) == Characteristics.Projectil;
+            }
+        }
+
+
+        public bool IsOnPlayerTeam
+        {
+            get
+            {
+                return  (characteristics & Characteristics.PlayerTeam) == Characteristics.PlayerTeam;
+            }
+            set
+            {
+                if (value)
+                {
+                    characteristics |= Characteristics.PlayerTeam; // Set the Equiped flag
+                }
+                else
+                {
+                    characteristics &= ~Characteristics.PlayerTeam; // Clear the Equiped flag
+                }
+            }
+        }
+
+        
+
     }
 }

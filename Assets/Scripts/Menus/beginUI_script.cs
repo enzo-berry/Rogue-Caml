@@ -12,21 +12,18 @@ namespace RogueCaml
 {
     public class beginUI_script : MonoBehaviour
     {
-        public GameManager gameManager;
-        // Start is called before the first frame update
         public TMP_Text text;
         public Scrollbar scrollbar;
 
         private void Start()
         {
-            //if(!PhotonNetwork.IsMasterClient)
-                this.gameObject.SetActive(true);
-            gameManager = GameManager.Instance;
+            if(!PhotonNetwork.IsMasterClient)
+                this.gameObject.SetActive(false);
 
         }
         public void Update()
         {
-            this.gameObject.SetActive(true);
+
         }
 
         public void UpdateDifficulty()

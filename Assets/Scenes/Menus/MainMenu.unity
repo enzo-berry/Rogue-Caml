@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &12692067 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7282632215141389088, guid: 1f43c645c510bfe4083e37b5f03c1bfc, type: 3}
+  m_PrefabInstance: {fileID: 35166542}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &35166542
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1558,12 +1563,34 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -1455766958398840814, guid: 1f43c645c510bfe4083e37b5f03c1bfc, type: 3}
   m_PrefabInstance: {fileID: 35166542}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 12692067}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 425ae0d822cbda2439b1c018a5772488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1468125472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 12692067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  Synchronization: 3
+  OwnershipTransfer: 0
+  observableSearch: 2
+  ObservedComponents: []
+  sceneViewId: 1
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1557493125 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 636167811384449006, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}

@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characteristics: 0
   owner: {fileID: 0}
-  dammage: 0
+  dammage: 1
   ProjectilePrefab: {fileID: 3603314980910566130, guid: b914a14a2f6237b4cac6465ea97d1f5f, type: 3}
   cooldown: 37
 --- !u!114 &1485729102102850510

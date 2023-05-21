@@ -60,16 +60,5 @@ public class Computer : ObjectCharacteristics
 
     //sync characteristics
 
-    public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    {
-        if (stream.IsWriting)
-        {
-            stream.SendNext(characteristics);
-        }
-        else
-        {
-            characteristics = (Characteristics)stream.ReceiveNext();
-        }
-    }
 
 }

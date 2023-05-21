@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace RogueCaml
 {
-    public class Pistol : Weapon
+    public class Pistol : Weapon, IPunObservable
     {
         public GameObject ProjectilePrefab;
         public int cooldown; //value set in editor
@@ -21,7 +21,14 @@ namespace RogueCaml
 
         private void Update()
         {
-            if (isequiped)
+            if (owner != null)
+            {
+                //teleport to owner
+                transform.position = owner.transform.position;
+            }
+
+
+            if (IsEquiped)
             {
                 spriteRenderer.enabled = false;
             }
@@ -51,11 +58,29 @@ namespace RogueCaml
                 timeSinceLastShot = 0;
                 transform.position = owner.transform.position + (Vector3)direction;
                 GameObject ProjectilObjectCreated = PhotonNetwork.Instantiate(ProjectilePrefab.name, transform.position + (Vector3)direction, Quaternion.identity);
-                Projectile ProjectilScriptCreated = ProjectilObjectCreated.GetComponent<Projectile>();
+                Projectil ProjectilScriptCreated = ProjectilObjectCreated.GetComponent<Projectil>();
 
                 ProjectilScriptCreated.direction = direction;
                 ProjectilObjectCreated.transform.right = (direction);
+                ProjectilScriptCreated.ParentWeapon = gameObject;
+
+                bool IsOnPlayerTeam = ProjectilScriptCreated.ParentWeapon.GetComponent<Weapon>().IsOnPlayerTeam;
+                ProjectilScriptCreated.IsOnPlayerTeam = IsOnPlayerTeam;
             }
         }
+
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                stream.SendNext(characteristics);
+            }
+            else
+            {
+                characteristics = (Characteristics)stream.ReceiveNext();
+            }
+        }
+
+
     }
 }

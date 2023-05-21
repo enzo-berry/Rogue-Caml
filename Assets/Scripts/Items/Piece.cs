@@ -31,6 +31,7 @@ namespace RogueCaml
                 GameManager.Instance.NextLevel();
             }
         }
+
     }
 
 
