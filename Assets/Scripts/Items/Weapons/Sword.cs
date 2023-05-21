@@ -21,9 +21,11 @@ namespace RogueCaml
 {
     public class Sword : Weapon
     {
+        private Animator _animator;
 
         void Start()
         {
+            _animator = GetComponent<Animator>();
             spriteRenderer = GetComponent<SpriteRenderer>();
             currentGameObject = this.gameObject;
             characteristics = Characteristics.Weapon;
@@ -38,7 +40,7 @@ namespace RogueCaml
             }
 
             if (isequiped)
-                spriteRenderer.enabled = false;
+                ; //spriteRenderer.enabled = false;
             else
                 spriteRenderer.enabled = true;
         }
@@ -47,6 +49,7 @@ namespace RogueCaml
         {
             Debug.Log("Sword attacked !");
             //annimation
+            _animator.SetTrigger("Is attacking");
         }
 
     }
