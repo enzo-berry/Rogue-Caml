@@ -42,6 +42,9 @@ namespace RogueCaml
         //Since we use GameManager in everyscene we make condition to know from where it is instanciated, will be splitted in two different scripts later on.
         void Start()
         {
+            //Screen.SetResolution(Screen.width, Screen.height, true);
+
+
             //defining controls
             keybinds.Add("attack", KeyCode.Mouse0);
             keybinds.Add("pickup", KeyCode.LeftControl);

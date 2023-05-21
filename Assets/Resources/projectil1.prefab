@@ -139,6 +139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2eb887ed6e1a74d9f4fdd93715afc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characteristics: 0
   direction: {x: 0, y: 0}
   ParentWeapon: {fileID: 0}
   speed: 2.5
@@ -152,7 +153,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.0004196316, y: 0.0012587905}

@@ -513,7 +513,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 13.24
+  orthographic size: 11.73
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1588,7 +1588,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents: []
-  sceneViewId: 1
+  sceneViewId: 2
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &1557493125 stripped
