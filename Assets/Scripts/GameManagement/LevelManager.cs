@@ -16,7 +16,7 @@ public class LevelManager : MonoBehaviour
         //    Sword Sword = PhotonNetwork.Instantiate("Pistol", new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Sword>();
         //}
 
-        if (GameManager.level == 1)
+        if (GameManager.level == 1 && PhotonNetwork.IsMasterClient)
         {
             Pistol Pistol1 = PhotonNetwork.Instantiate("Pistol", new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Pistol>();
             Pistol Pistol2 = PhotonNetwork.Instantiate("Pistol", new Vector3(10, 0, 0), Quaternion.identity).GetComponent<Pistol>();
