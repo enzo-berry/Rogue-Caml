@@ -180,7 +180,7 @@ namespace RogueCaml
                     if (objectCharacteristics.IsProjectil)
                     {
                         Projectil projectil = gameObject.GetComponent<Projectil>();
-                        if (projectil.IsOnPlayerTeam != this.IsOnPlayerTeam)
+                        if (true || projectil.IsOnPlayerTeam != this.IsOnPlayerTeam)
                         {
                             TakeDommage(projectil.dammage);
                             GameManager.Instance.DestroyObject(gameObject);
