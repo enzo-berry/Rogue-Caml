@@ -45,4 +45,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: 6340805809113597259, guid: a2e44bbe172c54847aa4bd6b28348f39, type: 3}
-  weaponPrefab: {fileID: 2301505430143218688, guid: 482be74b88041484d813e0365f8564d7, type: 3}
+  AudioManager: {fileID: 4480129507534004343, guid: aed6e5a8cb64fab45b7fb49ed09a2116, type: 3}

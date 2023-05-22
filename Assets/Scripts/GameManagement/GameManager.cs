@@ -23,7 +23,6 @@ namespace RogueCaml
         //objects
         public static GameManager Instance { get; private set; }
         public GameObject playerPrefab;
-        public static GameObject AudioManager;
 
 
         //making GameManeger permanenent between scenes
