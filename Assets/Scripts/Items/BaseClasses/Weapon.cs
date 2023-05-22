@@ -13,7 +13,8 @@ namespace RogueCaml
      */
     public abstract class Weapon : Item
     {
-        public int dammage; //needs to be initialized in Start() of child class
+        [SerializeField]
+        public int dammage; //editor based value
 
         public abstract void Attack(Vector2 direction);
     }

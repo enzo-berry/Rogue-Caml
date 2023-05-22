@@ -82,15 +82,14 @@ namespace RogueCaml
                 //get Photon id of item
                 int ItemToPickupPhotonId = ItemToPickup.GetComponent<PhotonView>().ViewID;
                 //send PlayerPickup RPC to all players
-                photonView.RPC("PlayerPickup", RpcTarget.All, ItemToPickupPhotonId);
+                PlayerPickup(ItemToPickupPhotonId);
             }
 
             //Drop item
             if (Input.GetKeyDown(GameManager.keybinds["drop"]) && weapon)
             {
                 //send PlayerDrop RPC to all players
-                photonView.RPC("PlayerDrop", RpcTarget.All);
-
+                PlayerDrop();
             }
 
             //Attack
@@ -106,36 +105,30 @@ namespace RogueCaml
         #region RPCs
 
         [PunRPC]
-        void PlayerAttack()
+        void PlayerAttackAnimation()
         {
             //replace to attack animation
-
-
             //Get as a Vector2 the direction of the mouse from the player
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
             //Set direction to only 1 and 0
             direction.Normalize();
 
-
-
             weaponscript.Attack(direction);
         }
 
-        [PunRPC]
         void PlayerPickup(int ItemPhotonId)
         {
             //Get item by it's ViewId
             weapon = PhotonView.Find(ItemPhotonId).gameObject;
-            weaponscript.owner = this;
+            weaponscript.PhotonOwnerId = photonView.ViewID;
             weaponscript.IsEquiped = true;
             weaponscript.IsOnPlayerTeam = true;
         }
 
-        [PunRPC]
         void PlayerDrop()
         {
-            weaponscript.owner = null;
+            weaponscript.PhotonOwnerId = 0;
             weaponscript.IsEquiped = false;
             weaponscript.IsOnPlayerTeam = false;//Either one or the other, so just change it.
             weapon = null;
@@ -180,7 +173,7 @@ namespace RogueCaml
                     if (objectCharacteristics.IsProjectil)
                     {
                         Projectil projectil = gameObject.GetComponent<Projectil>();
-                        if (true || projectil.IsOnPlayerTeam != this.IsOnPlayerTeam)
+                        if (projectil.IsOnPlayerTeam != this.IsOnPlayerTeam)
                         {
                             TakeDommage(projectil.dammage);
                             GameManager.Instance.DestroyObject(gameObject);

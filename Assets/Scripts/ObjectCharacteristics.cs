@@ -150,6 +150,20 @@ namespace Assets.Scripts
             }
         }
 
+        //On serialize view
+        public void SyncCharacteristics(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                //We own this player: send the others our data
+                stream.SendNext(characteristics);
+            }
+            else
+            {
+                //Network player, receive data
+                this.characteristics = (Characteristics)stream.ReceiveNext();
+            }
+        }
         
 
     }
