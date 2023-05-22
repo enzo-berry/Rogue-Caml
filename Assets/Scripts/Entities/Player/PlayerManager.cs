@@ -10,7 +10,7 @@ using Assets.Scripts;
 
 namespace RogueCaml
 {
-    public class PlayerManager : Entity 
+    public class PlayerManager : Entity
     {
         //objects
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
@@ -116,8 +116,8 @@ namespace RogueCaml
 
             //Set direction to only 1 and 0
             direction.Normalize();
-            
-            
+
+
 
             weaponscript.Attack(direction);
         }
@@ -153,7 +153,7 @@ namespace RogueCaml
 
         GameObject GetItemInContactWith()
         {
-            foreach(Collider2D collision in ObjectsInContactWithPlayer)
+            foreach (Collider2D collision in ObjectsInContactWithPlayer)
             {
                 Item item = collision.gameObject.GetComponent<Item>();
                 if (item == null)//If couldn't get Item component,
@@ -167,30 +167,20 @@ namespace RogueCaml
         //Check when player is in contact with an object
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            GameObject gameObject = collision.gameObject;
-
-
+            //If player is mine
             if (IsMine)
             {
+                GameObject gameObject = collision.gameObject;
 
                 ObjectCharacteristics objectCharacteristics = gameObject.GetComponent<ObjectCharacteristics>();
 
                 //damaging
-                if (objectCharacteristics != null && GameManager.level!=0)
+                if (objectCharacteristics != null)
                 {
-                    //if (objectCharacteristics.IsWeapon)
-                    //{
-                    //    Weapon weapon = gameObject.GetComponent<Weapon>();
-                    //    if (weapon.isAttacking) //checking if animatin is active
-                    //    {
-                    //        TakeDommage(weapon.dammage);
-                    //    }
-                    //}
-
-                    if (objectCharacteristics.IsProjectil) 
+                    if (objectCharacteristics.IsProjectil)
                     {
                         Projectil projectil = gameObject.GetComponent<Projectil>();
-                        if (projectil.IsOnPlayerTeam != objectCharacteristics.IsOnPlayerTeam)
+                        if (projectil.IsOnPlayerTeam != this.IsOnPlayerTeam)
                         {
                             TakeDommage(projectil.dammage);
                             GameManager.Instance.DestroyObject(gameObject);
@@ -213,5 +203,9 @@ namespace RogueCaml
             }
         }
 
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            
+        }
     }
 }

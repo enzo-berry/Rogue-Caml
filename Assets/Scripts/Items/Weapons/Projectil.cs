@@ -37,7 +37,7 @@ namespace RogueCaml
         // Start is called before the first frame update
         void Start()
         {
-            characteristics = Characteristics.Projectil;
+            characteristics = characteristics | Characteristics.Projectil;
             transform.Rotate(direction, 0f);
         }
 
@@ -49,9 +49,10 @@ namespace RogueCaml
         }
 
 
-        //when projectil hits wall
+        //detect collision with other objects
         void OnTriggerEnter2D(Collider2D other)
         {
+            Debug.Log("Enter Trigger Projectil");
             //checking if it is not an object
             ObjectCharacteristics oc = other.gameObject.GetComponent<ObjectCharacteristics>();
 
