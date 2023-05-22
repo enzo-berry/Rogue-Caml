@@ -116,6 +116,8 @@ namespace RogueCaml
 
             //Set direction to only 1 and 0
             direction.Normalize();
+            
+            
 
             weaponscript.Attack(direction);
         }
