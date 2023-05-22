@@ -12128,8 +12128,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3281710371487628730, guid: 8d2b797233f89f540adf4ad8cea7e6ff, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8d2b797233f89f540adf4ad8cea7e6ff, type: 3}
 --- !u!20 &2019356883 stripped
 Camera:
