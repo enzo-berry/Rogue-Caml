@@ -276,3 +276,4 @@ MonoBehaviour:
   Health: 3
   moveSpeed: 5
   attackSpeed: 1
+  weaponPhotonId: 0

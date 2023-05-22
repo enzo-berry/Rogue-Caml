@@ -100,8 +100,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00e189ad784c1704f80bbf9a25462671, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characteristics: 0
-  owner: {fileID: 0}
+  characteristics: 32
+  PhotonOwnerId: 0
   dammage: 1
   ProjectilePrefab: {fileID: 3603314980910566130, guid: b914a14a2f6237b4cac6465ea97d1f5f, type: 3}
   cooldown: 37
@@ -120,7 +120,7 @@ MonoBehaviour:
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
-  m_UseLocal: 1
+  m_UseLocal: 0
 --- !u!114 &3440135791069381650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,9 +137,10 @@ MonoBehaviour:
   Group: 0
   prefixField: -1
   Synchronization: 3
-  OwnershipTransfer: 0
+  OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 3054798592590689040}
   - {fileID: 1485729102102850510}
   sceneViewId: 0
   InstantiationId: 0

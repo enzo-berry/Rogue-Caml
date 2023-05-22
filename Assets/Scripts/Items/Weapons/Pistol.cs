@@ -57,11 +57,13 @@ namespace RogueCaml
                 timeSinceLastShot = 0;
                 transform.position = owner.transform.position + (Vector3)direction;
                 GameObject ProjectilObjectCreated = PhotonNetwork.Instantiate(ProjectilePrefab.name, transform.position + (Vector3)direction, Quaternion.identity);
+                ProjectilObjectCreated.GetPhotonView().RequestOwnership();
+                
                 Projectil ProjectilScriptCreated = ProjectilObjectCreated.GetComponent<Projectil>();
 
                 ProjectilScriptCreated.direction = direction;
-                ProjectilObjectCreated.transform.right = (direction);
-                ProjectilScriptCreated.ParentWeapon = gameObject;
+                ProjectilObjectCreated.transform.right = direction;
+                ProjectilScriptCreated.ParentWeaponPhotonId = photonView.ViewID;
 
                 bool IsOnPlayerTeam = ProjectilScriptCreated.ParentWeapon.GetComponent<Weapon>().IsOnPlayerTeam;
                 ProjectilScriptCreated.IsOnPlayerTeam = IsOnPlayerTeam;

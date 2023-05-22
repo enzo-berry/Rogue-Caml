@@ -16,6 +16,8 @@ namespace RogueCaml
 
         [NonSerialized] public bool alive = true; //NonSerialazed means it won't be accesible in the inspector.
         [NonSerialized] public Vector2 movement; //A vector2 to store the movement of the player. is used in Update method.
+
+        public int weaponPhotonId = 0;
         public bool IsMine
         {
             get
@@ -25,9 +27,23 @@ namespace RogueCaml
         }
 
     //Unsynced
-        //objects
-        [NonSerialized] public GameObject weapon = null;
-        public Weapon weaponscript => weapon!=null ? weapon.GetComponent<Weapon>() : null;
+        public Weapon weapon{ 
+            get 
+            {
+                
+                if (weaponPhotonId == 0)
+                {
+                    return null;
+                }
+                else
+                {
+                    PhotonView photonView = PhotonNetwork.GetPhotonView(weaponPhotonId);
+                    return photonView.GetComponent<Weapon>();
+                }
+
+            }
+        }
+
         protected Rigidbody2D rb;
 
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -41,6 +57,7 @@ namespace RogueCaml
                 stream.SendNext(attackSpeed);
                 stream.SendNext(movement);
                 stream.SendNext(alive);
+                stream.SendNext(weaponPhotonId);
             }
             else
             {
@@ -50,6 +67,8 @@ namespace RogueCaml
                 attackSpeed = (int)stream.ReceiveNext();
                 movement = (Vector2)stream.ReceiveNext();
                 alive = (bool)stream.ReceiveNext();
+                weaponPhotonId = (int)stream.ReceiveNext();
+
 
             }
         }

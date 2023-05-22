@@ -33,21 +33,22 @@ namespace RogueCaml
         }
 
 
-        public void OnPhotonSerializeView(PhotonStream stream,PhotonMessageInfo info)
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
-            SyncCharacteristics(stream, info);
-
             //sync PhotonOwnerId
-            if(stream.IsWriting)
+            if (stream.IsWriting)
             {
                 stream.SendNext(PhotonOwnerId);
-
             }
             else
             {
                 PhotonOwnerId = (int)stream.ReceiveNext();
             }
 
+
+            SyncCharacteristics(stream, info);
+
         }
+
     }
 }

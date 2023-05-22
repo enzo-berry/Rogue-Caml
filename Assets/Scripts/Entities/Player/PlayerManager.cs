@@ -96,16 +96,14 @@ namespace RogueCaml
             if (Input.GetKeyDown(GameManager.keybinds["attack"]) && weapon)
             {
                 //send PlayerAttack RPC to all players
-                photonView.RPC("PlayerAttack", RpcTarget.All);
+                PlayerAttack();
             }
         }
 
         #endregion
 
-        #region RPCs
 
-        [PunRPC]
-        void PlayerAttackAnimation()
+        void PlayerAttack()
         {
             //replace to attack animation
             //Get as a Vector2 the direction of the mouse from the player
@@ -114,33 +112,33 @@ namespace RogueCaml
             //Set direction to only 1 and 0
             direction.Normalize();
 
-            weaponscript.Attack(direction);
+            weapon.Attack(direction);
         }
 
         void PlayerPickup(int ItemPhotonId)
         {
-            //Get item by it's ViewId
-            weapon = PhotonView.Find(ItemPhotonId).gameObject;
-            weaponscript.PhotonOwnerId = photonView.ViewID;
-            weaponscript.IsEquiped = true;
-            weaponscript.IsOnPlayerTeam = true;
+
+            weaponPhotonId = ItemPhotonId;
+
+            weapon.PhotonOwnerId = photonView.ViewID;
+            weapon.gameObject.GetPhotonView().RequestOwnership();
+
+            weapon.IsEquiped = true;
+            weapon.IsOnPlayerTeam = true;
         }
 
         void PlayerDrop()
         {
-            weaponscript.PhotonOwnerId = 0;
-            weaponscript.IsEquiped = false;
-            weaponscript.IsOnPlayerTeam = false;//Either one or the other, so just change it.
-            weapon = null;
+            weapon.IsEquiped = false;
+            weapon.IsOnPlayerTeam = false;//Either one or the other, so just change it.
+
+            weapon.PhotonOwnerId = 0;
+            weaponPhotonId = 0;
         }
 
-        [PunRPC]
-        void ClearWeapon() //used when changing scene for now, in order to prevent sync errors.
-        {
-            ObjectsInContactWithPlayer.Clear();
-            PhotonNetwork.Destroy(weapon);
-            weapon = null;
-        }
+
+        #region RPCs
+
 
         #endregion
 
@@ -172,8 +170,10 @@ namespace RogueCaml
                 {
                     if (objectCharacteristics.IsProjectil)
                     {
+                        Debug.Log("Projectil entered owned player");
+
                         Projectil projectil = gameObject.GetComponent<Projectil>();
-                        if (projectil.IsOnPlayerTeam != this.IsOnPlayerTeam)
+                        //if (projectil.IsOnPlayerTeam != this.IsOnPlayerTeam)
                         {
                             TakeDommage(projectil.dammage);
                             GameManager.Instance.DestroyObject(gameObject);

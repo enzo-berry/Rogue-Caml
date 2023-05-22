@@ -9,12 +9,11 @@ using UnityEngine.UI;
 
 namespace RogueCaml 
 {
-    public class Projectil : ObjectCharacteristics
+    public class Projectil : ObjectCharacteristics, IPunObservable
     {
         public Vector2 direction = new Vector2(0, 0);
-        [HideInInspector] 
-        public GameObject ParentWeapon; //Weapon that created this projectile
-        public float speed;
+
+        public int ParentWeaponPhotonId;
 
         public int dammage
         {
@@ -31,6 +30,48 @@ namespace RogueCaml
 
             }
         }
+
+        public Weapon ParentWeapon
+        {
+            get
+            {
+                if (ParentWeaponPhotonId == 0)
+                {
+                    Debug.LogError("ParentWeaponPhotonId = 0 !");
+                }
+
+                PhotonView PhotonViewParentWeapon = PhotonNetwork.GetPhotonView(ParentWeaponPhotonId);
+                GameObject gameObject = PhotonViewParentWeapon.gameObject;
+
+                if (gameObject == null)
+                {
+                    Debug.Log("GameObject of ParentWeapon is null");
+                }
+
+                return gameObject.GetComponent<Weapon>();
+            }
+        }
+
+        //On serialize view for ParentWeaponPhotonId
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            if (stream.IsWriting)
+            {
+                // We own this player: send the others our data
+                stream.SendNext(ParentWeaponPhotonId);
+            }
+            else
+            {
+                // Network player, receive data
+                this.ParentWeaponPhotonId = (int)stream.ReceiveNext();
+            }
+
+            SyncCharacteristics(stream, info);
+
+        }
+
+        //Weapon that created this projectile
+        public float speed;
 
         [Serialize] private Rigidbody2D rb;
 
