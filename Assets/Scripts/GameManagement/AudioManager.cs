@@ -35,11 +35,9 @@ public class AudioManager : MonoBehaviour
     }
 
     
-    public void SetMusicVolume() // Public Mathode called at each update of the slider
+    public void SetMusicVolume() // Public Methode called at each update of the slider
     {
         _volume = slider.value;
-        mainMenu.volume = _volume;
-        waitingLevel.volume = _volume;
     }
 
     public void FirstPlay() // Public method called to trigger the first level
@@ -50,22 +48,26 @@ public class AudioManager : MonoBehaviour
 
     public void SecondPlay() // Public method called to trigger the second level
     {
-        throw new NotImplementedException();
+        secondLevel.volume = _volume;
+        secondLevel.Play();
     }
 
     public void ThirdPlay() // Public method called to trigger the third level
     {
-        throw new NotImplementedException();
+        thirdLevel.volume = _volume;
+        thirdLevel.Play();
     }
 
     public void WaitingPlay() // Public method called to trigger the waiting room
     {
-        throw new NotImplementedException();
+        waitingLevel.volume = _volume;
+        waitingLevel.Play();
     }
 
     public void MenuPlay() // Public method called to trigger the menu panel
     {
-        throw new NotImplementedException();
+        mainMenu.volume = _volume;
+        mainMenu.Play();
     }
     
 }

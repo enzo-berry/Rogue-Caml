@@ -82,6 +82,7 @@ namespace RogueCaml
         public override void OnLeftRoom()
         {
             SceneManager.LoadScene("MainMenu");
+            
         }
 
         #endregion
