@@ -52,14 +52,17 @@ namespace RogueCaml
         //detect collision with other objects
         void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("Enter Trigger Projectil");
-            //checking if it is not an object
-            ObjectCharacteristics oc = other.gameObject.GetComponent<ObjectCharacteristics>();
+            if (photonView.IsMine)
+            {
+                Debug.Log("Enter Trigger Projectil");
+                //checking if it is not an object
+                ObjectCharacteristics oc = other.gameObject.GetComponent<ObjectCharacteristics>();
 
-            if (oc == null)
-                GameManager.Instance.DestroyObject(gameObject);
+                if (oc == null)
+                    GameManager.Instance.DestroyObject(gameObject);
 
-            //if Collision is an Object we handle it in the Object
+                //if Collision is an Object we handle it in the Object
+            }
         }
 
     }
