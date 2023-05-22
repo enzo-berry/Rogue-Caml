@@ -16,12 +16,14 @@ namespace RogueCaml
         public static int level = 0;
         public static int difficulty = 50;
 
+
         //keybinds
         public static Dictionary<string, KeyCode> keybinds = new Dictionary<string, KeyCode>();
 
         //objects
         public static GameManager Instance { get; private set; }
         public GameObject playerPrefab;
+        public static GameObject AudioManager;
 
 
         //making GameManeger permanenent between scenes
