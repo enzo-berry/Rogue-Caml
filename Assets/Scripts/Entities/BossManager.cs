@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 namespace RogueCaml
@@ -11,9 +12,12 @@ namespace RogueCaml
 
         public float coolDown = 100.0f;
         private float last = 0;
+        
+        public GameObject[] BalleType;
+        public GameObject Pistol;
 
-        public Pistol normal;
-        public Pistol boosted;
+        private Pistol _pistol;
+        
 
         private int currendAction = 0;
 
@@ -24,11 +28,16 @@ namespace RogueCaml
         
         void Start()
         {
-            last = Time.time;
-            Patern.Add(Sulfateuse);
+            if (IsMine)
+            {
+                last = Time.time;
+                Patern.Add(Sulfateuse);
+                
+                _pistol = PhotonNetwork.Instantiate(Pistol.name, Vector3.zero, Quaternion.identity).GetComponent<Pistol>();
+                Pickup(_pistol.gameObject.GetPhotonView().ViewID);
 
-
-            nbAction = Patern.Count;
+                nbAction = Patern.Count;
+            }
         }
     
         // Update is called once per frame
@@ -59,7 +68,7 @@ namespace RogueCaml
             {
                 for (int i = 0; i < 8; i++)
                 {
-                    normal.Attack(v);
+                    _pistol.Attack(v);
                     v = q * v;
                 }
                 v = p * v;
