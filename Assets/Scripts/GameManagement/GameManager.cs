@@ -74,7 +74,7 @@ namespace RogueCaml
             if (PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.LoadLevel("waiting_scene");
-                AudioManager.WaitingPlay();
+
             }
             PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);            
         }
@@ -82,8 +82,6 @@ namespace RogueCaml
         public override void OnLeftRoom()
         {
             SceneManager.LoadScene("MainMenu");
-            AudioManager.MenuPlay();
-            
         }
 
         #endregion

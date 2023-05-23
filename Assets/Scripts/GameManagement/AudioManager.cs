@@ -14,24 +14,20 @@ public class AudioManager : MonoBehaviour
     
     private static float _volume; //Private attribute for volume management
     
-    //Public attributes for managing audio sources and parameter sliders.
+    //Public statitc attributes for managing audio sources and parameter sliders.
     public Slider slider;
-    public static AudioSource MainMenu;
-    public static AudioSource WaitingLevel;
-    public static AudioSource FirstLevel;
-    public static AudioSource SecondLevel;
-    public static AudioSource ThirdLevel;
-    
+    public Dictionary<string, AudioSource> musics = new Dictionary<string, AudioSource>();
     public AudioSource mainMenu;
-    public AudioSource waitingLevel;
+    public AudioSource waitingRoom;
     public AudioSource firstLevel;
     public AudioSource secondLevel;
     public AudioSource thirdLevel;
-    
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        AudioListener.volume = (float)0.5;
+        mainMenu.Play();
     }
 
     // Update is called once per frame
@@ -40,47 +36,41 @@ public class AudioManager : MonoBehaviour
         
     }
 
-    
-    public void SetMusicVolume() // Public Methode called at each update of the slider
+    public void SetVolume()
     {
         AudioListener.volume = slider.value;
-        MainMenu = mainMenu;
-        WaitingLevel = waitingLevel;
-        FirstLevel = firstLevel;
-        SecondLevel = secondLevel;
-        ThirdLevel = thirdLevel;
     }
 
-    public static void FirstPlay() // Public method called to trigger the first level
+    public void MainPlay()
     {
-        WaitingLevel.Stop();
-        FirstLevel.Play();
+        firstLevel.Stop();
+        secondLevel.Stop();
+        thirdLevel.Stop();
+        mainMenu.Play();
     }
 
-    public static void SecondPlay() // Public method called to trigger the second level
+    public void WaitPlay()
     {
-        FirstLevel.Stop();
-        SecondLevel.Play();
+        mainMenu.Stop();
+        waitingRoom.Play();
     }
 
-    public static void ThirdPlay() // Public method called to trigger the third level
+    public void FirstPlay()
     {
-        SecondLevel.Stop();
-        ThirdLevel.Play();
+        firstLevel.Play();
+        waitingRoom.Stop();
     }
 
-    public static void WaitingPlay() // Public method called to trigger the waiting room
+    public void SecondPlay()
     {
-        MainMenu.Stop();
-        WaitingLevel.Play();
+        secondLevel.Play();
+        firstLevel.Stop();
     }
 
-    public static void MenuPlay() // Public method called to trigger the menu panel
+    public void ThirdPlay()
     {
-        FirstLevel.Stop();
-        SecondLevel.Stop();
-        ThirdLevel.Stop();
-        MainMenu.Play();
+        secondLevel.Stop();
+        thirdLevel.Play();
     }
-    
+
 }
