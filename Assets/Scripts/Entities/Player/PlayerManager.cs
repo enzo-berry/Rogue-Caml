@@ -12,10 +12,11 @@ namespace RogueCaml
 {
     public class PlayerManager : Entity
     {
-        //objects
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
+        [HideInInspector]
         public static GameObject OwnedPlayerInstance;
-        List<Collider2D> ObjectsInContactWithPlayer = new List<Collider2D>();
+
+        private List<Collider2D> objectsInContactWithPlayer = new List<Collider2D>();
 
         #region Unity Callbacks
 
@@ -35,8 +36,6 @@ namespace RogueCaml
         public void Start()
         {
             rb = GetComponent<Rigidbody2D>();
-            characteristics = Characteristics.Player;
-            IsOnPlayerTeam = true;
         }
 
         void Update()
@@ -102,7 +101,6 @@ namespace RogueCaml
 
         #endregion
 
-
         void PlayerAttack()
         {
             //replace to attack animation
@@ -117,7 +115,8 @@ namespace RogueCaml
 
         void PlayerPickup(int ItemPhotonId)
         {
-
+            //Is only called on the possesor of the player on its player.
+            //Order of declaration is important since weapon getter uses weaponPhotonId.
             weaponPhotonId = ItemPhotonId;
 
             weapon.PhotonOwnerId = photonView.ViewID;
@@ -129,6 +128,7 @@ namespace RogueCaml
 
         void PlayerDrop()
         {
+            //Order is important since weapon getter uses weaponPhotonId.
             weapon.IsEquiped = false;
             weapon.IsOnPlayerTeam = false;//Either one or the other, so just change it.
 
@@ -144,7 +144,7 @@ namespace RogueCaml
         {
             if (IsMine)
             {
-                ObjectsInContactWithPlayer.Clear();
+                objectsInContactWithPlayer.Clear();
             }
         }
 
@@ -152,7 +152,7 @@ namespace RogueCaml
 
         GameObject GetItemInContactWith()
         {
-            foreach (Collider2D collision in ObjectsInContactWithPlayer)
+            foreach (Collider2D collision in objectsInContactWithPlayer)
             {
                 Item item = collision.gameObject.GetComponent<Item>();
                 if (item == null)//If couldn't get Item component,
@@ -190,7 +190,7 @@ namespace RogueCaml
                 }
 
                 //Used for equiping an Object
-                ObjectsInContactWithPlayer.Add(collision);
+                objectsInContactWithPlayer.Add(collision);
             }
         }
 
@@ -200,7 +200,7 @@ namespace RogueCaml
             if (IsMine)
             {
                 //Used for equiping an Object
-                ObjectsInContactWithPlayer.Remove(collision);
+                objectsInContactWithPlayer.Remove(collision);
             }
         }
 

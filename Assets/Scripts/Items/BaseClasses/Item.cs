@@ -13,10 +13,9 @@ namespace RogueCaml
 
         //objects
         protected SpriteRenderer spriteRenderer; //needs to be initialized in Start() of child class
-        protected GameObject currentGameObject; //needs to be initialized in Start() of child class
 
-        public int PhotonOwnerId;
-        public PlayerManager owner
+        public int PhotonOwnerId; //synced
+        public PlayerManager owner //depends on PhotonOwnerId
         {
             get
             {
@@ -32,9 +31,11 @@ namespace RogueCaml
             }
         }
 
-
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
+            //PhotonOwnerId is only writable by the owner of the Item.
+            //Thats why owner is changed in pickup.
+
             //sync PhotonOwnerId
             if (stream.IsWriting)
             {
@@ -45,7 +46,7 @@ namespace RogueCaml
                 PhotonOwnerId = (int)stream.ReceiveNext();
             }
 
-
+            //Syncing characteristics
             SyncCharacteristics(stream, info);
 
         }

@@ -12,26 +12,8 @@ namespace RogueCaml
     public class Projectil : ObjectCharacteristics, IPunObservable
     {
         public Vector2 direction = new Vector2(0, 0);
-
-        public int ParentWeaponPhotonId;
-
-        public int dammage
-        {
-            get
-            {
-                Weapon ParentWeaponScript = ParentWeapon.GetComponent<Weapon>();
-                if (ParentWeaponScript != null)
-                    return ParentWeaponScript.dammage;
-                else
-                {
-                    Debug.LogError("Projectil ParentWeaponScript does not exists !");
-                    return 0;
-                }
-
-            }
-        }
-
-        public Weapon ParentWeapon
+        public int ParentWeaponPhotonId; //synced
+        public Weapon ParentWeapon //depends on ParentWeaponPhotonId
         {
             get
             {
@@ -51,6 +33,22 @@ namespace RogueCaml
                 return gameObject.GetComponent<Weapon>();
             }
         }
+        public int dammage //depends on ParentWeapon
+        {
+            get
+            {
+                Weapon ParentWeaponScript = ParentWeapon.GetComponent<Weapon>();
+                if (ParentWeaponScript != null)
+                    return ParentWeaponScript.dammage;
+                else
+                {
+                    Debug.LogError("Projectil ParentWeaponScript does not exists !");
+                    return 0;
+                }
+
+            }
+        }
+        public float speed; //not synced, only owner uses it.
 
         //On serialize view for ParentWeaponPhotonId
         public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -69,11 +67,6 @@ namespace RogueCaml
             SyncCharacteristics(stream, info);
 
         }
-
-        //Weapon that created this projectile
-        public float speed;
-
-        [Serialize] private Rigidbody2D rb;
 
         // Start is called before the first frame update
         void Start()
@@ -99,7 +92,7 @@ namespace RogueCaml
                 //checking if it is not an object
                 ObjectCharacteristics oc = other.gameObject.GetComponent<ObjectCharacteristics>();
 
-                if (oc == null)
+                if (oc == null) //if its a static object in scene.
                     GameManager.Instance.DestroyObject(gameObject);
 
                 //if Collision is an Object we handle it in the Object

@@ -21,7 +21,7 @@ namespace RogueCaml
         }
         private void OnTriggerEnter2D(Collider2D collision)
         {
-
+            //To implement in the PlayerManager
             PlayerManager playerManager = collision.gameObject.GetComponent<PlayerManager>();
             if (playerManager == null)
                 return;
