@@ -32,6 +32,7 @@ namespace RogueCaml
             if (Instance == null)
             {
                 Instance = this;
+                MainMenu.Instance.playButton.interactable = false;
                 DontDestroyOnLoad(gameObject);
             }//If try to get loaded again.
             else
