@@ -13,6 +13,8 @@ namespace RogueCaml
     {
         public Vector2 direction = new Vector2(0, 0);
         public int ParentWeaponPhotonId; //synced
+        public float LifeTime = 15;
+        private float _begin;
         public Weapon ParentWeapon //depends on ParentWeaponPhotonId
         {
             get
@@ -73,6 +75,7 @@ namespace RogueCaml
         {
             characteristics = characteristics | Characteristics.Projectil;
             transform.Rotate(direction, 0f);
+            _begin = Time.time;
         }
 
         // Update is called once per frame
@@ -99,5 +102,12 @@ namespace RogueCaml
             }
         }
 
+        private void Update()
+        {
+            if (photonView.IsMine && Time.time - _begin > LifeTime)
+            {
+                GameManager.Instance.DestroyObject(this);
+            }
+        }
     }
 }
