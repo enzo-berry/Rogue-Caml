@@ -85,6 +85,10 @@ namespace RogueCaml
             SceneManager.LoadScene("MainMenu");
         }
 
+        public override void OnMasterClientSwitched(Player newMasterClient)
+        {
+            PhotonNetwork.LeaveRoom();
+        }
         #endregion
 
 
