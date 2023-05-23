@@ -11,7 +11,7 @@ namespace RogueCaml
     {
         public GameObject ProjectilePrefab;
         
-        public int cooldown;
+        public float cooldown;
         private int timeSinceLastShot = 0;
 
         void Start()
@@ -55,7 +55,9 @@ namespace RogueCaml
             if (photonView.IsMine && timeSinceLastShot >= cooldown)
             {
                 timeSinceLastShot = 0;
-                transform.position = owner.transform.position + (Vector3)direction;
+                if(owner != null)
+                    transform.position = owner.transform.position + (Vector3)direction;
+                
                 GameObject ProjectilObjectCreated = PhotonNetwork.Instantiate(ProjectilePrefab.name, transform.position + (Vector3)direction, Quaternion.identity);
                 ProjectilObjectCreated.GetPhotonView().RequestOwnership();
                 

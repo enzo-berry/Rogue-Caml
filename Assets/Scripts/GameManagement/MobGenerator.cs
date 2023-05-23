@@ -75,7 +75,7 @@ namespace RogueCaml
             for (int j = 0; j < ennemies_per_round; j++)
             {
                 //For now we spawn the mobs on the mobspawner.
-                //PhotonNetwork.Instantiate(this.ennemyPrefab[(int)Random.Range(0f, (float)ennemyPrefab.Length)].name, transform.position, Quaternion.identity, 0).GetComponent<EnnemiesManager>().mobGenerator = this;
+                PhotonNetwork.Instantiate(this.ennemyPrefab[(int)Random.Range(0f, (float)ennemyPrefab.Length)].name, transform.position, Quaternion.identity, 0).GetComponent<EnnemiesManager>().mobGenerator = this;
             }
         }
     }
