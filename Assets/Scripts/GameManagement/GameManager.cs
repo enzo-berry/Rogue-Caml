@@ -7,11 +7,25 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+using Unity.VisualScripting;
+using UnityEngine.Audio;
+using Debug = UnityEngine.Debug;
 
 namespace RogueCaml
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        //musics and sound settings
+        public GameObject settingsPanel;
+        private Slider _slider;
+        public AudioSource mainMenu;
+        public AudioSource waitRoom;
+        public AudioSource firstLevel;
+        public AudioSource secondLevel;
+        public AudioSource thirdLevel;
+        
         //stats
         public static int level = 0;
         public static int difficulty = 50;
@@ -43,8 +57,9 @@ namespace RogueCaml
         //Since we use GameManager in everyscene we make condition to know from where it is instanciated, will be splitted in two different scripts later on.
         void Start()
         {
-            //Screen.SetResolution(Screen.width, Screen.height, true);
-
+            AudioListener.volume = (float)0.5;
+            _slider = settingsPanel.GameObject().GameObject().GetComponent<Slider>();
+            _slider.value = (float)0.5;
 
             //defining controls
             keybinds.Add("attack", KeyCode.Mouse0);
@@ -70,6 +85,7 @@ namespace RogueCaml
             if (PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.LoadLevel("waiting_scene");
+                PlayMusic(level);
             }
             PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);            
         }
@@ -84,6 +100,7 @@ namespace RogueCaml
             Debug.Log("Disconnected from server for reason: " + cause.ToString());
             SceneManager.LoadScene("MainMenu");
             level = 0;
+            PlayMusic(level);
             ConnectoToPhoton();
         }
 
@@ -189,7 +206,10 @@ namespace RogueCaml
 
         public bool NextLevel()
         {
-            return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{++level}");
+            level++;
+            PlayMusic(level);
+            return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{level}");
+            
         }
 
         public void StartGame()
@@ -205,6 +225,50 @@ namespace RogueCaml
         #endregion
 
 
+        #region AudioManager
+        
+        //when volume is changed
+
+        public void ChangeVolumeHandler()
+        {
+            AudioListener.volume = _slider.value; //change the AudioListener volume to the value of slider --> call when slider value changed
+        }
+
+        private void PlayMusic(int musicNumber)
+        {
+            switch (musicNumber)
+            {
+                case 1:
+                    firstLevel.Stop();
+                    secondLevel.Stop();
+                    thirdLevel.Stop();
+                    mainMenu.Play();
+                    break;
+                case 2:
+                    mainMenu.Stop();
+                    waitRoom.Play();
+                    break;
+                case 3 :
+                    waitRoom.Stop();
+                    firstLevel.Play();
+                    break;
+                case 4 :
+                    firstLevel.Stop();
+                    secondLevel.Play();
+                    break;
+                case 5 :
+                    secondLevel.Stop();
+                    thirdLevel.Play();
+                    break;
+                default:
+                    Debug.Log("No music played - Case not implemented!");
+                    break;
+            }
+        }
+        
+        
+        #endregion
+        
         #region Private Methods
 
         void ConnectoToPhoton()

@@ -650,7 +650,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4509129125762493411}
   - component: {fileID: -1455766958398840814}
-  - component: {fileID: 8098454830813316598}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -690,22 +689,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425ae0d822cbda2439b1c018a5772488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 6340805809113597259, guid: a2e44bbe172c54847aa4bd6b28348f39, type: 3}
---- !u!114 &8098454830813316598
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7282632215141389088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d3a037c41d74954f9d275cc2aea5b9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   slider: {fileID: 0}
   mainMenu: {fileID: 6870832964965133205}
-  waitingRoom: {fileID: 8747792412833825912}
+  waitRoom: {fileID: 8747792412833825912}
   firstLevel: {fileID: 6869074443096615169}
   secondLevel: {fileID: 5812598399695125434}
   thirdLevel: {fileID: 3598398160325041392}
+  playerPrefab: {fileID: 6340805809113597259, guid: a2e44bbe172c54847aa4bd6b28348f39, type: 3}
