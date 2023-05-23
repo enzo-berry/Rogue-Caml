@@ -16,7 +16,6 @@ public class AudioManager : MonoBehaviour
     
     //Public statitc attributes for managing audio sources and parameter sliders.
     public Slider slider;
-    public Dictionary<string, AudioSource> musics = new Dictionary<string, AudioSource>();
     public AudioSource mainMenu;
     public AudioSource waitingRoom;
     public AudioSource firstLevel;
