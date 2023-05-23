@@ -21,12 +21,20 @@ namespace RogueCaml
             {
                 if (PhotonOwnerId == 0)
                 {
+                    Debug.LogError("owner of item asked but PhotonOwnerId = 0");
                     return null;
                 }
                 else
                 {
                     PhotonView photonView = PhotonNetwork.GetPhotonView(PhotonOwnerId);
-                    return photonView.GetComponent<PlayerManager>();
+                    if (photonView == null)
+                        Debug.LogError("photonView of Owner is null");
+
+                    PlayerManager ownerPManager = photonView.GetComponent<PlayerManager>();
+                    if (ownerPManager == null)
+                        Debug.LogError("ownerPManager is null");
+
+                    return ownerPManager;
                 }
             }
         }
