@@ -139,6 +139,14 @@ namespace RogueCaml
 
         #region RPCs
 
+        [PunRPC]
+        void ClearObjectsInContact()
+        {
+            if (IsMine)
+            {
+                ObjectsInContactWithPlayer.Clear();
+            }
+        }
 
         #endregion
 

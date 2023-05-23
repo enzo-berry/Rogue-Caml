@@ -16,7 +16,6 @@ namespace RogueCaml
         public static int level = 0;
         public static int difficulty = 50;
 
-
         //keybinds
         public static Dictionary<string, KeyCode> keybinds = new Dictionary<string, KeyCode>();
 
@@ -53,12 +52,7 @@ namespace RogueCaml
             keybinds.Add("drop", KeyCode.A);
             keybinds.Add("interact", KeyCode.E);
 
-            //If we are not connected to server. Server != Rooms.
-            if (!PhotonNetwork.IsConnected)
-            {
-                PhotonNetwork.ConnectUsingSettings();
-                PhotonNetwork.AutomaticallySyncScene = true;
-            }
+            ConnectoToPhoton();
         }
 
         #region Photon Callbacks
@@ -76,20 +70,33 @@ namespace RogueCaml
             if (PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.LoadLevel("waiting_scene");
-
             }
             PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);            
         }
 
         public override void OnLeftRoom()
         {
+            PhotonNetwork.Disconnect();
+        }
+
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+            Debug.Log("Disconnected from server for reason: " + cause.ToString());
             SceneManager.LoadScene("MainMenu");
+            level = 0;
+            ConnectoToPhoton();
         }
 
         public override void OnMasterClientSwitched(Player newMasterClient)
         {
             PhotonNetwork.LeaveRoom();
         }
+
+        public override void OnJoinRoomFailed(short returnCode, string message)
+        {
+            Debug.Log("Failed to Join Room: " + message);
+        }
+
         #endregion
 
 
@@ -171,7 +178,8 @@ namespace RogueCaml
                 //send them an RPC to teleport them to the new room
                 foreach (PlayerManager player in players)
                 {
-                    player.photonView.RPC("ClearWeapon", RpcTarget.All);
+                    //Cleans ObjectsInContact with each player
+                    player.photonView.RPC("ClearObjectsInContact", RpcTarget.All);
                 }
 
             }
@@ -199,7 +207,19 @@ namespace RogueCaml
 
         #region Private Methods
 
+        void ConnectoToPhoton()
+        {
+            //If we are not connected to server. Server != Rooms.
+            if (!PhotonNetwork.IsConnected)
+            {
+                PhotonNetwork.ConnectUsingSettings();
+                PhotonNetwork.AutomaticallySyncScene = true;
+            }
+        }
+
         #endregion
+
+
 
     }
 
