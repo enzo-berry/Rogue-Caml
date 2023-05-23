@@ -14,7 +14,7 @@ namespace RogueCaml
         public Vector2 direction = new Vector2(0, 0);
         public int ParentWeaponPhotonId; //synced
         public float LifeTime = 15;
-        private float _begin;
+        protected float _begin;
         public Weapon ParentWeapon //depends on ParentWeaponPhotonId
         {
             get
@@ -106,7 +106,7 @@ namespace RogueCaml
         {
             if (photonView.IsMine && Time.time - _begin > LifeTime)
             {
-                GameManager.Instance.DestroyObject(this);
+                GameManager.Instance.DestroyObject(gameObject);
             }
         }
     }

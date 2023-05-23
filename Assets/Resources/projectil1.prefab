@@ -143,6 +143,7 @@ MonoBehaviour:
   characteristics: 0
   direction: {x: 0, y: 0}
   ParentWeaponPhotonId: 0
+  LifeTime: 15
   speed: 10
 --- !u!61 &5602014818701153575
 BoxCollider2D:
