@@ -22,7 +22,7 @@ namespace RogueCaml
 
         private void Update()
         {
-            if (owner != null)
+            if (PhotonOwnerId != 0)
             {
                 //teleport to owner
                 transform.position = owner.transform.position;
