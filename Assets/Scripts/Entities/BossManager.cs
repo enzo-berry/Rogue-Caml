@@ -39,7 +39,7 @@ namespace RogueCaml
 
         private void FixedUpdate()
         {
-            if (Time.time - last > coolDown)
+            if (IsMine && Time.time - last > coolDown)
             {
                 last = Time.time;
                 Patern[currendAction]();
@@ -62,7 +62,6 @@ namespace RogueCaml
                     normal.Attack(v);
                     v = q * v;
                 }
-
                 v = p * v;
             }
         }
