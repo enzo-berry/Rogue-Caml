@@ -74,7 +74,30 @@ namespace RogueCaml
         }
 
 
-        public void TakeDommage(int amount)
+        protected void Pickup(int ItemPhotonId)
+        {
+            //Is only called on the possesor of the player on its player.
+            //Order of declaration is important since weapon getter uses weaponPhotonId.
+            weaponPhotonId = ItemPhotonId;
+
+            weapon.PhotonOwnerId = photonView.ViewID;
+            weapon.gameObject.GetPhotonView().RequestOwnership();
+
+            weapon.IsEquiped = true;
+            weapon.IsOnPlayerTeam = true;
+        }
+
+        protected void Drop()
+        {
+            //Order is important since weapon getter uses weaponPhotonId.
+            weapon.IsEquiped = false;
+            weapon.IsOnPlayerTeam = false;//Either one or the other, so just change it.
+
+            weapon.PhotonOwnerId = 0;
+            weaponPhotonId = 0;
+        }
+
+        public void TakeDammage(int amount)
         {
             Debug.Log("Entity took " + amount.ToString() + " damage");
             Health -= amount;

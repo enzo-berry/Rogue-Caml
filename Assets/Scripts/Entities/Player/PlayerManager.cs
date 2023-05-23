@@ -81,14 +81,14 @@ namespace RogueCaml
                 //get Photon id of item
                 int ItemToPickupPhotonId = ItemToPickup.GetComponent<PhotonView>().ViewID;
                 //send PlayerPickup RPC to all players
-                PlayerPickup(ItemToPickupPhotonId);
+                Pickup(ItemToPickupPhotonId);
             }
 
             //Drop item
             if (Input.GetKeyDown(GameManager.keybinds["drop"]) && weapon)
             {
                 //send PlayerDrop RPC to all players
-                PlayerDrop();
+                Drop();
             }
 
             //Attack
@@ -111,29 +111,6 @@ namespace RogueCaml
             direction.Normalize();
 
             weapon.Attack(direction);
-        }
-
-        void PlayerPickup(int ItemPhotonId)
-        {
-            //Is only called on the possesor of the player on its player.
-            //Order of declaration is important since weapon getter uses weaponPhotonId.
-            weaponPhotonId = ItemPhotonId;
-
-            weapon.PhotonOwnerId = photonView.ViewID;
-            weapon.gameObject.GetPhotonView().RequestOwnership();
-
-            weapon.IsEquiped = true;
-            weapon.IsOnPlayerTeam = true;
-        }
-
-        void PlayerDrop()
-        {
-            //Order is important since weapon getter uses weaponPhotonId.
-            weapon.IsEquiped = false;
-            weapon.IsOnPlayerTeam = false;//Either one or the other, so just change it.
-
-            weapon.PhotonOwnerId = 0;
-            weaponPhotonId = 0;
         }
 
 
@@ -183,7 +160,7 @@ namespace RogueCaml
                         Projectil projectil = gameObject.GetComponent<Projectil>();
                         //if (projectil.IsOnPlayerTeam != this.IsOnPlayerTeam)
                         {
-                            TakeDommage(projectil.dammage);
+                            TakeDammage(projectil.dammage);
                             GameManager.Instance.DestroyObject(gameObject);
                         }
                     }
