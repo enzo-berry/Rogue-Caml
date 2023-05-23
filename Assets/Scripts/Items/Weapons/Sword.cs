@@ -30,9 +30,9 @@ namespace RogueCaml
         void Update()
         {
             //swords follows owner
-            if (owner != null)
+            if (Owner != null)
             {
-                transform.position = owner.transform.position;
+                transform.position = Owner.transform.position;
             }
 
             if (IsEquiped)

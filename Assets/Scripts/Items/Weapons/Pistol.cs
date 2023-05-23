@@ -25,7 +25,7 @@ namespace RogueCaml
             if (PhotonOwnerId != 0)
             {
                 //teleport to owner
-                transform.position = owner.transform.position;
+                transform.position = Owner.transform.position;
             }
 
 
@@ -55,8 +55,8 @@ namespace RogueCaml
             if (photonView.IsMine && timeSinceLastShot >= cooldown)
             {
                 timeSinceLastShot = 0;
-                if(owner != null)
-                    transform.position = owner.transform.position + (Vector3)direction;
+                if(Owner != null)
+                    transform.position = Owner.transform.position + (Vector3)direction;
                 
                 GameObject ProjectilObjectCreated = PhotonNetwork.Instantiate(ProjectilePrefab.name, transform.position + (Vector3)direction, Quaternion.identity);
                 ProjectilObjectCreated.GetPhotonView().RequestOwnership();

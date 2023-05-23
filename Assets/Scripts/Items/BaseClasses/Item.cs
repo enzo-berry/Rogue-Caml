@@ -15,7 +15,7 @@ namespace RogueCaml
         protected SpriteRenderer spriteRenderer; //needs to be initialized in Start() of child class
 
         public int PhotonOwnerId; //synced
-        public PlayerManager owner //depends on PhotonOwnerId
+        public GameObject Owner //depends on PhotonOwnerId
         {
             get
             {
@@ -30,11 +30,9 @@ namespace RogueCaml
                     if (photonView == null)
                         Debug.LogError("photonView of Owner is null");
 
-                    PlayerManager ownerPManager = photonView.GetComponent<PlayerManager>();
-                    if (ownerPManager == null)
-                        Debug.LogError("ownerPManager is null");
+                    GameObject ownerGo = photonView.gameObject;
 
-                    return ownerPManager;
+                    return ownerGo;
                 }
             }
         }
