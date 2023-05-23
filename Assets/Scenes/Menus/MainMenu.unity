@@ -839,6 +839,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1370902108}
     m_Modifications:
+    - target: {fileID: 636167809539848550, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 636167809539848568, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 636167809539848568, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
+      propertyPath: m_Interactable
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636167809539848568, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636167809539848568, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 636167809539848568, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 636167809539848568, guid: 9f3b291383a336841b48e0b9c6f64cee, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 2

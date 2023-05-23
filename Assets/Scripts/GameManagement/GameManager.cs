@@ -66,6 +66,7 @@ namespace RogueCaml
         public override void OnConnectedToMaster()
         {
             Debug.Log("Connected to Master");
+            MainMenu.Instance.playButton.interactable = true;
         }
 
         public override void OnJoinedRoom()
