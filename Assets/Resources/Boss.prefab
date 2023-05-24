@@ -159,6 +159,7 @@ MonoBehaviour:
   BalleType:
   - {fileID: 3603314980910566130, guid: b914a14a2f6237b4cac6465ea97d1f5f, type: 3}
   - {fileID: 4133654327941879900, guid: e354837ed1ca8464a92dc141e50fff0d, type: 3}
+  - {fileID: 2345663281087907147, guid: 3df9d6e1fc0e31e498ab3872f74f9f92, type: 3}
   Pistol: {fileID: 5259063025289884183, guid: ac726bd35ce337545874a61ac30431c2, type: 3}
 --- !u!114 &1443145721546321500
 MonoBehaviour:

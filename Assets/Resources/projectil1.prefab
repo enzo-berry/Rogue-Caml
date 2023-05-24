@@ -140,9 +140,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d2eb887ed6e1a74d9f4fdd93715afc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characteristics: 0
+  characteristics: 64
   direction: {x: 0, y: 0}
   ParentWeaponPhotonId: 0
+  LifeTime: 15
   speed: 10
 --- !u!61 &5602014818701153575
 BoxCollider2D:

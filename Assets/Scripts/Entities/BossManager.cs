@@ -41,10 +41,6 @@ namespace RogueCaml
         }
     
         // Update is called once per frame
-        void Update()
-        {
-            
-        }
 
         private void FixedUpdate()
         {
@@ -64,7 +60,7 @@ namespace RogueCaml
             Quaternion q = Quaternion.AngleAxis(45f, new Vector3(0,0,1 ));
             Quaternion p = Quaternion.AngleAxis(10f, new Vector3(0,0,1 ));
 
-            for (int j = 0; j < 10; j++)
+            for (int j = 0; j < 1; j++)
             {
                 for (int i = 0; i < 8; i++)
                 {
