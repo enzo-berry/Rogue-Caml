@@ -13,8 +13,7 @@ namespace RogueCaml
         // Start is called before the first frame update
         void Start()
         {
-            gameManager = GetComponent<GameManager>();
-
+            //on cache le boutton start pour les pas master
             MasterChoice.gameObject.SetActive(false);
             if (PhotonNetwork.IsMasterClient)
             {
@@ -23,12 +22,7 @@ namespace RogueCaml
         }
 
         // Update is called once per frame
-        void Update()
-        {
         
-  
-
-        }
 
         public void InstantiateGame()
         {

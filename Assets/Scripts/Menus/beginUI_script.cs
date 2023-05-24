@@ -15,21 +15,18 @@ namespace RogueCaml
     {
         public TMP_Text text;
         public Scrollbar scrollbar;
+        
 
         private void Start()
         {
             if(!PhotonNetwork.IsMasterClient)
                 this.gameObject.SetActive(false);
-
         }
-        public void Update()
-        {
-
-        }
+        
 
         public void UpdateDifficulty()
         {
-            //gameManager.difficulty = (int)(slider.value * 100);
+            GameManager.difficulty = (int)(scrollbar.value * 100);
             text.text = ((int)(scrollbar.value * 100)).ToString();
         }
     }
