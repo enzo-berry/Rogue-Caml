@@ -18,8 +18,6 @@ namespace RogueCaml
     public class GameManager : MonoBehaviourPunCallbacks
     {
         //musics and sound settings
-        public GameObject settingsPanel;
-        private Slider _slider;
         public AudioSource mainMenu;
         public AudioSource waitRoom;
         public AudioSource firstLevel;
@@ -58,8 +56,6 @@ namespace RogueCaml
         void Start()
         {
             AudioListener.volume = (float)0.5;
-            _slider = settingsPanel.GameObject().GameObject().GetComponent<Slider>();
-            _slider.value = (float)0.5;
 
             //defining controls
             keybinds.Add("attack", KeyCode.Mouse0);
@@ -228,11 +224,6 @@ namespace RogueCaml
         #region AudioManager
         
         //when volume is changed
-
-        public void ChangeVolumeHandler()
-        {
-            AudioListener.volume = _slider.value; //change the AudioListener volume to the value of slider --> call when slider value changed
-        }
 
         private void PlayMusic(int musicNumber)
         {

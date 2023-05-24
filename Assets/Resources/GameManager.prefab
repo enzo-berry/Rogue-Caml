@@ -689,7 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425ae0d822cbda2439b1c018a5772488, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  slider: {fileID: 0}
+  settingsPanel: {fileID: 0}
   mainMenu: {fileID: 6870832964965133205}
   waitRoom: {fileID: 8747792412833825912}
   firstLevel: {fileID: 6869074443096615169}
