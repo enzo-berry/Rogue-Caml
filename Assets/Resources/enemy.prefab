@@ -15,7 +15,6 @@ GameObject:
   - component: {fileID: 4751363749526778854}
   - component: {fileID: 7556454856420694225}
   - component: {fileID: 7353404767461780992}
-  - component: {fileID: 7353404767461780993}
   - component: {fileID: 7353404767461781001}
   - component: {fileID: -2985417093705772410}
   m_Layer: 0
@@ -112,6 +111,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &9084872281767796459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -183,25 +183,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1faf0cef428463247857451608de31f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characteristics: 2
   Health: 5
   moveSpeed: 3
+  attackSpeed: 1
+  weaponPhotonId: 0
   Target: {fileID: 0}
   mobGenerator: {fileID: 0}
   direction: {x: 0, y: 0}
   WeaponPrefab: {fileID: 0}
---- !u!114 &7353404767461780993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5613556170333750058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0e44e22bb9caa84faecdf82e55d3e8a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  me: {fileID: 7353404767461780992}
 --- !u!50 &7353404767461781001
 Rigidbody2D:
   serializedVersion: 4

@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Assets.Scripts;
 using Photon.Pun;
 using Unity.VisualScripting;
 using UnityEngine;

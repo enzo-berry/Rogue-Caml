@@ -6,7 +6,6 @@ using Photon.Pun;
 using Photon.Realtime;
 using Unity.VisualScripting;
 using ExitGames.Client.Photon.StructWrapping;
-using Assets.Scripts;
 
 namespace RogueCaml
 {
@@ -146,38 +145,7 @@ namespace RogueCaml
             //If player is mine
             if (IsMine)
             {
-                GameObject gameObject = collision.gameObject;
-
-                ObjectCharacteristics objectCharacteristics = gameObject.GetComponent<ObjectCharacteristics>();
-
-                //damaging
-                if (objectCharacteristics != null)
-                {
-                    if (objectCharacteristics.IsProjectil)
-                    {
-                        Debug.Log("Projectil entered owned player");
-
-                        Projectil projectil = gameObject.GetComponent<Projectil>();
-                        //if (projectil.IsOnPlayerTeam != this.IsOnPlayerTeam)
-                        {
-                            TakeDammage(projectil.dammage);
-                            GameManager.Instance.DestroyObject(gameObject);
-                        }
-                    }
-
-                    if (objectCharacteristics.IsWeapon && objectCharacteristics.IsEquiped)
-                    {
-                        Debug.Log("Player got hit by a weapon");
-
-                        Weapon weapon = gameObject.GetComponent<Weapon>();
-
-                        if (weapon != null && weapon.PhotonOwnerId != photonView.ViewID)
-                        {
-                            TakeDammage(weapon.dammage);
-                        }
-
-                    }
-                }
+                CollisionManager(collision);
 
                 //Used for equiping an Object
                 objectsInContactWithPlayer.Add(collision);

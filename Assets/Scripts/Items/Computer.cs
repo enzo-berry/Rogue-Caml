@@ -1,4 +1,3 @@
-using Assets.Scripts;
 using Photon.Pun;
 using RogueCaml;
 using System.Collections;

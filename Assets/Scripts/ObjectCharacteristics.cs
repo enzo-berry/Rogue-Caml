@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace Assets.Scripts
+namespace RogueCaml
 {
     /*
         Here is the new ObjectCharacteristics class, it is used as a base class for every game object in level.

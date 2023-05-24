@@ -25,8 +25,9 @@ namespace RogueCaml
         public AudioSource thirdLevel;
 
         //stats
-        public static int level = 0;
-        public static int difficulty = 50;
+        public static int Level = 0;
+        public static int Difficulty = 50;
+        public static bool FriendlyFire = false;
 
         //keybinds
         public static Dictionary<string, KeyCode> keybinds = new Dictionary<string, KeyCode>();
@@ -81,7 +82,7 @@ namespace RogueCaml
             if (PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.LoadLevel("waiting_scene");
-                PlayMusic(level);
+                PlayMusic(Level);
             }
             PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);            
         }
@@ -95,8 +96,8 @@ namespace RogueCaml
         {
             Debug.Log("Disconnected from server for reason: " + cause.ToString());
             SceneManager.LoadScene("MainMenu");
-            level = 0;
-            PlayMusic(level);
+            Level = 0;
+            PlayMusic(Level);
             ConnectoToPhoton();
         }
 
@@ -202,9 +203,9 @@ namespace RogueCaml
 
         public bool NextLevel()
         {
-            level++;
-            PlayMusic(level);
-            return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{level}");
+            Level++;
+            PlayMusic(Level);
+            return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{Level}");
         }
 
         public void StartGame()

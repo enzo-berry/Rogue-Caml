@@ -4,7 +4,6 @@ using UnityEngine;
 using System;
 using Photon.Pun;
 using Photon.Realtime;
-using Assets.Scripts;
 
 namespace RogueCaml
 {

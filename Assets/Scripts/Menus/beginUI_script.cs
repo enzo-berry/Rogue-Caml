@@ -26,7 +26,7 @@ namespace RogueCaml
 
         public void UpdateDifficulty()
         {
-            GameManager.difficulty = (int)(scrollbar.value * 100);
+            GameManager.Difficulty = (int)(scrollbar.value * 100);
             text.text = ((int)(scrollbar.value * 100)).ToString();
         }
     }

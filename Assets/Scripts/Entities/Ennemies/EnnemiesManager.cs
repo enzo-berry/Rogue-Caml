@@ -102,7 +102,7 @@ namespace RogueCaml
         
         protected void setDirection()
         {
-            Vector2 direction = Target.transform.position - transform.position;
+            direction = Target.transform.position - transform.position;
             
             direction.Normalize();
             
