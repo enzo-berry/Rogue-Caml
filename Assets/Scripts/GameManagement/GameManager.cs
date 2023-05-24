@@ -23,7 +23,7 @@ namespace RogueCaml
         public AudioSource firstLevel;
         public AudioSource secondLevel;
         public AudioSource thirdLevel;
-        
+
         //stats
         public static int level = 0;
         public static int difficulty = 50;
