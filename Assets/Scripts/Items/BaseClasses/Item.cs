@@ -37,7 +37,7 @@ namespace RogueCaml
             }
         }
 
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        public new void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             //PhotonOwnerId is only writable by the owner of the Item.
             //Thats why owner is changed in pickup.
@@ -53,7 +53,7 @@ namespace RogueCaml
             }
 
             //Syncing characteristics
-            SyncCharacteristics(stream, info);
+            base.OnPhotonSerializeView(stream, info);
 
         }
 

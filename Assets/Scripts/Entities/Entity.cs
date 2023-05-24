@@ -46,7 +46,7 @@ namespace RogueCaml
 
         protected Rigidbody2D rb;
 
-        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        public new void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
 
             if (stream.IsWriting)
@@ -68,9 +68,10 @@ namespace RogueCaml
                 movement = (Vector2)stream.ReceiveNext();
                 alive = (bool)stream.ReceiveNext();
                 weaponPhotonId = (int)stream.ReceiveNext();
-
-
             }
+
+            //Syncing characteristics
+            base.OnPhotonSerializeView(stream, info);
         }
 
 

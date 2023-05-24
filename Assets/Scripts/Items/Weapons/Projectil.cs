@@ -66,7 +66,7 @@ namespace RogueCaml
                 this.ParentWeaponPhotonId = (int)stream.ReceiveNext();
             }
 
-            SyncCharacteristics(stream, info);
+            base.OnPhotonSerializeView(stream, info);
 
         }
 

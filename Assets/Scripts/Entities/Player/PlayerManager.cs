@@ -164,6 +164,19 @@ namespace RogueCaml
                             GameManager.Instance.DestroyObject(gameObject);
                         }
                     }
+
+                    if (objectCharacteristics.IsWeapon && objectCharacteristics.IsEquiped)
+                    {
+                        Debug.Log("Player got hit by a weapon");
+
+                        Weapon weapon = gameObject.GetComponent<Weapon>();
+
+                        if (weapon != null && weapon.PhotonOwnerId != photonView.ViewID)
+                        {
+                            TakeDammage(weapon.dammage);
+                        }
+
+                    }
                 }
 
                 //Used for equiping an Object

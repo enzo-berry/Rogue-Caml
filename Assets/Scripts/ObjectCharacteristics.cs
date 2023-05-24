@@ -151,7 +151,7 @@ namespace Assets.Scripts
         }
 
         //On serialize view
-        public void SyncCharacteristics(PhotonStream stream, PhotonMessageInfo info)
+        public void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             if (stream.IsWriting)
             {
