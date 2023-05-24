@@ -142,7 +142,7 @@ PrefabInstance:
     - target: {fileID: -1455766958398840814, guid: 1f43c645c510bfe4083e37b5f03c1bfc, type: 3}
       propertyPath: volumeValue
       value: 
-      objectReference: {fileID: 870166772}
+      objectReference: {fileID: 0}
     - target: {fileID: -1455766958398840814, guid: 1f43c645c510bfe4083e37b5f03c1bfc, type: 3}
       propertyPath: settingsPanel
       value: 
@@ -817,11 +817,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 128065294349578159, guid: 0d12d13fdd892804db184dcb0a2360b5, type: 3}
   m_PrefabInstance: {fileID: 870166769}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &870166772 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1014163966462828927, guid: 0d12d13fdd892804db184dcb0a2360b5, type: 3}
-  m_PrefabInstance: {fileID: 870166769}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &870166773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -835,7 +830,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slider: {fileID: 475257079}
-  volumeValue: {fileID: 870166772}
+  volumeValue: {fileID: 1437712839}
 --- !u!1 &942422580
 GameObject:
   m_ObjectHideFlags: 0
@@ -1744,6 +1739,11 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!1 &1437712839 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6793429694582467080, guid: 0d12d13fdd892804db184dcb0a2360b5, type: 3}
+  m_PrefabInstance: {fileID: 870166769}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1468125470 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: -1455766958398840814, guid: 1f43c645c510bfe4083e37b5f03c1bfc, type: 3}
