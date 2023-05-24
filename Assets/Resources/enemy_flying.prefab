@@ -147,15 +147,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 2097732365749384529}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ce966558fdc28744c83c9a71e1bcae19, type: 3}
+  m_Script: {fileID: 11500000, guid: 1faf0cef428463247857451608de31f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  characteristics: 2
   Health: 5
   moveSpeed: 5
+  attackSpeed: 1
+  weaponPhotonId: 0
   Target: {fileID: 0}
   mobGenerator: {fileID: 0}
   direction: {x: 0, y: 0}
-  WeaponPrefab: {fileID: 8885361513575238041, guid: f72f1a8852c5972498f144e245564ad0, type: 3}
+  WeaponPrefab: {fileID: 0}
 --- !u!114 &7603581535792996557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,3 +241,4 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

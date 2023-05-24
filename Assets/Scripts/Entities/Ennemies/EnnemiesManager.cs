@@ -35,7 +35,7 @@ namespace RogueCaml
         void Start()
         {
             setTarget();
-            setDirection();
+            SetDirection();
         }
 
         // Update is called once per frame
@@ -59,7 +59,7 @@ namespace RogueCaml
             }
 
            
-            setDirection();
+            SetDirection();
             if(Weapon)
                 Weapon.Attack(new Vector2());
             
@@ -100,15 +100,15 @@ namespace RogueCaml
             return f>0? 1 : f==0? 0 : -1;
         }
         
-        protected void setDirection()
+        protected void SetDirection()
         {
-            direction = Target.transform.position - transform.position;
+            Vector2 d = Target.transform.position - transform.position;
             
+            direction = d;
+            if (Distance(this.direction) < range) direction = -direction;
             direction.Normalize();
             
-            if (Distance(this.direction) < range) direction = -direction;
-            
-            direction = Quaternion.AngleAxis(Random.Range(-RandomRotation, RandomRotation), new Vector3(0,0,1)) * direction;
+            //direction = Quaternion.AngleAxis(Random.Range(-RandomRotation, RandomRotation), new Vector3(0,0,1)) * direction;
         }
     }
 }

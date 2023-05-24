@@ -142,10 +142,12 @@ namespace RogueCaml
         //Check when player is in contact with an object
         private void OnTriggerEnter2D(Collider2D collision)
         {
+            
             //If player is mine
             if (IsMine)
             {
-                CollisionManager(collision);
+                
+                CollisionManager(collision.gameObject);
 
                 //Used for equiping an Object
                 objectsInContactWithPlayer.Add(collision);

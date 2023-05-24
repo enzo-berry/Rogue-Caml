@@ -67,6 +67,9 @@ namespace RogueCaml
                 ProjectilObjectCreated.transform.right = direction;
                 ProjectilScriptCreated.ParentWeaponPhotonId = photonView.ViewID;
 
+                ProjectilScriptCreated.characteristics =
+                    Owner.GetComponent<Entity>().characteristics | Characteristics.Projectil;
+
                 bool IsOnPlayerTeam = ProjectilScriptCreated.ParentWeapon.GetComponent<Weapon>().IsOnPlayerTeam;
                 ProjectilScriptCreated.IsOnPlayerTeam = IsOnPlayerTeam;
             }

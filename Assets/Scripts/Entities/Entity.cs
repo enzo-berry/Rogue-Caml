@@ -77,10 +77,18 @@ namespace RogueCaml
             //If player is mine
             if (IsMine)
             {
-                CollisionManager(collision);
+                CollisionManager(collision.gameObject);
             }
         }
-
+        
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            //If player is mine
+            if (IsMine)
+            {
+                CollisionManager(collision.gameObject);
+            }
+        }
 
         protected void Pickup(int ItemPhotonId)
         {
@@ -112,43 +120,45 @@ namespace RogueCaml
         }
         
         
-        protected void CollisionManager(Collider2D collision)
+        protected void CollisionManager(GameObject collisionGameObject)
         {
-            GameObject collisionGameObject = collision.gameObject;
-
             ObjectCharacteristics objectCharacteristics = collisionGameObject.GetComponent<ObjectCharacteristics>();
 
             //damaging
             if (objectCharacteristics != null)
             {
-                if ((GameManager.FriendlyFire || //si friendly fire alors oui sinon 
-                     (objectCharacteristics.IsEnemy && IsPlayer) || // je suis un joeur et c'est un ennemy
-                     (objectCharacteristics.IsPlayer && IsEnemy)))  // ou c'est un ennemy et je suis un joueur
-                {
+                // ou c'est un ennemy et je suis un joueur
+                  if (objectCharacteristics.IsProjectil) //regarde si c'est un projectile
+                  {
+                      Debug.Log($"Projectil entered {gameObject.name}");
+
+                      Projectil projectil = collisionGameObject.GetComponent<Projectil>();
+                      
+                      if ((GameManager.FriendlyFire || //si friendly fire alors oui sinon 
+                           (projectil.IsEnemy && IsPlayer) || // je suis un joeur et c'est un ennemy
+                           (projectil.IsPlayer && IsEnemy)))
+                      {
+                          TakeDammage(projectil.dammage);
+                          GameManager.Instance.DestroyObject(collisionGameObject);
+                      }
+                  }
+
+                  if (objectCharacteristics.IsWeapon && objectCharacteristics.IsEquiped)
+                  {
+                      Debug.Log($"{gameObject.name} got hit by a weapon");
+
+                      Weapon weapon = collisionGameObject.GetComponent<Weapon>();
+
+                      if (weapon != null && weapon.PhotonOwnerId != photonView.ViewID)
+                      {
+                          TakeDammage(weapon.dammage);
+                      }
+
+                  }
                     
-                    if (objectCharacteristics.IsProjectil) //regarde si c'est un projectile
-                    {
-                        Debug.Log($"Projectil entered {gameObject.name}");
-
-                        Projectil projectil = collisionGameObject.GetComponent<Projectil>();
-                        TakeDammage(projectil.dammage);
-                        GameManager.Instance.DestroyObject(collisionGameObject);
-                    }
-
-                    if (objectCharacteristics.IsWeapon && objectCharacteristics.IsEquiped)
-                    {
-                        Debug.Log($"{gameObject.name} got hit by a weapon");
-
-                        Weapon weapon = collisionGameObject.GetComponent<Weapon>();
-
-                        if (weapon != null && weapon.PhotonOwnerId != photonView.ViewID)
-                        {
-                            TakeDammage(weapon.dammage);
-                        }
-
-                    }
-                }
+                    
                 
+                    
             }
         }
 
