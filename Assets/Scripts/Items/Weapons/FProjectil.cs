@@ -52,7 +52,7 @@ namespace RogueCaml
         }
 
         
-
+        //calcule la norme du vecteur
         protected double Distance(Vector2 v)
         {
             return (float)Math.Sqrt(v.x * v.x + v.y * v.y);
@@ -61,8 +61,9 @@ namespace RogueCaml
         {
             //recupere les entites
             Entity[] tmp = FindObjectsOfType<Entity>();
-
-            List<Entity> t;
+            
+            
+            //recherche les ennemis de l'owner (les ennemies pour le player et inversement)
             double d = 10000000000000;
             Entity p = ParentWeapon.Owner.GetComponent<Entity>(); 
             foreach (Entity entity in tmp)
@@ -77,7 +78,6 @@ namespace RogueCaml
                     }
                 }
             }
-            //regarde si c'est un 
         }
     }
 }
