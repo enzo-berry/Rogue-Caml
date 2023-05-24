@@ -7,11 +7,23 @@ using Photon.Realtime;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Threading;
+using Unity.VisualScripting;
+using UnityEngine.Audio;
+using Debug = UnityEngine.Debug;
 
 namespace RogueCaml
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        //musics and sound settings
+        public AudioSource mainMenu;
+        public AudioSource waitRoom;
+        public AudioSource firstLevel;
+        public AudioSource secondLevel;
+        public AudioSource thirdLevel;
+
         //stats
         public static int level = 0;
         public static int difficulty = 50;
@@ -40,11 +52,10 @@ namespace RogueCaml
             }
         }
 
-        //Since we use GameManager in everyscene we make condition to know from where it is instanciated, will be splitted in two different scripts later on.
+        //Since we use GameManager in every scene we make condition to know from where it is instanciated, will be splitted in two different scripts later on.
         void Start()
         {
-            //Screen.SetResolution(Screen.width, Screen.height, true);
-
+            AudioListener.volume = (float)0.5;
 
             //defining controls
             keybinds.Add("attack", KeyCode.Mouse0);
@@ -70,6 +81,7 @@ namespace RogueCaml
             if (PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.LoadLevel("waiting_scene");
+                PlayMusic(level);
             }
             PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);            
         }
@@ -84,6 +96,7 @@ namespace RogueCaml
             Debug.Log("Disconnected from server for reason: " + cause.ToString());
             SceneManager.LoadScene("MainMenu");
             level = 0;
+            PlayMusic(level);
             ConnectoToPhoton();
         }
 
@@ -189,7 +202,9 @@ namespace RogueCaml
 
         public bool NextLevel()
         {
-            return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{++level}");
+            level++;
+            PlayMusic(level);
+            return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{level}");
         }
 
         public void StartGame()
@@ -205,6 +220,64 @@ namespace RogueCaml
         #endregion
 
 
+        #region AudioManager
+        
+        /// <summary>
+        /// Starts the music when the client master changes scene
+        /// CALL AT EACH SCENE CHANGE OF THE MASTER CLIENT ONLY
+        /// </summary>
+        /// <param name="currentLevel">the current value of level</param>
+        /// <returns>void - juste change played the correct song</returns>
+        private void PlayMusic(int currentLevel)
+        {
+            // The music played on the previous configuration will not be stopped.
+            // This must be managed at the time of the scene change (actual status : not managed)
+            switch (currentLevel)
+            {
+                case 1:
+                    firstLevel.Play();
+                    break;
+                case 2 :
+                    secondLevel.Play();
+                    break;
+                case 3 :
+                    thirdLevel.Play();
+                    break;
+                default:
+                    Debug.Log("No music played in this configuration!");
+                    break;
+            }
+        }
+
+        
+        /// <summary>
+        /// Starts the music when the client master changes scene (previous configuration)
+        /// CALLED WHEN ROOM CHANGED OR MASTER CLIENT DISCONNECT
+        /// </summary>
+        /// <param name="previousLevel">The value of the previous level attribute</param>
+        /// <returns>void - juste change stopped the correct song</returns>
+        private void StopMusic(int previousLevel)
+        {
+            switch (previousLevel)
+            {
+                case 0:
+                    waitRoom.Stop();
+                    break;
+                case 1:
+                    firstLevel.Stop();
+                    break;
+                case 2:
+                    secondLevel.Stop();
+                    break;
+                default:
+                    Debug.Log("No music stop in this configuration!");
+                    break;
+            }
+        }
+        
+        
+        #endregion
+        
         #region Private Methods
 
         void ConnectoToPhoton()
