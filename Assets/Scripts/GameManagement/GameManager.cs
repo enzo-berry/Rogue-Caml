@@ -52,7 +52,7 @@ namespace RogueCaml
             }
         }
 
-        //Since we use GameManager in everyscene we make condition to know from where it is instanciated, will be splitted in two different scripts later on.
+        //Since we use GameManager in every scene we make condition to know from where it is instanciated, will be splitted in two different scripts later on.
         void Start()
         {
             AudioListener.volume = (float)0.5;
@@ -205,7 +205,6 @@ namespace RogueCaml
             level++;
             PlayMusic(level);
             return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{level}");
-            
         }
 
         public void StartGame()
@@ -223,36 +222,55 @@ namespace RogueCaml
 
         #region AudioManager
         
-        //when volume is changed
-
-        private void PlayMusic(int musicNumber)
+        /// <summary>
+        /// Starts the music when the client master changes scene
+        /// CALL AT EACH SCENE CHANGE OF THE MASTER CLIENT ONLY
+        /// </summary>
+        /// <param name="currentLevel">the current value of level</param>
+        /// <returns>void - juste change played the correct song</returns>
+        private void PlayMusic(int currentLevel)
         {
-            switch (musicNumber)
+            // The music played on the previous configuration will not be stopped.
+            // This must be managed at the time of the scene change (actual status : not managed)
+            switch (currentLevel)
             {
                 case 1:
-                    firstLevel.Stop();
-                    secondLevel.Stop();
-                    thirdLevel.Stop();
-                    mainMenu.Play();
-                    break;
-                case 2:
-                    mainMenu.Stop();
-                    waitRoom.Play();
-                    break;
-                case 3 :
-                    waitRoom.Stop();
                     firstLevel.Play();
                     break;
-                case 4 :
-                    firstLevel.Stop();
+                case 2 :
                     secondLevel.Play();
                     break;
-                case 5 :
-                    secondLevel.Stop();
+                case 3 :
                     thirdLevel.Play();
                     break;
                 default:
-                    Debug.Log("No music played - Case not implemented!");
+                    Debug.Log("No music played in this configuration!");
+                    break;
+            }
+        }
+
+        
+        /// <summary>
+        /// Starts the music when the client master changes scene (previous configuration)
+        /// CALLED WHEN ROOM CHANGED OR MASTER CLIENT DISCONNECT
+        /// </summary>
+        /// <param name="previousLevel">The value of the previous level attribute</param>
+        /// <returns>void - juste change stopped the correct song</returns>
+        private void StopMusic(int previousLevel)
+        {
+            switch (previousLevel)
+            {
+                case 0:
+                    waitRoom.Stop();
+                    break;
+                case 1:
+                    firstLevel.Stop();
+                    break;
+                case 2:
+                    secondLevel.Stop();
+                    break;
+                default:
+                    Debug.Log("No music stop in this configuration!");
                     break;
             }
         }
