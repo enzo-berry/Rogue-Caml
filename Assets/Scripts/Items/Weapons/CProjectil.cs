@@ -17,6 +17,8 @@ namespace RogueCaml
             {
                 transform.position += speed * Time.fixedDeltaTime * (Vector3)direction;
                 direction = (Vector2)( Quaternion.AngleAxis(0.5f, new Vector3(0,0,1 )) * ((direction)));
+                
+                transform.right = direction;
             }
         }
     }

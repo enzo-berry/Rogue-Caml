@@ -166,7 +166,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28dc0a5218134ce1a3c8e3f189a196f2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characteristics: 0
+  characteristics: 64
   direction: {x: 0, y: 0}
   ParentWeaponPhotonId: 0
   LifeTime: 15
