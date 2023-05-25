@@ -53,7 +53,6 @@ namespace RogueCaml
 
             //Syncing characteristics
             base.OnPhotonSerializeView(stream, info);
-
         }
 
     }

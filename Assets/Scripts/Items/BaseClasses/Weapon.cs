@@ -1,4 +1,5 @@
 using Photon.Pun;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -14,8 +15,28 @@ namespace RogueCaml
     public abstract class Weapon : Item
     {
         [SerializeField]
-        public int dammage; //editor based value
+        public int Dammage; //editor based value
+        public bool isAttacking;
 
         public abstract void Attack(Vector2 direction);
+
+        public new void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+        {
+            //PhotonOwnerId is only writable by the owner of the Item.
+            //Thats why owner is changed in pickup.
+
+            //sync PhotonOwnerId
+            if (stream.IsWriting)
+            {
+                stream.SendNext(isAttacking);
+            }
+            else
+            {
+                isAttacking = (bool)stream.ReceiveNext();
+            }
+
+            //Syncing characteristics
+            base.OnPhotonSerializeView(stream, info);
+        }
     }
 }

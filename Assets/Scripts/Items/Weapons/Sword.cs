@@ -26,8 +26,6 @@ namespace RogueCaml
         private int sens;
         private Vector2 direction = new Vector2(0f, 0f);
 
-        [SerializeField]
-        private bool isAttacking;
 
         [SerializeField]
         private float cooldown;
@@ -82,6 +80,8 @@ namespace RogueCaml
                 {
                     isAttacking = false;
                     BlockProjectils = false;
+                    //reset rotation
+                    transform.right = Vector3.right;
                 }
                 
             }
@@ -110,31 +110,6 @@ namespace RogueCaml
                 isAttacking = true;
             }
         }
-
-        int Signe(float f)
-        {
-            return f > 0 ? 1 : f == 0 ? 0 : -1;
-        }
-
-        //Syncing attacking
-        public new void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-        {
-            //PhotonOwnerId is only writable by the owner of the Item.
-            //Thats why owner is changed in pickup.
-
-            //sync PhotonOwnerId
-            if (stream.IsWriting)
-            {
-                stream.SendNext(isAttacking);
-            }
-            else
-            {
-                isAttacking = (bool)stream.ReceiveNext();
-            }
-
-            base.OnPhotonSerializeView(stream, info);
-        }
-
 
 
     }

@@ -169,5 +169,5 @@ MonoBehaviour:
   characteristics: 64
   direction: {x: 0, y: 0}
   ParentWeaponPhotonId: 0
-  LifeTime: 15
+  LifeTime: 7
   speed: 3

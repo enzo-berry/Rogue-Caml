@@ -12,7 +12,7 @@ namespace RogueCaml
     {
         public Vector2 direction = new Vector2(0, 0);
         public int ParentWeaponPhotonId; //synced
-        public float LifeTime = 15;
+        public float LifeTime;
         protected float _begin;
         public Weapon ParentWeapon //depends on ParentWeaponPhotonId
         {
@@ -40,7 +40,7 @@ namespace RogueCaml
             {
                 Weapon ParentWeaponScript = ParentWeapon.GetComponent<Weapon>();
                 if (ParentWeaponScript != null)
-                    return ParentWeaponScript.dammage;
+                    return ParentWeaponScript.Dammage;
                 else
                 {
                     Debug.LogError("Projectil ParentWeaponScript does not exists !");
@@ -72,7 +72,6 @@ namespace RogueCaml
         // Start is called before the first frame update
         void Start()
         {
-            characteristics = characteristics | Characteristics.Projectil;
             transform.Rotate(direction, 0f);
             _begin = Time.time;
         }

@@ -105,12 +105,17 @@ namespace RogueCaml
 
         protected void Drop()
         {
-            //Order is important since weapon getter uses weaponPhotonId.
-            weapon.IsEquiped = false;
-            weapon.IsOnPlayerTeam = false;//Either one or the other, so just change it.
+            
+            if (!weapon.isAttacking)
+            {
+                //Order is important since weapon getter uses weaponPhotonId.
+                weapon.IsEquiped = false;
+                weapon.IsOnPlayerTeam = false;//Either one or the other, so just change it.
 
-            weapon.PhotonOwnerId = 0;
-            weaponPhotonId = 0;
+                weapon.PhotonOwnerId = 0;
+                weaponPhotonId = 0;
+            }
+
         }
 
         public void TakeDammage(int amount)
@@ -151,7 +156,7 @@ namespace RogueCaml
 
                       if (weapon != null && weapon.PhotonOwnerId != photonView.ViewID)
                       {
-                          TakeDammage(weapon.dammage);
+                          TakeDammage(weapon.Dammage);
                       }
 
                   }

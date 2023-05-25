@@ -14,7 +14,9 @@ namespace RogueCaml
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         [HideInInspector]
         public static GameObject OwnedPlayerInstance;
+        public GameObject CameraObj;
 
+        private Camera cam => CameraObj.GetComponent<Camera>(); 
         private List<Collider2D> objectsInContactWithPlayer = new List<Collider2D>();
 
         #region Unity Callbacks
@@ -35,6 +37,14 @@ namespace RogueCaml
         public void Start()
         {
             rb = GetComponent<Rigidbody2D>();
+            if (!IsMine)
+            {
+                CameraObj.SetActive(false);
+            }
+            else
+            {
+                cam.tag = "MainCamera";
+            }
         }
 
         void Update()
@@ -104,7 +114,11 @@ namespace RogueCaml
         {
             //replace to attack animation
             //Get as a Vector2 the direction of the mouse from the player
-            Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+            Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+            Vector3 Pos = transform.position;
+
+            Vector2 direction = mousePosition - Pos;
 
             //Set direction to only 1 and 0
             direction.Normalize();
