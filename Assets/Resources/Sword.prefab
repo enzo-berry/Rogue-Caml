@@ -53,7 +53,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characteristics: 32
   PhotonOwnerId: 0
-  dammage: 1
+  Dammage: 2
   isAttacking: 0
   cooldown: 0.5
   angle: 180
