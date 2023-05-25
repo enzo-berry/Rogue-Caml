@@ -58,6 +58,4 @@ public class Computer : ObjectCharacteristics
 
 
     //sync characteristics
-
-
 }

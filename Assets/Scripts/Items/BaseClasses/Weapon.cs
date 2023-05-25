@@ -19,6 +19,8 @@ namespace RogueCaml
         public bool isAttacking;
 
         public abstract void Attack(Vector2 direction);
+        
+        public abstract int GetDammage();
 
         public new void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {

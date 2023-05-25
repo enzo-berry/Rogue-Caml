@@ -112,5 +112,9 @@ namespace RogueCaml
         }
 
 
+        public override int GetDammage()
+        {
+            return Dammage + Owner.GetComponent<Entity>().BonusDammage;
+        }
     }
 }

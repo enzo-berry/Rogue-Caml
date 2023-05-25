@@ -13,6 +13,7 @@ namespace RogueCaml
         public int Health = 5;
         public int moveSpeed = 5;
         public int attackSpeed = 1;
+        public int BonusDammage = 0;
 
         public bool IsAlive; //NonSerialazed means it won't be accesible in the inspector.
         [NonSerialized] public Vector2 movement; //A vector2 to store the movement of the player. is used in Update method.
@@ -119,6 +120,20 @@ namespace RogueCaml
                 weapon.IsEquiped = true;
                 weapon.IsOnPlayerTeam = true;
             }
+        }
+        
+        public void Update()
+        {
+            //Master client will handle killing enemies.
+            if(Health <= 0 && photonView.IsMine)
+            {
+                Kill();
+            }
+        }
+
+        void Kill()
+        {
+            GameManager.Instance.DestroyObject(gameObject);
         }
 
         protected void Drop()

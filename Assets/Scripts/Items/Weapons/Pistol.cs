@@ -74,5 +74,10 @@ namespace RogueCaml
                 ProjectilScriptCreated.IsOnPlayerTeam = IsOnPlayerTeam;
             }
         }
+
+        public override int GetDammage()
+        {
+            return Owner.GetComponent<Entity>().BonusDammage + Dammage;
+        }
     }
 }

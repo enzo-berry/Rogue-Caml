@@ -14,6 +14,7 @@ namespace RogueCaml
         public int ParentWeaponPhotonId; //synced
         public float LifeTime;
         protected float _begin;
+        public int ProjectilDammage = 0;
         public Weapon ParentWeapon //depends on ParentWeaponPhotonId
         {
             get
@@ -40,7 +41,10 @@ namespace RogueCaml
             {
                 Weapon ParentWeaponScript = ParentWeapon.GetComponent<Weapon>();
                 if (ParentWeaponScript != null)
-                    return ParentWeaponScript.Dammage;
+                {
+                    Weapon w = ParentWeapon;
+                    return ProjectilDammage + w.GetDammage();
+                }
                 else
                 {
                     Debug.LogError("Projectil ParentWeaponScript does not exists !");

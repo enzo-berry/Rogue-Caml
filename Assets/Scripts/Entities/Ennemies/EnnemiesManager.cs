@@ -37,16 +37,8 @@ namespace RogueCaml
             setTarget();
             SetDirection();
         }
-
-        // Update is called once per frame
-        public void Update()
-        {
-            //Master client will handle killing enemies.
-            if(Health <= 0 && photonView.IsMine)
-            {
-                Kill();
-            }
-        }
+        
+        
 
         
         void FixedUpdate()
@@ -83,7 +75,7 @@ namespace RogueCaml
             }
         }
 
-        public void Kill()
+        public virtual void Kill()
         {
             if(Weapon) PhotonNetwork.Destroy(this.Weapon.gameObject);
             if(mobGenerator) mobGenerator.EnnemyDied();

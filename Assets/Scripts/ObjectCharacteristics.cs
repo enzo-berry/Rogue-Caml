@@ -45,6 +45,8 @@ namespace RogueCaml
     {
         public Characteristics characteristics = 0;
 
+        
+
         [Flags]
         public enum Characteristics
         {
