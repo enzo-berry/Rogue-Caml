@@ -13,7 +13,7 @@ namespace RogueCaml
         public float coolDown = 100.0f;
         private float last = 0;
         
-        public GameObject[] BalleType;
+        public GameObject[] ProjectilType;
         public GameObject Pistol;
 
         private Pistol _pistol;
@@ -30,6 +30,8 @@ namespace RogueCaml
         {
             if (IsMine)
             {
+                coolDown *= 1 - (GameManager.Difficulty - 50) / 100;
+                
                 last = Time.time;
                 Patern.Add(Sulfateuse);
                 
@@ -60,7 +62,9 @@ namespace RogueCaml
             Quaternion q = Quaternion.AngleAxis(45f, new Vector3(0,0,1 ));
             Quaternion p = Quaternion.AngleAxis(10f, new Vector3(0,0,1 ));
 
-            for (int j = 0; j < 1; j++)
+            _pistol.ProjectilePrefab = ProjectilType[0];
+
+            for (int j = 0; j < 8; j++)
             {
                 for (int i = 0; i < 8; i++)
                 {
@@ -68,8 +72,14 @@ namespace RogueCaml
                     v = q * v;
                 }
                 v = p * v;
+                
+                
+                
+                while(Time.time)
             }
         }
+        
+        
     }
 }
 

@@ -154,6 +154,8 @@ MonoBehaviour:
   Health: 50
   moveSpeed: 5
   attackSpeed: 1000
+  BonusDammage: 0
+  IsAlive: 0
   weaponPhotonId: 0
   coolDown: 8
   BalleType:
