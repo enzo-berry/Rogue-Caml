@@ -2,6 +2,7 @@ using Photon.Pun;
 using UnityEngine.UIElements;
 using UnityEngine;
 using System;
+using UnityEngine.SceneManagement;
 
 namespace RogueCaml
 {
@@ -92,20 +93,37 @@ namespace RogueCaml
 
         protected void Pickup(int ItemPhotonId)
         {
-            //Is only called on the possesor of the player on its player.
-            //Order of declaration is important since weapon getter uses weaponPhotonId.
-            weaponPhotonId = ItemPhotonId;
+            Debug.Log("try pickup");
+            Item item = PhotonNetwork.GetPhotonView(ItemPhotonId).gameObject.GetComponent<Item>();
 
-            weapon.PhotonOwnerId = photonView.ViewID;
-            weapon.gameObject.GetPhotonView().RequestOwnership();
+            if (item.IsWeapon)
+            {
+                //Is only called on the possesor of the player on its player.
+                //Order of declaration is important since weapon getter uses weaponPhotonId.
+                if (weapon)
+                {
+                    weapon.IsEquiped = false;
+                    weapon.IsOnPlayerTeam = false;
+                
+                    SceneManager.MoveGameObjectToScene(weapon.gameObject, SceneManager.GetActiveScene());
+                }
+            
+            
+                weaponPhotonId = ItemPhotonId;
 
-            weapon.IsEquiped = true;
-            weapon.IsOnPlayerTeam = true;
+                weapon.PhotonOwnerId = photonView.ViewID;
+                weapon.gameObject.GetPhotonView().RequestOwnership();
+            
+                DontDestroyOnLoad(weapon.gameObject);
+
+                weapon.IsEquiped = true;
+                weapon.IsOnPlayerTeam = true;
+            }
         }
 
         protected void Drop()
         {
-            
+            SceneManager.MoveGameObjectToScene(weapon.gameObject, SceneManager.GetActiveScene());
             if (!weapon.isAttacking)
             {
                 //Order is important since weapon getter uses weaponPhotonId.

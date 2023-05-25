@@ -79,6 +79,7 @@ namespace RogueCaml
             if (Input.GetKeyDown(GameManager.keybinds["pickup"]) && !weapon)
             {
                 GameObject ItemToPickup = GetItemInContactWith();
+                objectsInContactWithPlayer.RemoveAll(x => x.gameObject == ItemToPickup);
 
                 if (ItemToPickup == null) return;
 
