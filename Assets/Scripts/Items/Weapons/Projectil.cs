@@ -94,7 +94,7 @@ namespace RogueCaml
                 //checking if it is not an object
                 ObjectCharacteristics oc = other.gameObject.GetComponent<ObjectCharacteristics>();
 
-                if (oc == null) //if its a static object in scene.
+                if (oc == null || oc.BlockProjectils) //if its a static object in scene.
                     GameManager.Instance.DestroyObject(gameObject);
 
                 //if Collision is an Object we handle it in the Object

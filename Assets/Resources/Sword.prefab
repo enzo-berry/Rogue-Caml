@@ -55,8 +55,8 @@ MonoBehaviour:
   PhotonOwnerId: 0
   dammage: 1
   isAttacking: 0
-  cooldown: 3
-  angle: 45
+  cooldown: 0.5
+  angle: 180
 --- !u!212 &2301505430143218719
 SpriteRenderer:
   m_ObjectHideFlags: 0

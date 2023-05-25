@@ -48,16 +48,18 @@ namespace RogueCaml
         [Flags]
         public enum Characteristics
         {
-            Entity = 0b0000000000000001,
-            Enemy = 0b0000000000000010,
-            Player = 0b0000000000000100,
+            Entity =          0b0000000000000001,
+            Enemy =           0b0000000000000010,
+            Player =          0b0000000000000100,
 
-            Item = 0b0000000000001000,
-            Equiped = 0b0000000000010000,
-            Weapon = 0b0000000000100000,
-            Projectil = 0b0000000001000000,
+            Item =            0b0000000000001000,
+            Equiped =         0b0000000000010000,
+            Weapon =          0b0000000000100000,
+            Projectil =       0b0000000001000000,
 
-            PlayerTeam = 0b0000000010000000,
+            PlayerTeam =      0b0000000010000000,
+            
+            BlockProjectils = 0b0000000100000000
         }
 
         public bool IsEntity
@@ -146,6 +148,25 @@ namespace RogueCaml
                 else
                 {
                     characteristics &= ~Characteristics.PlayerTeam; // Clear the Equiped flag
+                }
+            }
+        }
+        
+        public bool BlockProjectils
+        {
+            get
+            {
+                return (characteristics & Characteristics.BlockProjectils) == Characteristics.BlockProjectils;
+            }
+            set
+            {
+                if (value)
+                {
+                    characteristics |= Characteristics.BlockProjectils; // Set the BlockProjectils flag
+                }
+                else
+                {
+                    characteristics &= ~Characteristics.BlockProjectils; // Clear the BlockProjectils flag
                 }
             }
         }
