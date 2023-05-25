@@ -50,25 +50,20 @@ namespace RogueCaml
         void Update()
         {
             //If that PlayerObject is my player.
-            if (IsMine && !LevelManager.gameisPaused && alive)
+            if (IsMine && !LevelManager.gameisPaused && IsAlive)
             {
                 ProcessInputs();
             }
 
             if (IsMine && Health <= 0)
             {
-                //Play death animation
-                /////////////////////////
-
-
-                //destroy entity
-                GameManager.Instance.DestroyObject(gameObject);
+                Die();
             }
         }
 
         void FixedUpdate()
         {
-            if (IsMine && alive && !LevelManager.gameisPaused)
+            if (IsMine && IsAlive && !LevelManager.gameisPaused)
             {
                 rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * movement);
             }
@@ -126,6 +121,11 @@ namespace RogueCaml
             weapon.Attack(direction);
         }
 
+        void Die()
+        {
+            Drop();
+            IsAlive = false;
+        }
 
         #region RPCs
 

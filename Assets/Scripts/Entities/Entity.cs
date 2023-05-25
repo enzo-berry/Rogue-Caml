@@ -13,7 +13,7 @@ namespace RogueCaml
         public int moveSpeed = 5;
         public int attackSpeed = 1;
 
-        [NonSerialized] public bool alive = true; //NonSerialazed means it won't be accesible in the inspector.
+        [NonSerialized] public bool IsAlive; //NonSerialazed means it won't be accesible in the inspector.
         [NonSerialized] public Vector2 movement; //A vector2 to store the movement of the player. is used in Update method.
 
         public int weaponPhotonId = 0;
@@ -54,7 +54,7 @@ namespace RogueCaml
                 stream.SendNext(moveSpeed);
                 stream.SendNext(attackSpeed);
                 stream.SendNext(movement);
-                stream.SendNext(alive);
+                stream.SendNext(IsAlive);
                 stream.SendNext(weaponPhotonId);
             }
             else
@@ -64,7 +64,7 @@ namespace RogueCaml
                 moveSpeed = (int)stream.ReceiveNext();
                 attackSpeed = (int)stream.ReceiveNext();
                 movement = (Vector2)stream.ReceiveNext();
-                alive = (bool)stream.ReceiveNext();
+                IsAlive = (bool)stream.ReceiveNext();
                 weaponPhotonId = (int)stream.ReceiveNext();
             }
 
