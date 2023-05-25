@@ -11697,6 +11697,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1443145721546321500, guid: 6ec68bb38a3c5fe41934e3694a21b27a, type: 3}
+      propertyPath: sceneViewId
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8259609340343039603, guid: 6ec68bb38a3c5fe41934e3694a21b27a, type: 3}
       propertyPath: m_Name
       value: Boss
