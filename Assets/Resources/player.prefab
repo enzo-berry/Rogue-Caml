@@ -63,6 +63,7 @@ MonoBehaviour:
   Health: 3
   moveSpeed: 5
   attackSpeed: 1
+  IsAlive: 1
   weaponPhotonId: 0
   CameraObj: {fileID: 6930754821850059499}
 --- !u!212 &6340805809113597238
