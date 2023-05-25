@@ -11,10 +11,6 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        //if (PhotonNetwork.IsMasterClient)
-        //{
-        //    Sword Sword = PhotonNetwork.Instantiate("Pistol", new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Sword>();
-        //}
 
         if (GameManager.Level == 1 && PhotonNetwork.IsMasterClient)
         {
