@@ -41,7 +41,7 @@ namespace RogueCaml
     */
 
 
-    public abstract class ObjectCharacteristics : MonoBehaviourPunCallbacks
+    public abstract class ObjectCharacteristics : MonoBehaviourPunCallbacks, IPunObservable
     {
         public Characteristics characteristics = 0;
 
