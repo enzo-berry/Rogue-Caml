@@ -43,15 +43,18 @@ namespace RogueCaml
                 return;
             }
 
-            if (player.IsAlive == false)
+            if (!player.IsAlive)
             {
                 animator.SetBool("down", false);
                 animator.SetBool("up", false);
                 animator.SetBool("left", false);
                 animator.SetBool("right", false);
                 animator.SetFloat("speed", 0);
-                animator.SetBool("alive", false);
+                animator.SetBool("isDead", true);
                 return;
+            }
+            else {
+                animator.SetBool("isDead", false);
             }
 
             //player.movement is synced

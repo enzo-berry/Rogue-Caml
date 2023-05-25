@@ -123,7 +123,10 @@ namespace RogueCaml
 
         void Die()
         {
-            Drop();
+            if (weaponPhotonId != 0)
+            {
+                Drop();
+            }
             IsAlive = false;
         }
 

@@ -173,6 +173,9 @@ MonoBehaviour:
   - Type: 4
     SynchronizeType: 2
     Name: right
+  - Type: 4
+    SynchronizeType: 2
+    Name: isDead
   m_SynchronizeLayers:
   - SynchronizeType: 1
     LayerIndex: 0
