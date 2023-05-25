@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using RogueCaml;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -11,36 +8,36 @@ namespace RogueCaml
     {
 
         public GameManager gameManager;
-        public TMP_InputField pseudo;
-        public TMP_InputField gameName;
-        public Button[] playButtons;
+        public TMP_InputField pseudoField;
+        public TMP_InputField roomField;
+        public Button[] processButtons;
 
         public void privateHandler()
         {
-            string pseudo = this.pseudo.text;
-            if (pseudo == "") pseudo = "Player";
+            string pseudoField = this.pseudoField.text;
+            if (pseudoField == "") pseudoField = "Player";
             
-            Debug.Log($"Connect process for {pseudo}");
-            foreach (Button b in playButtons)
+            Debug.Log($"Connect process for {pseudoField}");
+            foreach (Button b in processButtons)
             {
                 b.interactable = false;
             }
             
-            if (gameName.text == "") Debug.Log("Please enter valid room name!");
-            else gameManager.ConnectPlayer(pseudo, gameName.text);
+            if (roomField.text == "") Debug.Log("Please enter valid room name!");
+            else gameManager.ConnectPlayer(pseudoField, roomField.text);
         }
 
         public void randomHandler()
         {
-            string pseudo = this.pseudo.text;
-            if (pseudo == "") pseudo = "Player";
+            string pseudoField = this.pseudoField.text;
+            if (pseudoField == "") pseudoField = "Player";
             
-            Debug.Log($"Connect process for {pseudo}");
-            foreach (Button b in playButtons)
+            Debug.Log($"Connect process for {pseudoField}");
+            foreach (Button b in processButtons)
             {
                 b.interactable = false;
             }
-            gameManager.ConnectPlayer(pseudo, "default");
+            gameManager.ConnectPlayer(pseudoField, "default");
         }
     }
 }
