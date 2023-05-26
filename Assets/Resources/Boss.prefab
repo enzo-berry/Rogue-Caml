@@ -80,8 +80,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.9433962, g: 0.050433062, b: 0.050433062, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 4e5a7dce8107ddd4992c89c99386d98f, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -129,7 +129,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 5, y: 5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -154,9 +154,12 @@ MonoBehaviour:
   Health: 50
   moveSpeed: 5
   attackSpeed: 1000
+  BonusDammage: 1
+  collisionDammage: 1
+  IsAlive: 0
   weaponPhotonId: 0
   coolDown: 8
-  BalleType:
+  ProjectilType:
   - {fileID: 3603314980910566130, guid: b914a14a2f6237b4cac6465ea97d1f5f, type: 3}
   - {fileID: 4133654327941879900, guid: e354837ed1ca8464a92dc141e50fff0d, type: 3}
   - {fileID: 2345663281087907147, guid: 3df9d6e1fc0e31e498ab3872f74f9f92, type: 3}

@@ -170,4 +170,5 @@ MonoBehaviour:
   direction: {x: 0, y: 0}
   ParentWeaponPhotonId: 0
   LifeTime: 7
+  ProjectilDammage: 0
   speed: 3

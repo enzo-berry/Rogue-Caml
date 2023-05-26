@@ -17,8 +17,16 @@ namespace RogueCaml
         [SerializeField]
         public int Dammage; //editor based value
         public bool isAttacking;
+        public float Range;
+        
+        [SerializeField]
+        public float cooldown;
 
         public abstract void Attack(Vector2 direction);
+        
+        public abstract int GetDammage();
+
+        public abstract void Stop(); //stop the attack
 
         public new void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {

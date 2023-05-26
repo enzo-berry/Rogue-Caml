@@ -186,10 +186,5 @@ namespace RogueCaml
                 objectsInContactWithPlayer.Remove(collision);
             }
         }
-
-        private void OnCollisionEnter2D(Collision2D collision)
-        {
-            
-        }
     }
 }

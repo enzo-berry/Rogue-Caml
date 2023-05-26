@@ -102,7 +102,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   characteristics: 32
   PhotonOwnerId: 0
-  dammage: 1
+  Dammage: 0
+  isAttacking: 0
   ProjectilePrefab: {fileID: 4133654327941879900, guid: e354837ed1ca8464a92dc141e50fff0d, type: 3}
   cooldown: 0
 --- !u!114 &2822220340327075904

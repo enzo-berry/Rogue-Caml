@@ -16,6 +16,7 @@ namespace RogueCaml
     {
         //Incomprehensible X)
 
+        [SerializeField]
         protected float range;
         [FormerlySerializedAs("target")] 
         public GameObject Target;
@@ -28,27 +29,18 @@ namespace RogueCaml
         protected float RandomRotation = 180f;
 
         public GameObject WeaponPrefab;
-        protected Weapon Weapon;
-        
+
 
         // Start is called before the first frame update
         void Start()
         {
+            collisionDammage = 1;
             setTarget();
             SetDirection();
         }
-
-        // Update is called once per frame
-        public void Update()
-        {
-            //Master client will handle killing enemies.
-            if(Health <= 0 && photonView.IsMine)
-            {
-                Kill();
-            }
-        }
-
         
+        
+
         void FixedUpdate()
         {
             waiting++;
@@ -60,8 +52,13 @@ namespace RogueCaml
 
            
             SetDirection();
-            if(Weapon)
-                Weapon.Attack(new Vector2());
+            if (weapon)
+            {
+                TargetDirection = (Target.transform.position - transform.position);
+                TargetDirection.Normalize();
+                weapon.Attack(TargetDirection);
+            }
+                
             
 
             transform.position += (Vector3)(moveSpeed * Time.fixedDeltaTime * direction);
@@ -81,13 +78,15 @@ namespace RogueCaml
                     d = Distance(Target.transform.position - transform.position);
                 }
             }
+
+            
         }
 
-        public void Kill()
+        public virtual void Kill()
         {
-            if(Weapon) PhotonNetwork.Destroy(this.Weapon.gameObject);
+            if(weapon) GameManager.Instance.DestroyObject(this.weapon.gameObject);
             if(mobGenerator) mobGenerator.EnnemyDied();
-            PhotonNetwork.Destroy(this.gameObject);
+            GameManager.Instance.DestroyObject(this.gameObject);
         }
 
         protected double Distance(Vector2 v)

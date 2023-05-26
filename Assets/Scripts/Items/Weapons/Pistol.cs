@@ -11,13 +11,15 @@ namespace RogueCaml
     {
         public GameObject ProjectilePrefab;
         
-        public float cooldown;
+        
         private int timeSinceLastShot = 0;
 
         void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             characteristics = Characteristics.Weapon;
+
+            Range = ProjectilePrefab.GetComponent<Projectil>().speed * 0.5f;
         }
 
         private void Update()
@@ -27,6 +29,7 @@ namespace RogueCaml
                 //teleport to owner
                 transform.position = Owner.transform.position;
             }
+            
 
 
             if (IsEquiped)
@@ -37,6 +40,14 @@ namespace RogueCaml
             {
                 spriteRenderer.enabled = true;
             }
+        }
+
+        public override void Stop()
+        {
+            isAttacking = false;
+            BlockProjectils = false;
+            //reset rotation
+            transform.right = Vector3.right;
         }
 
         private void FixedUpdate()
@@ -73,6 +84,11 @@ namespace RogueCaml
                 bool IsOnPlayerTeam = ProjectilScriptCreated.ParentWeapon.GetComponent<Weapon>().IsOnPlayerTeam;
                 ProjectilScriptCreated.IsOnPlayerTeam = IsOnPlayerTeam;
             }
+        }
+
+        public override int GetDammage()
+        {
+            return Owner.GetComponent<Entity>().BonusDammage + Dammage;
         }
     }
 }

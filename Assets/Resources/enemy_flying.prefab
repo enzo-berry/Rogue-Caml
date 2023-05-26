@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 2097732365749384531}
   - component: {fileID: 2097732365749384530}
   - component: {fileID: 2097732365749384558}
-  - component: {fileID: 2097732365749384557}
   - component: {fileID: 7603581535792996557}
   - component: {fileID: 8556125505995996257}
   - component: {fileID: 2255423918358367786}
   - component: {fileID: 4858421197634996539}
+  - component: {fileID: -2910919341512753734}
   m_Layer: 0
   m_Name: enemy_flying
   m_TagString: cde
@@ -138,27 +138,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &2097732365749384557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2097732365749384529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1faf0cef428463247857451608de31f4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characteristics: 2
-  Health: 5
-  moveSpeed: 5
-  attackSpeed: 1
-  weaponPhotonId: 0
-  Target: {fileID: 0}
-  mobGenerator: {fileID: 0}
-  direction: {x: 0, y: 0}
-  WeaponPrefab: {fileID: 0}
 --- !u!114 &7603581535792996557
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -178,9 +157,9 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 2097732365749384557}
   - {fileID: 8556125505995996257}
   - {fileID: 2255423918358367786}
+  - {fileID: -2910919341512753734}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -242,3 +221,27 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-2910919341512753734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2097732365749384529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce966558fdc28744c83c9a71e1bcae19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characteristics: 2
+  Health: 5
+  moveSpeed: 5
+  attackSpeed: 1
+  BonusDammage: 0
+  collisionDammage: 0
+  IsAlive: 0
+  weaponPhotonId: 0
+  Target: {fileID: 0}
+  mobGenerator: {fileID: 0}
+  direction: {x: 0, y: 0}
+  WeaponPrefab: {fileID: 8885361513575238041, guid: f72f1a8852c5972498f144e245564ad0, type: 3}
