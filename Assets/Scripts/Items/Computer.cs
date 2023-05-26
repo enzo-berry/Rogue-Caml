@@ -7,7 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-public abstract class Computer : ObjectCharacteristics
+public class Computer : ObjectCharacteristics
 {
     private AudioSource audioData;
     public GameObject interactPanel;

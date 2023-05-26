@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 637341715689640835}
   - component: {fileID: 7813922936084293302}
   - component: {fileID: 2442197680423789882}
-  - component: {fileID: 3250455330268773398}
   - component: {fileID: 3774701765034886682}
+  - component: {fileID: 4972782332258735669}
   m_Layer: 0
   m_Name: computer
   m_TagString: Untagged
@@ -183,23 +183,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &3250455330268773398
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3582383605393781203}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5fe39142dc6e02f41a5f7699a9474fcb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isInRange: 0
-  keyInteraction: 101
-  interactAction:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!58 &3774701765034886682
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -216,3 +199,18 @@ CircleCollider2D:
   m_Offset: {x: 0.02982213, y: 0}
   serializedVersion: 2
   m_Radius: 4
+--- !u!114 &4972782332258735669
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3582383605393781203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fe39142dc6e02f41a5f7699a9474fcb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characteristics: 0
+  interactPanel: {fileID: 0}
+  infoPanel: {fileID: 0}
