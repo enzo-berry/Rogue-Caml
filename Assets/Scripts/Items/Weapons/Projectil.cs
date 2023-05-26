@@ -93,7 +93,7 @@ namespace RogueCaml
         {
             if (photonView.IsMine)
             {
-                Debug.Log("Enter Trigger Projectil");
+                Debug.Log($"Enter Trigger Projectil with {other.gameObject.name}");
                 //checking if it is not an object
                 ObjectCharacteristics oc = other.gameObject.GetComponent<ObjectCharacteristics>();
 

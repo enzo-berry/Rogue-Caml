@@ -34,6 +34,7 @@ namespace RogueCaml
                 
                 last = Time.time;
                 Patern.Add(Sulfateuse);
+                Patern.Add(Follow);
                 
                 _pistol = PhotonNetwork.Instantiate(Pistol.name, Vector3.zero, Quaternion.identity).GetComponent<Pistol>();
                 Pickup(_pistol.gameObject.GetPhotonView().ViewID);
@@ -70,16 +71,32 @@ namespace RogueCaml
                 {
                     _pistol.Attack(v);
                     v = q * v;
+                    
+                    //last = Time.time;
+                    //int a = 0;
+                    //while (Time.time - last < 0.5f) a = 345 * 34567;
+
                 }
                 v = p * v;
-                
-                
-                
-                while(Time.time)
             }
         }
-        
-        
+
+        void Follow()
+        {
+            Vector2 v = new Vector2(0, 1);
+            
+            Quaternion q = Quaternion.AngleAxis(45f, new Vector3(0,0,1 ));
+
+            _pistol.ProjectilePrefab = ProjectilType[1];
+
+            for (int i = 0; i < 8; i++)
+            {
+                _pistol.Attack(v);
+                v = q * v;
+                    
+                
+            }
+        }
     }
 }
 
