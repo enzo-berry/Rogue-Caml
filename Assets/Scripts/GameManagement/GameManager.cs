@@ -17,12 +17,14 @@ namespace RogueCaml
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        /*
         //musics and sound settings
         public AudioSource mainMenu;
         public AudioSource waitRoom;
         public AudioSource firstLevel;
         public AudioSource secondLevel;
         public AudioSource thirdLevel;
+        */
 
         //stats
         public static int Level = 0;
@@ -99,7 +101,6 @@ namespace RogueCaml
         public bool NextLevel()
         {
             Level++;
-            PlayMusic();
             SyncStats();
             return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{Level}");
         }
@@ -122,7 +123,7 @@ namespace RogueCaml
 
         #endregion
 
-
+/*
         #region AudioManager
 
         /// <summary>
@@ -177,6 +178,8 @@ namespace RogueCaml
         }
 
         #endregion
+        
+        */
 
         //To Delete, after reflection, is useless, waiting all merges to do so.
         public bool DestroyObject(GameObject go)
