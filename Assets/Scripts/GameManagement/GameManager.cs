@@ -205,7 +205,6 @@ namespace RogueCaml
         /// </summary>
         public void SyncStats()
         {
-
             //Send struct to all players
             NetworkManager.Instance.photonView.RPC("SyncStatsRPC", RpcTarget.OthersBuffered, Level,Difficulty,FriendlyFire);
         }
