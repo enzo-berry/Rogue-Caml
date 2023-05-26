@@ -17,6 +17,10 @@ namespace RogueCaml
         [SerializeField]
         public int Dammage; //editor based value
         public bool isAttacking;
+        public float Range;
+        
+        [SerializeField]
+        public float cooldown;
 
         public abstract void Attack(Vector2 direction);
         

@@ -127,7 +127,9 @@ namespace RogueCaml
                 DontDestroyOnLoad(weapon.gameObject);
 
                 weapon.IsEquiped = true;
-                weapon.IsOnPlayerTeam = true;
+                weapon.IsOnPlayerTeam = IsOnPlayerTeam;
+                weapon.IsEnemy = IsEnemy;
+                weapon.IsPlayer = IsPlayer;
             }
         }
         
@@ -142,7 +144,11 @@ namespace RogueCaml
 
         public virtual void Kill()
         {
+            if (weapon)
+                GameManager.Instance.DestroyObject(weapon.gameObject);
             GameManager.Instance.DestroyObject(gameObject);
+            
+                
         }
 
         protected void Drop()
