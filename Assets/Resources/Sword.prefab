@@ -55,6 +55,7 @@ MonoBehaviour:
   PhotonOwnerId: 0
   Dammage: 2
   isAttacking: 0
+  Range: 0
   cooldown: 0.5
   angle: 180
 --- !u!212 &2301505430143218719
