@@ -28,8 +28,7 @@ namespace RogueCaml
         private Vector2 direction = new Vector2(0f, 0f);
 
 
-        [SerializeField]
-        private float cooldown;
+        
 
         [SerializeField]
         private float angle;

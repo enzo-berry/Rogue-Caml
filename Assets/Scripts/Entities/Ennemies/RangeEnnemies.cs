@@ -10,27 +10,22 @@ using UnityEngine;
 
 namespace RogueCaml
 {
-    //public class RangeEnnemies : EnnemiesManager
-    //{
-    //    private float securityRange;
-    //    //pour ajouter un peu de random pour le deplacement
+    public class RangeEnnemies : EnnemiesManager
+    {
+        void Start()
+        {
+            setTarget();
+            if(photonView.IsMine)
+            {
+                weaponPhotonId = PhotonNetwork.Instantiate(WeaponPrefab.name, Vector3.zero, quaternion.identity)
+                    .GetPhotonView().ViewID;
 
-    //    // Start is called before the first frame update
-    //    void Start()
-    //    {
-    //        setTarget();
-    //        if(photonView.IsMine)
-    //        {
-                
-    //            //Weapon = PhotonNetwork.Instantiate(WeaponPrefab.name, Vector3.zero, quaternion.identity)
-    //            //    .GetComponent<Weapon>();
-
-    //            //Weapon.coolDown *= (1 + (100 - GameManager.difficulty) / 100);
-    //            //Weapon.Pickup(this.gameObject);
-    //            //range = Weapon.range;
-    //        }
-    //    }
+                weapon.cooldown *= (1 + (100 - GameManager.Difficulty) / 100);
+                Pickup(weaponPhotonId);
+                range = weapon.Range;
+            }
+        }
 
     //    // Update is called once per frame
-    //}
+    }
 }

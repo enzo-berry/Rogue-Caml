@@ -78,6 +78,17 @@ namespace RogueCaml
             {
                 return (characteristics & Characteristics.Enemy) == Characteristics.Enemy;
             }
+            set
+            {
+                if (value)
+                {
+                    characteristics |= Characteristics.Enemy; // Set the Equiped flag
+                }
+                else
+                {
+                    characteristics &= ~Characteristics.Enemy; // Clear the Equiped flag
+                }
+            }
         }
 
         public bool IsPlayer
@@ -85,6 +96,17 @@ namespace RogueCaml
             get
             {
                 return (characteristics & Characteristics.Player) == Characteristics.Player;
+            }
+            set
+            {
+                if (value)
+                {
+                    characteristics |= Characteristics.Player; // Set the Equiped flag
+                }
+                else
+                {
+                    characteristics &= ~Characteristics.Player; // Clear the Equiped flag
+                }
             }
         }
 

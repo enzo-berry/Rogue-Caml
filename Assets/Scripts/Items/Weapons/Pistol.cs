@@ -11,13 +11,15 @@ namespace RogueCaml
     {
         public GameObject ProjectilePrefab;
         
-        public float cooldown;
+        
         private int timeSinceLastShot = 0;
 
         void Start()
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             characteristics = Characteristics.Weapon;
+
+            Range = ProjectilePrefab.GetComponent<Projectil>().speed * 0.5f;
         }
 
         private void Update()
