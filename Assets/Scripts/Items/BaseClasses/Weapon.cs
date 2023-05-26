@@ -22,6 +22,8 @@ namespace RogueCaml
         
         public abstract int GetDammage();
 
+        public abstract void Stop(); //stop the attack
+
         public new void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
         {
             //PhotonOwnerId is only writable by the owner of the Item.

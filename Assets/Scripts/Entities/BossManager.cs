@@ -75,6 +75,16 @@ namespace RogueCaml
                     //last = Time.time;
                     //int a = 0;
                     //while (Time.time - last < 0.5f) a = 345 * 34567;
+                    float counter = 0;
+                    float waitTime = 4f;
+                    while (counter < waitTime)
+                    {
+                        //Increment Timer until counter >= waitTime
+                        counter += Time.deltaTime;
+                        //Debug.Log("We have waited for: " + counter + " seconds");
+                        //Wait for a frame so that Unity doesn't freeze
+                        //Check if we want to quit this function
+                    }
 
                 }
                 v = p * v;
@@ -95,6 +105,16 @@ namespace RogueCaml
                 v = q * v;
                     
                 
+            }
+        }
+
+        public override void Kill()
+        {
+            if (IsMine)
+            {
+                GameManager.Instance.DestroyObject(this._pistol.gameObject);
+            
+                GameManager.Instance.DestroyObject(this.gameObject);
             }
         }
     }

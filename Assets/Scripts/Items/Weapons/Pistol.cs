@@ -27,6 +27,7 @@ namespace RogueCaml
                 //teleport to owner
                 transform.position = Owner.transform.position;
             }
+            
 
 
             if (IsEquiped)
@@ -37,6 +38,14 @@ namespace RogueCaml
             {
                 spriteRenderer.enabled = true;
             }
+        }
+
+        public override void Stop()
+        {
+            isAttacking = false;
+            BlockProjectils = false;
+            //reset rotation
+            transform.right = Vector3.right;
         }
 
         private void FixedUpdate()

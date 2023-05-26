@@ -31,7 +31,6 @@ namespace RogueCaml
         public Weapon weapon{ 
             get 
             {
-                
                 if (weaponPhotonId == 0)
                 {
                     return null;
@@ -58,6 +57,7 @@ namespace RogueCaml
                 stream.SendNext(movement);
                 stream.SendNext(IsAlive);
                 stream.SendNext(weaponPhotonId);
+                stream.SendNext(BonusDammage);
             }
             else
             {
@@ -68,6 +68,7 @@ namespace RogueCaml
                 movement = (Vector2)stream.ReceiveNext();
                 IsAlive = (bool)stream.ReceiveNext();
                 weaponPhotonId = (int)stream.ReceiveNext();
+                BonusDammage = (int)stream.ReceiveNext();
             }
 
             //Syncing characteristics
@@ -103,10 +104,7 @@ namespace RogueCaml
                 //Order of declaration is important since weapon getter uses weaponPhotonId.
                 if (weapon)
                 {
-                    weapon.IsEquiped = false;
-                    weapon.IsOnPlayerTeam = false;
-                
-                    SceneManager.MoveGameObjectToScene(weapon.gameObject, SceneManager.GetActiveScene());
+                    Drop();
                 }
             
             
@@ -131,7 +129,7 @@ namespace RogueCaml
             }
         }
 
-        void Kill()
+        public virtual void Kill()
         {
             GameManager.Instance.DestroyObject(gameObject);
         }
@@ -139,16 +137,15 @@ namespace RogueCaml
         protected void Drop()
         {
             SceneManager.MoveGameObjectToScene(weapon.gameObject, SceneManager.GetActiveScene());
-            if (!weapon.isAttacking)
-            {
-                //Order is important since weapon getter uses weaponPhotonId.
-                weapon.IsEquiped = false;
-                weapon.IsOnPlayerTeam = false;//Either one or the other, so just change it.
+            
+            //Order is important since weapon getter uses weaponPhotonId.
+            weapon.IsEquiped = false;
+            weapon.IsOnPlayerTeam = false;//Either one or the other, so just change it.
 
-                weapon.PhotonOwnerId = 0;
-                weaponPhotonId = 0;
-            }
+            weapon.Stop();
 
+            weapon.PhotonOwnerId = 0;
+            weaponPhotonId = 0;
         }
 
         public void TakeDammage(int amount)

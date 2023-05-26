@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using System;
-
+using System.Diagnostics;
 using Photon.Pun;
 using Photon.Realtime;
 using UnityEngine.UIElements;
 using Unity.VisualScripting;
+using Debug = UnityEngine.Debug;
 
 
 /*ToRecode:
@@ -78,13 +79,18 @@ namespace RogueCaml
                 }
                 else
                 {
-                    isAttacking = false;
-                    BlockProjectils = false;
-                    //reset rotation
-                    transform.right = Vector3.right;
+                    Stop();
                 }
                 
             }
+        }
+
+        public override void Stop()
+        {
+            isAttacking = false;
+            BlockProjectils = false;
+            //reset rotation
+            transform.right = Vector3.right;
         }
 
         public override void Attack(Vector2 direction)
