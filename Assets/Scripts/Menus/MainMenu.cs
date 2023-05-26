@@ -10,7 +10,6 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviourPunCallbacks
 {
-    public GameManager gameManager;
     public TMP_InputField inputField;
     public Button playButton;
 
@@ -29,13 +28,13 @@ public class MainMenu : MonoBehaviourPunCallbacks
         {
             Debug.Log($"Connect process for {pseudo}");
             playButton.interactable = false;
-            gameManager.ConnectPlayer(pseudo, "default");
+            NetworkManager.Instance.ConnectPlayer(pseudo, "default");
         }
     }
 
     public void ExitButtonHandler()
     {
-        gameManager.QuitGame();
+        GameManager.Instance.QuitGame();
     }
 
 }

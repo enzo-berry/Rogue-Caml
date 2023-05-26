@@ -33,9 +33,7 @@ namespace RogueCaml
         public static Dictionary<string, KeyCode> keybinds = new Dictionary<string, KeyCode>();
 
         //objects
-        public static GameManager Instance { get; private set; }
-        public GameObject playerPrefab;
-
+        public static GameManager Instance { get; set; }
 
         //making GameManeger permanenent between scenes
         private void Awake()
@@ -64,82 +62,123 @@ namespace RogueCaml
             keybinds.Add("drop", KeyCode.A);
             keybinds.Add("interact", KeyCode.E);
 
-            ConnectoToPhoton();
         }
 
-        #region Photon Callbacks
+        #region GameFunctions
 
-        //When connected to server
-        public override void OnConnectedToMaster()
+        /// <summary>
+        /// Teleports all players to new room.
+        /// CAN ONLY BE CALLED BY MASTER CLIENT !
+        /// </summary>
+        /// <param name="roomname">The room to teleport.</param>
+        /// <returns>true if called by MasterClient, false if not</returns>
+        private bool SwitchRoom(string roomname)
         {
-            Debug.Log("Connected to Master");
-            MainMenu.Instance.playButton.interactable = true;
-        }
-
-        public override void OnJoinedRoom()
-        {
-            //If not master player will automaticly join scene because of AutomaticallySyncScene bool.
             if (PhotonNetwork.IsMasterClient)
             {
-                PhotonNetwork.LoadLevel("waiting_scene");
-                PlayMusic(Level);
+                PhotonNetwork.LoadLevel(roomname);
+                //fetch all players scripts
+                PlayerManager[] players = FindObjectsOfType<PlayerManager>();
+
+                //send them an RPC to teleport them to the new room
+                foreach (PlayerManager player in players)
+                {
+                    //Cleans ObjectsInContact with each player
+                    player.photonView.RPC("ClearObjectsInContact", RpcTarget.All);
+                }
+
             }
-            PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);            
+
+            return false;
         }
 
-        public override void OnLeftRoom()
+        /// <summary>
+        /// Can only be called by Master, in a Transition script normally.
+        /// </summary>
+        /// <returns></returns>
+        public bool NextLevel()
         {
-            PhotonNetwork.Disconnect();
+            Level++;
+            PlayMusic();
+            SyncStats();
+            return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{Level}");
         }
 
-        public override void OnDisconnected(DisconnectCause cause)
+        public void StartGame()
         {
-            Debug.Log("Disconnected from server for reason: " + cause.ToString());
-            SceneManager.LoadScene("MainMenu");
-            Level = 0;
-            PlayMusic(Level);
-            ConnectoToPhoton();
+            if (PhotonNetwork.IsMasterClient)
+            {
+                PhotonNetwork.CurrentRoom.IsOpen = false;
+                PhotonNetwork.CurrentRoom.IsVisible = false;
+                NextLevel();
+            }
         }
 
-        public override void OnMasterClientSwitched(Player newMasterClient)
+        public void QuitGame()
         {
-            PhotonNetwork.LeaveRoom();
-        }
-
-        public override void OnJoinRoomFailed(short returnCode, string message)
-        {
-            Debug.Log("Failed to Join Room: " + message);
+            NetworkManager.Instance.LeaveRoom();
+            Application.Quit();
         }
 
         #endregion
 
 
-        #region Public Methods
-        public void QuitGame()
-        {
-            PhotonNetwork.Disconnect();
-            Application.Quit();
-        }
-
-        public void LeaveRoom()
-        {
-            Debug.Log("Leaving room.");
-            PhotonNetwork.LeaveRoom();
-        }
-
-        public void ConnectPlayer(string pseudo, string roomGame)
-        {
-            PhotonNetwork.NickName = pseudo == null ? "Player" : pseudo;
-            Debug.Log($"Connecting to room {roomGame} with pseudo {PhotonNetwork.NickName}");
-            PhotonNetwork.JoinOrCreateRoom(roomGame, new RoomOptions() { MaxPlayers = 4 }, TypedLobby.Default);
-        }
+        #region AudioManager
 
         /// <summary>
-        /// Delets a gameobject from the network.
-        /// This method sends a RPC the GameObject owner in order to delete it.
+        /// Starts the music when the client master changes scene
+        /// Call at each scene change
         /// </summary>
-        /// <param name="go">The GameObject to destroy, will be casted to a PhotonView.</param>
-        /// <returns>true if success, false if not</returns>
+        /// <returns>void - juste change played the correct song</returns>
+        public void PlayMusic()
+        {
+            // The music played on the previous configuration will not be stopped.
+            // This must be managed at the time of the scene change (actual status : not managed)
+            switch (Level)
+            {
+                case 1:
+                    firstLevel.Play();
+                    break;
+                case 2 :
+                    secondLevel.Play();
+                    break;
+                case 3 :
+                    thirdLevel.Play();
+                    break;
+                default:
+                    Debug.Log("No music played in this configuration!");
+                    break;
+            }
+        }
+
+
+        /// <summary>
+        /// Starts the music when the client master changes scene (previous configuration)
+        /// CALLED WHEN ROOM CHANGED OR MASTER CLIENT DISCONNECT
+        /// </summary>
+        /// <returns>void - juste change stopped the correct song</returns>
+        public void StopMusic()
+        {
+            switch (Level)
+            {
+                case 0:
+                    waitRoom.Stop();
+                    break;
+                case 1:
+                    firstLevel.Stop();
+                    break;
+                case 2:
+                    secondLevel.Stop();
+                    break;
+                default:
+                    Debug.Log("No music stop in this configuration!");
+                    break;
+            }
+        }
+
+        #endregion
+
+        //To Delete, after reflection, is useless, waiting all merges to do so.
         public bool DestroyObject(GameObject go)
         {
             PhotonView pv = go.GetComponent<PhotonView>();
@@ -157,142 +196,19 @@ namespace RogueCaml
             }
 
 
-
-            photonView.RPC("DestroyObjectRPC", pv.Owner, pv.ViewID);
+            NetworkManager.Instance.photonView.RPC("DestroyObjectRPC", pv.Owner, pv.ViewID);
             return true;
         }
 
-        [PunRPC]
-        private void DestroyObjectRPC(int viewID)
-        {
-            PhotonView targetPhotonView = PhotonView.Find(viewID);
-            if (targetPhotonView != null)
-            {
-                PhotonNetwork.Destroy(targetPhotonView);
-            }
-        }
-
-        #endregion
-
-        #region GameFunctions
-
         /// <summary>
-        /// Teleports all players to new room.
-        /// CAN ONLY BE CALLED BY MASTER CLIENT !
+        /// Wrapper of the RPC, is only called by the master client, for the other players to sync their stats.
         /// </summary>
-        /// <param name="roomname">The room to teleport.</param>
-        /// <returns>true if called by MasterClient, false if not</returns>
-        public bool SwitchRoom(string roomname)
+        public void SyncStats()
         {
-            if (PhotonNetwork.IsMasterClient){
-                PhotonNetwork.LoadLevel(roomname);
-                //fetch all players scripts
-                PlayerManager[] players = FindObjectsOfType<PlayerManager>();
 
-                //send them an RPC to teleport them to the new room
-                foreach (PlayerManager player in players)
-                {
-                    //Cleans ObjectsInContact with each player
-                    player.photonView.RPC("ClearObjectsInContact", RpcTarget.All);
-                }
-
-            }
-
-            return false;
+            //Send struct to all players
+            NetworkManager.Instance.photonView.RPC("SyncStatsRPC", RpcTarget.OthersBuffered, Level,Difficulty,FriendlyFire);
         }
-
-        public bool NextLevel()
-        {
-            Level++;
-            PlayMusic(Level);
-            return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{Level}");
-        }
-
-        public void StartGame()
-        {
-            if (PhotonNetwork.IsMasterClient)
-            {
-                PhotonNetwork.CurrentRoom.IsOpen = false;
-                PhotonNetwork.CurrentRoom.IsVisible = false;
-                NextLevel();
-            }
-        }
-
-        #endregion
-
-
-        #region AudioManager
-        
-        /// <summary>
-        /// Starts the music when the client master changes scene
-        /// CALL AT EACH SCENE CHANGE OF THE MASTER CLIENT ONLY
-        /// </summary>
-        /// <param name="currentLevel">the current value of level</param>
-        /// <returns>void - juste change played the correct song</returns>
-        private void PlayMusic(int currentLevel)
-        {
-            // The music played on the previous configuration will not be stopped.
-            // This must be managed at the time of the scene change (actual status : not managed)
-            switch (currentLevel)
-            {
-                case 1:
-                    firstLevel.Play();
-                    break;
-                case 2 :
-                    secondLevel.Play();
-                    break;
-                case 3 :
-                    thirdLevel.Play();
-                    break;
-                default:
-                    Debug.Log("No music played in this configuration!");
-                    break;
-            }
-        }
-
-        
-        /// <summary>
-        /// Starts the music when the client master changes scene (previous configuration)
-        /// CALLED WHEN ROOM CHANGED OR MASTER CLIENT DISCONNECT
-        /// </summary>
-        /// <param name="previousLevel">The value of the previous level attribute</param>
-        /// <returns>void - juste change stopped the correct song</returns>
-        private void StopMusic(int previousLevel)
-        {
-            switch (previousLevel)
-            {
-                case 0:
-                    waitRoom.Stop();
-                    break;
-                case 1:
-                    firstLevel.Stop();
-                    break;
-                case 2:
-                    secondLevel.Stop();
-                    break;
-                default:
-                    Debug.Log("No music stop in this configuration!");
-                    break;
-            }
-        }
-        
-        
-        #endregion
-        
-        #region Private Methods
-
-        void ConnectoToPhoton()
-        {
-            //If we are not connected to server. Server != Rooms.
-            if (!PhotonNetwork.IsConnected)
-            {
-                PhotonNetwork.ConnectUsingSettings();
-                PhotonNetwork.AutomaticallySyncScene = true;
-            }
-        }
-
-        #endregion
-
 
 
     }
