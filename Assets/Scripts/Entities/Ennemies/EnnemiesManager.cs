@@ -34,13 +34,13 @@ namespace RogueCaml
         // Start is called before the first frame update
         void Start()
         {
+            collisionDammage = 1;
             setTarget();
             SetDirection();
         }
         
         
 
-        
         void FixedUpdate()
         {
             waiting++;

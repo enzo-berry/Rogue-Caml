@@ -14,6 +14,7 @@ namespace RogueCaml
         public int moveSpeed = 5;
         public int attackSpeed = 1;
         public int BonusDammage = 0;
+        public int collisionDammage = 1;
 
         public bool IsAlive; //NonSerialazed means it won't be accesible in the inspector.
         [NonSerialized] public Vector2 movement; //A vector2 to store the movement of the player. is used in Update method.
@@ -43,6 +44,14 @@ namespace RogueCaml
             }
         }
 
+        public int CollisionDammage
+        {
+            get
+            {
+                return collisionDammage + BonusDammage;
+            }
+        }
+
         protected Rigidbody2D rb;
 
         public new void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -58,6 +67,7 @@ namespace RogueCaml
                 stream.SendNext(IsAlive);
                 stream.SendNext(weaponPhotonId);
                 stream.SendNext(BonusDammage);
+                stream.SendNext(collisionDammage);
             }
             else
             {
@@ -68,7 +78,8 @@ namespace RogueCaml
                 movement = (Vector2)stream.ReceiveNext();
                 IsAlive = (bool)stream.ReceiveNext();
                 weaponPhotonId = (int)stream.ReceiveNext();
-                BonusDammage = (int)stream.ReceiveNext();
+                BonusDammage = (int)stream.ReceiveNext(); 
+                collisionDammage = (int)stream.ReceiveNext();
             }
 
             //Syncing characteristics
@@ -160,42 +171,46 @@ namespace RogueCaml
             ObjectCharacteristics objectCharacteristics = collisionGameObject.GetComponent<ObjectCharacteristics>();
 
             //damaging
-            if (objectCharacteristics != null)
+            if (objectCharacteristics != null && 
+                (GameManager.FriendlyFire || //si friendly fire alors oui sinon 
+                 (objectCharacteristics.IsEnemy && IsPlayer) || // je suis un joeur et c'est un ennemy
+                 (objectCharacteristics.IsPlayer && IsEnemy)))
             {
-                // ou c'est un ennemy et je suis un joueur
-                  if (objectCharacteristics.IsProjectil) //regarde si c'est un projectile
-                  {
-                      Debug.Log($"Projectil entered {gameObject.name}");
+                if (objectCharacteristics.IsProjectil) //regarde si c'est un projectile
+                {
+                    Debug.Log($"Projectil entered {gameObject.name}");
 
-                      Projectil projectil = collisionGameObject.GetComponent<Projectil>();
+                    Projectil projectil = collisionGameObject.GetComponent<Projectil>();
                       
-                      if ((GameManager.FriendlyFire || //si friendly fire alors oui sinon 
-                           (projectil.IsEnemy && IsPlayer) || // je suis un joeur et c'est un ennemy
-                           (projectil.IsPlayer && IsEnemy)))
-                      {
-                          TakeDammage(projectil.dammage);
-                          GameManager.Instance.DestroyObject(collisionGameObject);
-                      }
-                  }
+                    if ((GameManager.FriendlyFire || //si friendly fire alors oui sinon 
+                         (projectil.IsEnemy && IsPlayer) || // je suis un joeur et c'est un ennemy
+                         (projectil.IsPlayer && IsEnemy)))
+                    {
+                        TakeDammage(projectil.dammage);
+                        GameManager.Instance.DestroyObject(collisionGameObject);
+                    }
+                }
 
-                  if (objectCharacteristics.IsWeapon && objectCharacteristics.IsEquiped)
-                  {
-                      Debug.Log($"{gameObject.name} got hit by a weapon");
+                if (objectCharacteristics.IsWeapon && objectCharacteristics.IsEquiped)
+                {
+                    Debug.Log($"{gameObject.name} got hit by a weapon");
 
-                      Weapon weapon = collisionGameObject.GetComponent<Weapon>();
+                    Weapon weapon = collisionGameObject.GetComponent<Weapon>();
 
-                      if (weapon != null && weapon.PhotonOwnerId != photonView.ViewID)
-                      {
-                          TakeDammage(weapon.Dammage);
-                      }
+                    if (weapon != null && weapon.PhotonOwnerId != photonView.ViewID)
+                    {
+                        TakeDammage(weapon.Dammage);
+                    }
 
-                  }
+                }
+
+                if (objectCharacteristics.IsEntity)
+                {
+                    Entity entity = (Entity)objectCharacteristics;
                     
-                    
-                
-                    
+                    TakeDammage(entity.CollisionDammage);
+                }
             }
         }
-
     }
 }
