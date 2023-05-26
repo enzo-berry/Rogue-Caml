@@ -14,9 +14,10 @@ namespace RogueCaml
     {
         void Start()
         {
-            setTarget();
+            
             if(photonView.IsMine)
             {
+                setTarget();
                 weaponPhotonId = PhotonNetwork.Instantiate(WeaponPrefab.name, Vector3.zero, quaternion.identity)
                     .GetPhotonView().ViewID;
 

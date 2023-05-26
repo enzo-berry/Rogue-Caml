@@ -16,6 +16,7 @@ namespace RogueCaml
     {
         //Incomprehensible X)
 
+        [SerializeField]
         protected float range;
         [FormerlySerializedAs("target")] 
         public GameObject Target;
