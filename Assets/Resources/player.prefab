@@ -66,6 +66,7 @@ MonoBehaviour:
   IsAlive: 1
   weaponPhotonId: 0
   CameraObj: {fileID: 6930754821850059499}
+  computer: {fileID: 3582383605393781203, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
 --- !u!212 &6340805809113597238
 SpriteRenderer:
   m_ObjectHideFlags: 0

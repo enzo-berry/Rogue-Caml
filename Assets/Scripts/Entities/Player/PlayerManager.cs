@@ -15,6 +15,7 @@ namespace RogueCaml
         [HideInInspector]
         public static GameObject OwnedPlayerInstance;
         public GameObject CameraObj;
+        public GameObject computer;
 
         private Camera cam => CameraObj.GetComponent<Camera>(); 
         private List<Collider2D> objectsInContactWithPlayer = new List<Collider2D>();
@@ -105,13 +106,7 @@ namespace RogueCaml
                 //send PlayerAttack RPC to all players
                 PlayerAttack();
             }
-            
-            if (Input.GetKeyDown(GameManager.keybinds["interact"]))
-            {
-                Debug.Log("Non-implemented interaction");
-                //Non-implemented interaction --> fix : Sacha
-            }
-            
+
         }
 
         #endregion
