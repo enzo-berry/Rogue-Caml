@@ -15,6 +15,7 @@ namespace RogueCaml
         [HideInInspector]
         public static GameObject OwnedPlayerInstance;
         public GameObject CameraObj;
+        public GameObject computer;
 
         private Camera cam => CameraObj.GetComponent<Camera>(); 
         private List<Collider2D> objectsInContactWithPlayer = new List<Collider2D>();
@@ -69,6 +70,9 @@ namespace RogueCaml
             }
         }
 
+        
+        
+        
         void ProcessInputs()
         {
             //Using Axis, because it's easier to change controls in InputManager.
@@ -102,6 +106,7 @@ namespace RogueCaml
                 //send PlayerAttack RPC to all players
                 PlayerAttack();
             }
+
         }
 
         #endregion
