@@ -7,7 +7,6 @@ namespace RogueCaml
     public class LauncherScript : MonoBehaviour
     {
 
-        public GameManager gameManager;
         public TMP_InputField pseudoField;
         public TMP_InputField roomField;
         public Button[] processButtons;
@@ -24,7 +23,7 @@ namespace RogueCaml
             }
             
             if (roomField.text == "") Debug.Log("Please enter valid room name!");
-            else gameManager.ConnectPlayer(pseudoField, roomField.text);
+            else NetworkManager.Instance.ConnectPlayer(pseudoField, roomField.text);
         }
 
         public void randomHandler()
@@ -37,7 +36,7 @@ namespace RogueCaml
             {
                 b.interactable = false;
             }
-            gameManager.ConnectPlayer(pseudoField, "default");
+            NetworkManager.Instance.ConnectPlayer(pseudoField, "default");
         }
     }
 }
