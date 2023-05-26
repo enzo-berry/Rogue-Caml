@@ -86,7 +86,6 @@ namespace RogueCaml
             if (PhotonNetwork.IsMasterClient)
             {
                 PhotonNetwork.LoadLevel("waiting_scene");
-                GameManager.Instance.PlayMusic();
             }
             PhotonNetwork.Instantiate(PlayerPrefab.name, Vector3.zero, Quaternion.identity);
         }
@@ -100,9 +99,7 @@ namespace RogueCaml
         {
             Debug.Log("Disconnected from server for reason: " + cause.ToString());
             SceneManager.LoadScene("MainMenu");
-            GameManager.Instance.StopMusic();
             GameManager.Level = 0;
-            GameManager.Instance.PlayMusic();
             ConnectoToPhoton();
         }
 
