@@ -38,12 +38,25 @@ public class Computer : ObjectCharacteristics
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("cda")) isInRange = true;
+        Debug.Log("Enter the fields");
+        GameObject obj = other.gameObject;
+        ObjectCharacteristics x = obj. GetComponent<ObjectCharacteristics>();
+        if (x.IsPlayer) 
+        { 
+            isInRange= true;
+        }
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.CompareTag("cda")) isInRange = false;
+        Debug.Log("Exit the fields");
+        Debug.Log("Enter the fields");
+        GameObject obj = other.gameObject;
+        ObjectCharacteristics x = obj.GetComponent<ObjectCharacteristics>();
+        if (x.IsPlayer)
+        {
+            isInRange = false;
+        }
     }
 
 
