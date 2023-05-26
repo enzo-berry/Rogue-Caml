@@ -69,6 +69,9 @@ namespace RogueCaml
             }
         }
 
+        
+        
+        
         void ProcessInputs()
         {
             //Using Axis, because it's easier to change controls in InputManager.
@@ -102,6 +105,13 @@ namespace RogueCaml
                 //send PlayerAttack RPC to all players
                 PlayerAttack();
             }
+            
+            if (Input.GetKeyDown(GameManager.keybinds["interact"]))
+            {
+                Debug.Log("Non-implemented interaction");
+                //Non-implemented interaction --> fix : Sacha
+            }
+            
         }
 
         #endregion
