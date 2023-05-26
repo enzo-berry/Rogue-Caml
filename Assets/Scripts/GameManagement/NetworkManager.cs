@@ -16,17 +16,17 @@ namespace RogueCaml
         public GameObject PlayerPrefab;
         public static NetworkManager Instance;
 
+        //Create a PhotonDuplicateView, dont now how to fix X(, but works good.
         private void Awake()
         {
-            if (Instance == null)
+
+            if (Instance != null)
             {
-                Instance = this;
-                DontDestroyOnLoad(gameObject);
+                PhotonNetwork.Destroy(Instance.gameObject);
             }
-            else
-            {
-                Destroy(gameObject);
-            }
+
+            Instance = this; 
+            DontDestroyOnLoad(gameObject);
         }
 
         void Start()
@@ -77,7 +77,7 @@ namespace RogueCaml
         public override void OnConnectedToMaster()
         {
             Debug.Log("Connected to Master");
-            MainMenu.Instance.playButton.interactable = true;
+            MainMenu.Instance.EnablePlayButton();
         }
 
         public override void OnJoinedRoom()

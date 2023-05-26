@@ -19,8 +19,8 @@ public class LevelManager : MonoBehaviour
             Sword sword = PhotonNetwork.Instantiate("Sword", new Vector3(5, 0, 0), Quaternion.identity).GetComponent<Sword>();
         }
         
-        GameObject.Find("InteractPanel").SetActive(false);
-        GameObject.Find("InfoPanel").SetActive(false);
+        //GameObject.Find("InteractPanel").SetActive(false);
+        //GameObject.Find("InfoPanel").SetActive(false);
 
     }
 

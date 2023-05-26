@@ -44,7 +44,9 @@ namespace RogueCaml
             if (Instance == null)
             {
                 Instance = this;
-                MainMenu.Instance.playButton.interactable = false;
+                //getting mainmenu
+
+                MainMenu.Instance.DisablePlayButton();
                 DontDestroyOnLoad(gameObject);
             }//If try to get loaded again.
             else

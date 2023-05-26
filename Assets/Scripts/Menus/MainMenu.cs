@@ -11,7 +11,9 @@ using UnityEngine.UI;
 public class MainMenu : MonoBehaviourPunCallbacks
 {
     public TMP_InputField inputField;
-    public Button playButton;
+
+    [SerializeField]
+    private Button playButton;
 
     static public MainMenu Instance;
 
@@ -27,7 +29,7 @@ public class MainMenu : MonoBehaviourPunCallbacks
         else
         {
             Debug.Log($"Connect process for {pseudo}");
-            playButton.interactable = false;
+            DisablePlayButton();
             NetworkManager.Instance.ConnectPlayer(pseudo, "default");
         }
     }
@@ -37,4 +39,13 @@ public class MainMenu : MonoBehaviourPunCallbacks
         GameManager.Instance.QuitGame();
     }
 
+    public void EnablePlayButton()
+    {
+        playButton.interactable = true;
+    }
+
+    public void DisablePlayButton()
+    {
+        playButton.interactable = false;
+    }
 }

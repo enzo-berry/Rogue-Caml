@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2206371597328265549}
   - component: {fileID: 2206371597328265548}
-  - component: {fileID: 2206371597328265547}
+  - component: {fileID: 312814932455985313}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerPrefab: {fileID: 6340805809113597259, guid: a2e44bbe172c54847aa4bd6b28348f39, type: 3}
---- !u!114 &2206371597328265547
+--- !u!114 &312814932455985313
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

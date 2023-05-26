@@ -19,21 +19,21 @@ public class Computer : ObjectCharacteristics
     // Start is called before the first frame update
     void Start()
     {
-        audioData = GetComponent<AudioSource>();
-        interactPanel.SetActive(false);
-        infoPanel.SetActive(false);
+        //audioData = GetComponent<AudioSource>();
+        //interactPanel.SetActive(false);
+        //infoPanel.SetActive(false);
     }
 
     private void Update()
     {
-        if (isInRange && !isActive)
-        {
-            interactPanel.SetActive(true);
-        }
-        else
-        {
-            interactPanel.SetActive(false);
-        }
+        //if (isInRange && !isActive)
+        //{
+        //    interactPanel.SetActive(true);
+        //}
+        //else
+        //{
+        //    interactPanel.SetActive(false);
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
