@@ -50,7 +50,6 @@ public class Computer : ObjectCharacteristics
     private void OnTriggerExit(Collider other)
     {
         Debug.Log("Exit the fields");
-        Debug.Log("Enter the fields");
         GameObject obj = other.gameObject;
         ObjectCharacteristics x = obj.GetComponent<ObjectCharacteristics>();
         if (x.IsPlayer)
