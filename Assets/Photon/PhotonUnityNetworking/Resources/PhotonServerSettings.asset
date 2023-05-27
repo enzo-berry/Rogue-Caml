@@ -52,6 +52,7 @@ MonoBehaviour:
   - ChatMessage
   - ClearObjectsInContact
   - SyncStatsRPC
+  - NextLevelRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

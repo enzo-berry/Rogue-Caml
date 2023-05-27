@@ -58,10 +58,11 @@ namespace RogueCaml
             Equiped =         0b0000000000010000,
             Weapon =          0b0000000000100000,
             Projectil =       0b0000000001000000,
+            Piece =           0b0000000010000000,
 
-            PlayerTeam =      0b0000000010000000,
+            PlayerTeam =      0b0000000100000000,
             
-            BlockProjectils = 0b0000000100000000
+            BlockProjectils = 0b0000001000000000
         }
 
         public bool IsEntity
@@ -192,6 +193,14 @@ namespace RogueCaml
                 {
                     characteristics &= ~Characteristics.BlockProjectils; // Clear the BlockProjectils flag
                 }
+            }
+        }
+
+        public bool IsPiece
+        {
+            get
+            {
+                return (characteristics & Characteristics.Piece) == Characteristics.Piece;
             }
         }
 

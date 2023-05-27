@@ -76,7 +76,7 @@ namespace RogueCaml
         /// </summary>
         /// <param name="roomname">The room to teleport.</param>
         /// <returns>true if called by MasterClient, false if not</returns>
-        private bool SwitchRoom(string roomname)
+        public bool SwitchRoom(string roomname)
         {
             if (PhotonNetwork.IsMasterClient)
             {
@@ -97,14 +97,13 @@ namespace RogueCaml
         }
 
         /// <summary>
-        /// Can only be called by Master, in a Transition script normally.
+        /// Can be called by anybody, is a wrapper of a RPC sent to master
         /// </summary>
         /// <returns></returns>
-        public bool NextLevel()
+        public void NextLevel()
         {
-            Level++;
-            SyncStats();
-            return PhotonNetwork.IsMasterClient && SwitchRoom($"level_{Level}");
+            //call rpc
+            NetworkManager.Instance.photonView.RPC("NextLevelRPC", RpcTarget.MasterClient);
         }
 
         public void StartGame()
@@ -127,7 +126,7 @@ namespace RogueCaml
         {
             if (NetworkManager.Instance == null)
             {
-                Debug.Log("Network manager must be in each scene !");
+                Debug.LogError("Network manager must be in each scene !");
             }
         }
         #endregion

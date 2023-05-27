@@ -130,6 +130,14 @@ namespace RogueCaml
             GameManager.FriendlyFire = friendlyFire;
         }
 
+        [PunRPC]
+        private void NextLevelRPC()
+        {
+            GameManager.Level++;
+            GameManager.Instance.SyncStats();
+            GameManager.Instance.SwitchRoom($"level_{GameManager.Level}");
+        }
+
         #endregion
 
     }

@@ -170,15 +170,16 @@ namespace RogueCaml
             Debug.Log("Entity took " + amount.ToString() + " damage");
             Health -= amount;
         }
-        
-        
+
+
         protected void CollisionManager(GameObject collisionGameObject)
         {
             ObjectCharacteristics objectCharacteristics = collisionGameObject.GetComponent<ObjectCharacteristics>();
+            if (objectCharacteristics == null)
+                return;
 
             //damaging
-            if (objectCharacteristics != null && 
-                (GameManager.FriendlyFire || //si friendly fire alors oui sinon 
+            if ((GameManager.FriendlyFire || //si friendly fire alors oui sinon 
                  (objectCharacteristics.IsEnemy && IsPlayer) || // je suis un joeur et c'est un ennemy
                  (objectCharacteristics.IsPlayer && IsEnemy)))
             {
@@ -187,7 +188,7 @@ namespace RogueCaml
                     Debug.Log($"Projectil entered {gameObject.name}");
 
                     Projectil projectil = collisionGameObject.GetComponent<Projectil>();
-                      
+
                     if ((GameManager.FriendlyFire || //si friendly fire alors oui sinon 
                          (projectil.IsEnemy && IsPlayer) || // je suis un joeur et c'est un ennemy
                          (projectil.IsPlayer && IsEnemy)))
@@ -213,8 +214,18 @@ namespace RogueCaml
                 if (objectCharacteristics.IsEntity)
                 {
                     Entity entity = (Entity)objectCharacteristics;
-                    
+
                     TakeDammage(entity.CollisionDammage);
+                }
+            }
+
+
+            //interactions with items
+            if (objectCharacteristics.IsItem)
+            {
+                if (objectCharacteristics.IsPiece)
+                {
+                    GameManager.Instance.NextLevel();
                 }
             }
         }
