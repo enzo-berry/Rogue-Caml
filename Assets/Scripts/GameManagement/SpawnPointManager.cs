@@ -6,20 +6,16 @@ using UnityEngine;
 
 public class SpawnPointManager : MonoBehaviour
 {
-    private BoxCollider2D bc;
     void Start()
     {
-        if (PhotonNetwork.IsMasterClient)
-        {
+
             // Get all players
-            PlayerManager[] players = FindObjectsOfType<PlayerManager>();
+        PlayerManager[] players = FindObjectsOfType<PlayerManager>();
 
-            foreach (PlayerManager player in players)
-            {
-                // Teleport the player to the random position
+        foreach (PlayerManager player in players)
+        {
+            if (player.GetComponent<PhotonView>().IsMine)
                 player.gameObject.transform.position = gameObject.transform.position;
-            }
-
         }
     }
 }

@@ -221,13 +221,7 @@ namespace RogueCaml
 
 
             //interactions with items
-            if (objectCharacteristics.IsItem)
-            {
-                if (objectCharacteristics.IsPiece)
-                {
-                    GameManager.Instance.NextLevel();
-                }
-            }
+            
         }
     }
 }
