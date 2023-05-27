@@ -19,14 +19,7 @@ namespace RogueCaml
         //Create a PhotonDuplicateView, dont now how to fix X(, but works good.
         private void Awake()
         {
-
-            if (Instance != null)
-            {
-                PhotonNetwork.Destroy(Instance.gameObject);
-            }
-
-            Instance = this; 
-            DontDestroyOnLoad(gameObject);
+            Instance = this;
         }
 
         void Start()

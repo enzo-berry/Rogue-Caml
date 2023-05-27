@@ -45,8 +45,8 @@ namespace RogueCaml
             {
                 Instance = this;
                 //getting mainmenu
-
-                MainMenu.Instance.DisablePlayButton();
+                if (!PhotonNetwork.IsConnectedAndReady)
+                    MainMenu.Instance.DisablePlayButton();
                 DontDestroyOnLoad(gameObject);
             }//If try to get loaded again.
             else
@@ -123,65 +123,72 @@ namespace RogueCaml
             Application.Quit();
         }
 
-        #endregion
-
-/*
-        #region AudioManager
-
-        /// <summary>
-        /// Starts the music when the client master changes scene
-        /// Call at each scene change
-        /// </summary>
-        /// <returns>void - juste change played the correct song</returns>
-        public void PlayMusic()
+        void FixedUpdate()
         {
-            // The music played on the previous configuration will not be stopped.
-            // This must be managed at the time of the scene change (actual status : not managed)
-            switch (Level)
+            if (NetworkManager.Instance == null)
             {
-                case 1:
-                    firstLevel.Play();
-                    break;
-                case 2 :
-                    secondLevel.Play();
-                    break;
-                case 3 :
-                    thirdLevel.Play();
-                    break;
-                default:
-                    Debug.Log("No music played in this configuration!");
-                    break;
+                Debug.Log("Network manager must be in each scene !");
             }
         }
-
-
-        /// <summary>
-        /// Starts the music when the client master changes scene (previous configuration)
-        /// CALLED WHEN ROOM CHANGED OR MASTER CLIENT DISCONNECT
-        /// </summary>
-        /// <returns>void - juste change stopped the correct song</returns>
-        public void StopMusic()
-        {
-            switch (Level)
-            {
-                case 0:
-                    waitRoom.Stop();
-                    break;
-                case 1:
-                    firstLevel.Stop();
-                    break;
-                case 2:
-                    secondLevel.Stop();
-                    break;
-                default:
-                    Debug.Log("No music stop in this configuration!");
-                    break;
-            }
-        }
-
         #endregion
-        
-        */
+
+        /*
+                #region AudioManager
+
+                /// <summary>
+                /// Starts the music when the client master changes scene
+                /// Call at each scene change
+                /// </summary>
+                /// <returns>void - juste change played the correct song</returns>
+                public void PlayMusic()
+                {
+                    // The music played on the previous configuration will not be stopped.
+                    // This must be managed at the time of the scene change (actual status : not managed)
+                    switch (Level)
+                    {
+                        case 1:
+                            firstLevel.Play();
+                            break;
+                        case 2 :
+                            secondLevel.Play();
+                            break;
+                        case 3 :
+                            thirdLevel.Play();
+                            break;
+                        default:
+                            Debug.Log("No music played in this configuration!");
+                            break;
+                    }
+                }
+
+
+                /// <summary>
+                /// Starts the music when the client master changes scene (previous configuration)
+                /// CALLED WHEN ROOM CHANGED OR MASTER CLIENT DISCONNECT
+                /// </summary>
+                /// <returns>void - juste change stopped the correct song</returns>
+                public void StopMusic()
+                {
+                    switch (Level)
+                    {
+                        case 0:
+                            waitRoom.Stop();
+                            break;
+                        case 1:
+                            firstLevel.Stop();
+                            break;
+                        case 2:
+                            secondLevel.Stop();
+                            break;
+                        default:
+                            Debug.Log("No music stop in this configuration!");
+                            break;
+                    }
+                }
+
+                #endregion
+
+                */
 
         //To Delete, after reflection, is useless, waiting all merges to do so.
         public bool DestroyObject(GameObject go)
