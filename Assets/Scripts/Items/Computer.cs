@@ -41,7 +41,7 @@ public class Computer : ObjectCharacteristics
         Debug.Log("Enter the fields");
         GameObject obj = other.gameObject;
         ObjectCharacteristics x = obj. GetComponent<ObjectCharacteristics>();
-        if (x.IsPlayer) 
+        if (x.IsPlayer)
         { 
             isInRange= true;
         }
