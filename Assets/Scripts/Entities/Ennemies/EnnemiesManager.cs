@@ -22,6 +22,7 @@ namespace RogueCaml
         public GameObject Target;
         protected char waiting = '\0';
 
+        
         public MobGenerator mobGenerator;
         
         public Vector2 direction;
@@ -82,7 +83,7 @@ namespace RogueCaml
             
         }
 
-        public virtual void Kill()
+        public override void Kill()
         {
             if(weapon) GameManager.Instance.DestroyObject(this.weapon.gameObject);
             if(mobGenerator) mobGenerator.EnnemyDied();

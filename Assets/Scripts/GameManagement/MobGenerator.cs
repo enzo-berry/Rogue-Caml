@@ -13,6 +13,7 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using ExitGames.Client.Photon;
+using UnityEngine.Serialization;
 
 namespace RogueCaml 
 {
@@ -24,8 +25,11 @@ namespace RogueCaml
         public int ennemies_per_round;
         //public int delta_between_rounds;
         public int nb_rounds;
-        private int count_round;
-        private int countEnnemy;
+        
+        [SerializeField]
+        private int countRound = 0;
+        [SerializeField]
+        private int countEnnemy = 0;
 
         private bool IsActive = false;
 
@@ -52,11 +56,11 @@ namespace RogueCaml
         {
             if (IsActive)
             {
-                if (count_round < nb_rounds && countEnnemy <= 0)
+                if (countRound <= nb_rounds && countEnnemy <= 0)
                 {
                     SpawnVague();
                 }
-                else if (count_round >= nb_rounds)
+                else if (countRound > nb_rounds)
                 {
                     IsActive = false;
                     Lm.Update(Id, 0);
@@ -81,7 +85,7 @@ namespace RogueCaml
 
         private void SpawnVague()
         {
-            count_round++;
+            countRound++;
             //Vector2 size = boxCollider.size;
             countEnnemy = ennemies_per_round;
             for (int j = 0; j < ennemies_per_round; j++)
