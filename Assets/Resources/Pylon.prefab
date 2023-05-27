@@ -143,6 +143,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4289549234568701264}
   - {fileID: 7144148102351395656}
+  - {fileID: 276958771221727841}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -160,7 +161,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters: []
+  m_SynchronizeParameters:
+  - Type: 4
+    SynchronizeType: 0
+    Name: green
+  - Type: 4
+    SynchronizeType: 0
+    Name: blue
+  - Type: 4
+    SynchronizeType: 0
+    Name: red
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
@@ -176,7 +186,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94b7115e3f199149b423a97ab9a391f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Lm: {fileID: 0}
+  Id: 0
   IsActive: 0
+  Animator: {fileID: 8232263145565429462}
 --- !u!50 &1516036036
 Rigidbody2D:
   serializedVersion: 4
