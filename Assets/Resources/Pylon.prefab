@@ -14,10 +14,10 @@ GameObject:
   - component: {fileID: 4289549234568701264}
   - component: {fileID: 5793964442240100328}
   - component: {fileID: 7144148102351395656}
-  - component: {fileID: 1534135005500930702}
   - component: {fileID: 276958771221727841}
   - component: {fileID: 1516036036}
   - component: {fileID: 3050058608513755002}
+  - component: {fileID: 8232263145565429462}
   m_Layer: 0
   m_Name: Pylon
   m_TagString: Untagged
@@ -143,7 +143,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4289549234568701264}
   - {fileID: 7144148102351395656}
-  sceneViewId: 2
+  sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &7144148102351395656
@@ -160,40 +160,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
-  m_SynchronizeParameters:
-  - Type: 4
-    SynchronizeType: 0
-    Name: Red
-  - Type: 4
-    SynchronizeType: 0
-    Name: Green
-  - Type: 4
-    SynchronizeType: 0
-    Name: Blue
+  m_SynchronizeParameters: []
   m_SynchronizeLayers:
   - SynchronizeType: 0
     LayerIndex: 0
---- !u!95 &1534135005500930702
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4508955118620527180}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: c7623ae2a0ea02f49a526cf79a467d3d, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!114 &276958771221727841
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -206,6 +176,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b94b7115e3f199149b423a97ab9a391f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsActive: 0
 --- !u!50 &1516036036
 Rigidbody2D:
   serializedVersion: 4
@@ -253,3 +224,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!95 &8232263145565429462
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4508955118620527180}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 499b060af68937245bca1ecb4e75a014, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
