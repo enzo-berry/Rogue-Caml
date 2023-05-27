@@ -14,10 +14,10 @@ public class PylonScript : Mechanic, IPunObservable
 
     private void OnCollisionEnter2D(Collision2D col)
     {
-        if (photonView.IsMine)
+        if (photonView.IsMine && !IsActive)
         {
             Ball b = col.gameObject.GetComponent<Ball>();
-            if (!IsActive && b != null)
+            if (b != null)
             {
                 switch (b.color)
                 {

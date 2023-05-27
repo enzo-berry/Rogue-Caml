@@ -191,6 +191,7 @@ MonoBehaviour:
   collisionDammage: 1
   IsAlive: 0
   weaponPhotonId: 0
+  range: 0
   Target: {fileID: 0}
   mobGenerator: {fileID: 0}
   direction: {x: 0, y: 0}
