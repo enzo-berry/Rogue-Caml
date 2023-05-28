@@ -184,6 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characteristics: 3
+  MaxHealth: 5
   Health: 5
   moveSpeed: 3
   attackSpeed: 1

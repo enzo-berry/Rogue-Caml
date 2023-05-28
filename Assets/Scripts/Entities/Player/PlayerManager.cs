@@ -22,6 +22,8 @@ namespace RogueCaml
         private Camera cam => CameraObj.GetComponent<Camera>(); 
         private List<Collider2D> objectsInContactWithPlayer = new List<Collider2D>();
 
+        public GameObject UI;
+
         #region Unity Callbacks
 
         //making player object permanent
@@ -31,6 +33,11 @@ namespace RogueCaml
             {
                 //We set instance of LocalPlayer to var.
                 PlayerManager.OwnedPlayerInstance = this.gameObject;
+                Health = MaxHealth;
+            }
+            else
+            {
+                UI.SetActive(false);
             }
             //PlayerGame object won't be destroyed on changing scene.
             DontDestroyOnLoad(this.gameObject);

@@ -9,11 +9,13 @@ namespace RogueCaml
     //Used for Player and Mobs
     public abstract class Entity : ObjectCharacteristics, IPunObservable
     {
-    //Synced in PhotonView
-        public int Health = 5;
+        //Synced in PhotonView
+        public int MaxHealth = 5;
+        public int Health;
         public int moveSpeed = 5;
         public int attackSpeed = 1;
         public int BonusDammage = 0;
+        public int Armor = 0;
         public int collisionDammage = 1;
 
         public bool IsAlive; //NonSerialazed means it won't be accesible in the inspector.
@@ -52,6 +54,11 @@ namespace RogueCaml
             }
         }
 
+        private void Awake()
+        {
+            Health = MaxHealth;
+        }
+
         protected Rigidbody2D rb;
 
         public new void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
@@ -60,6 +67,7 @@ namespace RogueCaml
             if (stream.IsWriting)
             {
                 // We own this player: send the others our data
+                stream.SendNext(MaxHealth);
                 stream.SendNext(Health);
                 stream.SendNext(moveSpeed);
                 stream.SendNext(attackSpeed);
@@ -67,18 +75,21 @@ namespace RogueCaml
                 stream.SendNext(IsAlive);
                 stream.SendNext(weaponPhotonId);
                 stream.SendNext(BonusDammage);
+                stream.SendNext(Armor);
                 stream.SendNext(collisionDammage);
             }
             else
             {
                 // Network player, receive data
+                MaxHealth = (int)stream.ReceiveNext();
                 Health = (int)stream.ReceiveNext();
                 moveSpeed = (int)stream.ReceiveNext();
                 attackSpeed = (int)stream.ReceiveNext();
                 movement = (Vector2)stream.ReceiveNext();
                 IsAlive = (bool)stream.ReceiveNext();
                 weaponPhotonId = (int)stream.ReceiveNext();
-                BonusDammage = (int)stream.ReceiveNext(); 
+                BonusDammage = (int)stream.ReceiveNext();
+                Armor  = (int)stream.ReceiveNext();
                 collisionDammage = (int)stream.ReceiveNext();
             }
 
@@ -165,10 +176,11 @@ namespace RogueCaml
             weaponPhotonId = 0;
         }
 
-        public void TakeDammage(int amount)
+        public virtual void TakeDammage(int amount)
         {
             Debug.Log("Entity took " + amount.ToString() + " damage");
-            Health -= amount;
+            if(Health > 0)
+                Health -= amount;
         }
 
 
