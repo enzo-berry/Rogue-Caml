@@ -31,7 +31,7 @@ Transform:
   m_GameObject: {fileID: 7497693027246719881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -8.509, y: 10.524, z: 0}
-  m_LocalScale: {x: 1.4346, y: 1.2294, z: 1}
+  m_LocalScale: {x: 1.4346, y: 1.8813509, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -131,7 +131,7 @@ MonoBehaviour:
   Id: 0
   IsActive: 1
   _animator: {fileID: 1736459556655534131}
-  _collider: {fileID: 0}
+  _collider: {fileID: 1139818103278890698}
 --- !u!95 &1736459556655534131
 Animator:
   serializedVersion: 5
@@ -142,7 +142,7 @@ Animator:
   m_GameObject: {fileID: 7497693027246719881}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c1e56765983ae29469264cdf3e7d0769, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -168,7 +168,9 @@ MonoBehaviour:
   ShowLayerWeightsInspector: 1
   ShowParameterInspector: 1
   m_SynchronizeParameters: []
-  m_SynchronizeLayers: []
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!114 &7996943755699258525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +191,6 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 7103827504360908251}
-  sceneViewId: 0
+  sceneViewId: 1
   InstantiationId: 0
   isRuntimeInstantiated: 0
