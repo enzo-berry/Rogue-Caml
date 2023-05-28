@@ -6,6 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;
 using Unity.VisualScripting;
 using ExitGames.Client.Photon.StructWrapping;
+using System.Linq;
 
 namespace RogueCaml
 {
@@ -20,7 +21,7 @@ namespace RogueCaml
         public GameObject computer;
 
         private Camera cam => CameraObj.GetComponent<Camera>(); 
-        private List<Collider2D> objectsInContactWithPlayer = new List<Collider2D>();
+        public List<Collider2D> objectsInContactWithPlayer = new List<Collider2D>();
         private SpriteRenderer sr;
         private int counter = 0;
 
@@ -75,6 +76,8 @@ namespace RogueCaml
 
         void FixedUpdate()
         {
+            objectsInContactWithPlayer = objectsInContactWithPlayer.FindAll(a => a != null);
+
             if (counter % 25 == 0)
             {
                 if (IsAlive)
@@ -106,7 +109,7 @@ namespace RogueCaml
             //Pickup item
             if (Input.GetKeyDown(GameManager.keybinds["pickup"]) && !weapon)
             {
-                GameObject ItemToPickup = GetItemInContactWith();
+                GameObject ItemToPickup = GetWeaponInContactWith();
                 objectsInContactWithPlayer.RemoveAll(x => x.gameObject == ItemToPickup);
 
                 if (ItemToPickup == null) return;
@@ -120,14 +123,12 @@ namespace RogueCaml
             //Drop item
             if (Input.GetKeyDown(GameManager.keybinds["drop"]) && weapon)
             {
-                //send PlayerDrop RPC to all players
                 Drop();
             }
 
             //Attack
             if (Input.GetKeyDown(GameManager.keybinds["attack"]) && weapon)
             {
-                //send PlayerAttack RPC to all players
                 PlayerAttack();
             }
 
@@ -135,7 +136,6 @@ namespace RogueCaml
             {
                 HandleInteract();
             }
-
         }
 
         void setSpriteToTransparent()
@@ -178,12 +178,12 @@ namespace RogueCaml
 
         void HandleInteract()
         {
-            
+
             Collider2D[] ColliderThatHaveChar = objectsInContactWithPlayer.FindAll(col => col.gameObject.GetComponent<ObjectCharacteristics>()!=null).ToArray();
 
             if (ColliderThatHaveChar.Length == 0)
                 return;
-
+            
             ObjectCharacteristics objChar  = ColliderThatHaveChar[0].gameObject.GetComponent<ObjectCharacteristics>();
 
             if (objChar.IsInteractble)
@@ -215,7 +215,7 @@ namespace RogueCaml
 
         #endregion
 
-        GameObject GetItemInContactWith()
+        GameObject GetWeaponInContactWith()
         {
             foreach (Collider2D collision in objectsInContactWithPlayer)
             {
@@ -227,6 +227,7 @@ namespace RogueCaml
             }
             return null;
         }
+
 
         //Check when player is in contact with an object
         private void OnTriggerEnter2D(Collider2D collision)

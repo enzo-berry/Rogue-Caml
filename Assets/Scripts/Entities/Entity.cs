@@ -227,6 +227,16 @@ namespace RogueCaml
                     TakeDammage(entity.CollisionDammage);
                 }
             }
+
+            if (objectCharacteristics.IsConsumable)
+            {
+                if (!IsPlayer)
+                    return;
+
+                Consumable consumable = collisionGameObject.GetComponent<Consumable>();
+                consumable.Apply(gameObject.GetComponent<PlayerManager>());
+
+            }
         }
 
         protected void CollisionExitManager(GameObject collisionGameObject)

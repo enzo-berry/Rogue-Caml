@@ -60,11 +60,20 @@ namespace RogueCaml
             Projectil =       0b0000000001000000,
             Piece =           0b0000000010000000,
             PC =              0b0000000100000000,
-            Interactable =   0b0000100000000000,
+            Interactable =    0b0000100000000000,
+            Consumable =      0b0001000000000000,
 
             PlayerTeam =      0b0000001000000000,
             
             BlockProjectils = 0b0000010000000000
+        }
+
+        public bool IsConsumable
+        {
+            get
+            {
+                return (characteristics & Characteristics.Consumable) == Characteristics.Consumable;
+            }
         }
 
         public bool IsInteractble
