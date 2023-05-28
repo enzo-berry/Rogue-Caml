@@ -7,7 +7,7 @@ namespace RogueCaml
     public class Lvl1Manager : LvlMechanique
     {
         // Start is called before the first frame update
-        public override void Update(int Id, int value)
+        public override void UpdateMe(int Id, int value)
         {
             GameManager.Instance.NextLevel();
         }

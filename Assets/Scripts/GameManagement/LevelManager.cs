@@ -13,11 +13,13 @@ public class LevelManager : MonoBehaviour
     {
         if (GameManager.Level == 1 && PhotonNetwork.IsMasterClient)
         {
-            Pistol Pistol1 = PhotonNetwork.Instantiate("Pistol", new Vector3(0, 0, 0), Quaternion.identity).GetComponent<Pistol>();
-            //same for sword
-            Sword sword = PhotonNetwork.Instantiate("Sword", new Vector3(5, 0, 0), Quaternion.identity).GetComponent<Sword>();
+            PhotonNetwork.Instantiate("Pistol", new Vector3(-8, -4, 0), Quaternion.identity);
+            PhotonNetwork.Instantiate("Pistol", new Vector3(8, 4, 0), Quaternion.identity);
+
+            PhotonNetwork.Instantiate("Sword", new Vector3(8, -6, 0), Quaternion.identity);
+            PhotonNetwork.Instantiate("Sword", new Vector3(-8, 6, 0), Quaternion.identity);
         }
-        
+
         //GameObject.Find("InteractPanel").SetActive(false);
         //GameObject.Find("InfoPanel").SetActive(false);
 

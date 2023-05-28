@@ -63,7 +63,7 @@ namespace RogueCaml
                 else if (countRound > nb_rounds)
                 {
                     IsActive = false;
-                    Lm.Update(Id, 0);
+                    Lm.UpdateMe(Id, 0);
                 }
             }
         }

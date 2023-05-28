@@ -6,7 +6,7 @@ namespace RogueCaml
     public abstract class LvlMechanique : MonoBehaviourPunCallbacks
     {
         public Mechanic[] _mechanics;
-        public abstract void Update(int Id, int value);
+        public abstract void UpdateMe(int Id, int value);
         
         void Start()
         {

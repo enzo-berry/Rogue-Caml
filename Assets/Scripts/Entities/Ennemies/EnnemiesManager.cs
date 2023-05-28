@@ -40,8 +40,6 @@ namespace RogueCaml
             SetDirection();
         }
         
-        
-
         void FixedUpdate()
         {
             waiting++;
@@ -51,7 +49,19 @@ namespace RogueCaml
                 setTarget();
             }
 
-           
+            if (Target == null)
+            {
+                if (waiting % 10 == 0)
+                    direction = -direction;
+                transform.position += (Vector3)(moveSpeed * Time.fixedDeltaTime * direction * 0.2f);
+                return;
+            }
+
+            //if player dead call again gettarget
+            if (!Target.GetComponent<PlayerManager>().IsAlive)
+            {
+                setTarget();
+            }
             
             if (weapon)
             {
@@ -65,24 +75,28 @@ namespace RogueCaml
                 SetDirection();
             }
             transform.position += (Vector3)(moveSpeed * Time.fixedDeltaTime * direction);
-            //rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * direction);
         }
 
         protected void setTarget()
         {
             PlayerManager[] players = FindObjectsOfType<PlayerManager>();
+            players = Array.FindAll(players, p => p.IsAlive);
+            bool FoundTarget = false;
+
             double d = 10000000000000;
 
             for (int i = 0; i < players.Length; i++)
             {
                 if (Distance(players[i].transform.position - transform.position) < d)
                 {
+                    FoundTarget = true;
                     Target = players[i].gameObject;
                     d = Distance(Target.transform.position - transform.position);
                 }
             }
 
-            
+            if (!FoundTarget)
+                Target = null;
         }
 
         public override void Kill()

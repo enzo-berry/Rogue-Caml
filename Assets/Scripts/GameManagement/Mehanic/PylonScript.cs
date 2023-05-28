@@ -35,7 +35,7 @@ public class PylonScript : Mechanic, IPunObservable
                 }
 
                 GameManager.Instance.DestroyObject(col.gameObject);
-                Lm.Update(Id, 0);
+                Lm.UpdateMe(Id, 0);
             }
         }
     }

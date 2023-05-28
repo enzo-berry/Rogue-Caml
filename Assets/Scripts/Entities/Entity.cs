@@ -18,7 +18,7 @@ namespace RogueCaml
         public int Armor = 0;
         public int collisionDammage = 1;
 
-        public bool IsAlive; //NonSerialazed means it won't be accesible in the inspector.
+        public bool IsAlive => Health > 0; //NonSerialazed means it won't be accesible in the inspector.
         [NonSerialized] public Vector2 movement; //A vector2 to store the movement of the player. is used in Update method.
 
         public int weaponPhotonId = 0;
@@ -72,7 +72,6 @@ namespace RogueCaml
                 stream.SendNext(moveSpeed);
                 stream.SendNext(attackSpeed);
                 stream.SendNext(movement);
-                stream.SendNext(IsAlive);
                 stream.SendNext(weaponPhotonId);
                 stream.SendNext(BonusDammage);
                 stream.SendNext(Armor);
@@ -86,7 +85,6 @@ namespace RogueCaml
                 moveSpeed = (int)stream.ReceiveNext();
                 attackSpeed = (int)stream.ReceiveNext();
                 movement = (Vector2)stream.ReceiveNext();
-                IsAlive = (bool)stream.ReceiveNext();
                 weaponPhotonId = (int)stream.ReceiveNext();
                 BonusDammage = (int)stream.ReceiveNext();
                 Armor  = (int)stream.ReceiveNext();
@@ -225,6 +223,7 @@ namespace RogueCaml
 
                 if (objectCharacteristics.IsEntity)
                 {
+                    Debug.Log($"{gameObject.name} got hit by a {collisionGameObject.name}");
                     Entity entity = (Entity)objectCharacteristics;
 
                     TakeDammage(entity.CollisionDammage);

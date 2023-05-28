@@ -9,7 +9,7 @@ public class Lvl2manager : LvlMechanique
     // Start is called before the first frame update
     public GameObject ball;
 
-    public override void Update(int Id, int value)
+    public override void UpdateMe(int Id, int value)
     {
         Debug.Log($"mangerActivate by id:{Id}");
         if (photonView.IsMine)

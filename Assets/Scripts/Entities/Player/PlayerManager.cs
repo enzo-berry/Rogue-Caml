@@ -142,7 +142,6 @@ namespace RogueCaml
             {
                 Drop();
             }
-            IsAlive = false;
         }
 
         #region RPC
