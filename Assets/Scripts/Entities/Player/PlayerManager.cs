@@ -11,6 +11,8 @@ namespace RogueCaml
 {
     public class PlayerManager : Entity
     {
+        public static List<Item> Items;
+        
         [Tooltip("The local player instance. Use this to know if the local player is represented in the Scene")]
         [HideInInspector]
         public static GameObject OwnedPlayerInstance;
@@ -136,7 +138,7 @@ namespace RogueCaml
             IsAlive = false;
         }
 
-        #region RPCs
+        #region RPC
 
         [PunRPC]
         void ClearObjectsInContact()

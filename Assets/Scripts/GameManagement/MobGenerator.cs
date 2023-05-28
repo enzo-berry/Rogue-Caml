@@ -13,10 +13,11 @@ using System.Drawing;
 using System.Threading;
 using System.Threading.Tasks;
 using ExitGames.Client.Photon;
+using UnityEngine.Serialization;
 
 namespace RogueCaml 
 {
-    public class MobGenerator : MonoBehaviour
+    public class MobGenerator : Mechanic
     {
         public GameObject[] ennemyPrefab;
 
@@ -24,8 +25,13 @@ namespace RogueCaml
         public int ennemies_per_round;
         //public int delta_between_rounds;
         public int nb_rounds;
-        private int count_round;
-        private int countEnnemy;
+        
+        [SerializeField]
+        private int countRound = 0;
+        [SerializeField]
+        private int countEnnemy = 0;
+
+        private bool IsActive = false;
 
         private BoxCollider2D boxCollider;
 
@@ -42,13 +48,23 @@ namespace RogueCaml
         // Update is called once per frame
         void Update()
         {
-            if (count_round < nb_rounds && countEnnemy <= 0)
+            
+            
+        }
+
+        private void FixedUpdate()
+        {
+            if (IsActive)
             {
-                SpawnVague();
-            }
-            else if (count_round >= nb_rounds)
-            {
-                DisableDoors();
+                if (countRound <= nb_rounds && countEnnemy <= 0)
+                {
+                    SpawnVague();
+                }
+                else if (countRound > nb_rounds)
+                {
+                    IsActive = false;
+                    Lm.Update(Id, 0);
+                }
             }
         }
 
@@ -69,7 +85,7 @@ namespace RogueCaml
 
         private void SpawnVague()
         {
-            count_round++;
+            countRound++;
             //Vector2 size = boxCollider.size;
             countEnnemy = ennemies_per_round;
             for (int j = 0; j < ennemies_per_round; j++)
@@ -77,6 +93,11 @@ namespace RogueCaml
                 //For now we spawn the mobs on the mobspawner.
                 PhotonNetwork.Instantiate(this.ennemyPrefab[(int)Random.Range(0f, (float)ennemyPrefab.Length)].name, transform.position, Quaternion.identity, 0).GetComponent<EnnemiesManager>().mobGenerator = this;
             }
+        }
+
+        public override void Activate(int v)
+        {
+            IsActive = true;
         }
     }
 }

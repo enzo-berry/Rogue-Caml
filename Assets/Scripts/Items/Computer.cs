@@ -1,11 +1,8 @@
 using System;
-using Photon.Pun;
 using RogueCaml;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using UnityEditorInternal;
 using UnityEngine;
-using UnityEngine.Events;
+
 
 public class Computer : ObjectCharacteristics
 {
@@ -19,21 +16,13 @@ public class Computer : ObjectCharacteristics
     // Start is called before the first frame update
     void Start()
     {
-        //audioData = GetComponent<AudioSource>();
-        //interactPanel.SetActive(false);
-        //infoPanel.SetActive(false);
+        audioData = GetComponent<AudioSource>();
     }
 
     private void Update()
     {
-        //if (isInRange && !isActive)
-        //{
-        //    interactPanel.SetActive(true);
-        //}
-        //else
-        //{
-        //    interactPanel.SetActive(false);
-        //}
+        if (isInRange && !isActive) interactPanel.SetActive(true);
+        else interactPanel.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -41,7 +30,7 @@ public class Computer : ObjectCharacteristics
         Debug.Log("Enter the fields");
         GameObject obj = other.gameObject;
         ObjectCharacteristics x = obj. GetComponent<ObjectCharacteristics>();
-        if (x.IsPlayer) 
+        if (x.IsPlayer)
         { 
             isInRange= true;
         }
