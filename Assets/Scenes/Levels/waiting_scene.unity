@@ -3104,9 +3104,14 @@ PrefabInstance:
     - target: {fileID: 7364862951977704014, guid: 51709106bec27e14794f0f342368d017, type: 3}
       propertyPath: MasterChoice
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 814660031}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51709106bec27e14794f0f342368d017, type: 3}
+--- !u!223 &814660031 stripped
+Canvas:
+  m_CorrespondingSourceObject: {fileID: 6970900125656891668, guid: 51709106bec27e14794f0f342368d017, type: 3}
+  m_PrefabInstance: {fileID: 814660030}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1083052334
 GameObject:
   m_ObjectHideFlags: 0
