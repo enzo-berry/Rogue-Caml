@@ -59,12 +59,39 @@ namespace RogueCaml
             Weapon =          0b0000000000100000,
             Projectil =       0b0000000001000000,
             Piece =           0b0000000010000000,
+            PC =              0b0000000100000000,
+            Interactable =   0b0000100000000000,
 
-            PlayerTeam =      0b0000000100000000,
+            PlayerTeam =      0b0000001000000000,
             
-            BlockProjectils = 0b0000001000000000
+            BlockProjectils = 0b0000010000000000
         }
 
+        public bool IsInteractble
+        {
+            get
+            {
+                return (characteristics & Characteristics.Interactable) == Characteristics.Interactable;
+            }
+            set
+            {
+                if (value)
+                {
+                    characteristics |= Characteristics.Interactable;
+                }
+                else
+                {
+                    characteristics &= ~Characteristics.Interactable;
+                }
+            }
+        }
+        public bool IsPC
+        {
+            get
+            {
+                return (characteristics & Characteristics.PC) == Characteristics.PC;
+            }
+        }
         public bool IsEntity
         {
             get

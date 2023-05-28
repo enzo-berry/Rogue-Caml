@@ -4,15 +4,14 @@ using UnityEditorInternal;
 using UnityEngine;
 
 
-public class Computer : ObjectCharacteristics
+public class Computer : InterractableItem
 {
     private AudioSource audioData;
     public GameObject interactPanel;
     public GameObject infoPanel;
 
-    private bool isInRange = false;
-
-    private bool isActive = false;
+    public bool isInRange = false;
+    public bool isActive = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,11 +20,13 @@ public class Computer : ObjectCharacteristics
 
     private void Update()
     {
-        if (isInRange && !isActive) interactPanel.SetActive(true);
-        else interactPanel.SetActive(false);
+        if (isInRange && !isActive) 
+            interactPanel.SetActive(true);
+        else 
+            interactPanel.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("Enter the fields");
         GameObject obj = other.gameObject;
@@ -36,7 +37,7 @@ public class Computer : ObjectCharacteristics
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    private void OnTriggerExit2D(Collider2D other)
     {
         Debug.Log("Exit the fields");
         GameObject obj = other.gameObject;
@@ -47,23 +48,33 @@ public class Computer : ObjectCharacteristics
         }
     }
 
+    public override void Interact()
+    {
+        if (isActive) 
+        {
+            HideInfoPanel();
+        }
+        else
+        {
+            ShowInfoPanel();
+
+        }
+    }
 
     private void ShowInfoPanel()
     {
-        if (infoPanel != null && isInRange && Input.GetKeyDown(KeyCode.E))
-        {
-            infoPanel.SetActive(true);
-            isActive = true;
-        }
+
+        infoPanel.SetActive(true);
+        isActive = true;
+
     }
 
     private void HideInfoPanel()
     {
-        if (infoPanel != null && Input.GetKeyDown(KeyCode.E) && isActive)
-        {
-            infoPanel.SetActive(false);
-            isActive = false;
-        }
+
+        infoPanel.SetActive(false);
+        isActive = false;
+
     }
     
     

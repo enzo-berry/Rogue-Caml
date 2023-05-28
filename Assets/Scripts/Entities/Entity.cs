@@ -156,8 +156,6 @@ namespace RogueCaml
             if (weapon)
                 GameManager.Instance.DestroyObject(weapon.gameObject);
             GameManager.Instance.DestroyObject(gameObject);
-            
-                
         }
 
         protected void Drop()
@@ -229,10 +227,11 @@ namespace RogueCaml
                     TakeDammage(entity.CollisionDammage);
                 }
             }
+        }
 
+        protected void CollisionExitManager(GameObject collisionGameObject)
+        {
 
-            //interactions with items
-            
         }
     }
 }

@@ -10211,10 +10211,18 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.0375918
       objectReference: {fileID: 0}
+    - target: {fileID: 3774701765034886682, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4972782332258735669, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
       propertyPath: interactPanel
       value: 
       objectReference: {fileID: 999917728}
+    - target: {fileID: 4972782332258735669, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
+      propertyPath: characteristics
+      value: 264
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
 --- !u!1 &1444882696

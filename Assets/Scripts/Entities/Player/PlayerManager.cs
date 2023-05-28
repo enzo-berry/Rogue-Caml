@@ -131,6 +131,11 @@ namespace RogueCaml
                 PlayerAttack();
             }
 
+            if (Input.GetKeyDown(GameManager.keybinds["interact"]) && objectsInContactWithPlayer.Count > 0)
+            {
+                HandleInteract();
+            }
+
         }
 
         void setSpriteToTransparent()
@@ -171,6 +176,24 @@ namespace RogueCaml
             weapon.Attack(direction);
         }
 
+        void HandleInteract()
+        {
+            
+            Collider2D[] ColliderThatHaveChar = objectsInContactWithPlayer.FindAll(col => col.gameObject.GetComponent<ObjectCharacteristics>()!=null).ToArray();
+
+            if (ColliderThatHaveChar.Length == 0)
+                return;
+
+            ObjectCharacteristics objChar  = ColliderThatHaveChar[0].gameObject.GetComponent<ObjectCharacteristics>();
+
+            if (objChar.IsInteractble)
+            {
+                ((InterractableItem)objChar).Interact();
+            }
+
+            
+        }
+
         void Die()
         {
             if (weaponPhotonId != 0)
@@ -208,11 +231,9 @@ namespace RogueCaml
         //Check when player is in contact with an object
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            
             //If player is mine
             if (IsMine)
             {
-                
                 CollisionManager(collision.gameObject);
 
                 //Used for equiping an Object
