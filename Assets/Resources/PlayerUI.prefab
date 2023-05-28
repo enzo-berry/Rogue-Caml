@@ -84,7 +84,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &5190316530294271426
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,9 +219,41 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 636747776272240233}
     m_Modifications:
+    - target: {fileID: 1086122186080765, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1086122186080765, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1086122186080765, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1086122186080765, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 31827261359680607, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
       propertyPath: m_SortingLayer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 442405153742603616, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 442405153742603616, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 442405153742603616, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 442405153742603616, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 661928495552409665, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
       propertyPath: m_Pivot.x
@@ -307,6 +339,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3570370916275352334, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570370916275352334, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570370916275352334, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3570370916275352334, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 6942598440227844758, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
       propertyPath: m_Name
       value: PlayerStats
@@ -322,6 +370,22 @@ PrefabInstance:
     - target: {fileID: 8623102787437838548, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
       propertyPath: m_SortingLayer
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140013390053344529, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140013390053344529, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140013390053344529, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9140013390053344529, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0757023d51c8db242b6562dbfa084c41, type: 3}
