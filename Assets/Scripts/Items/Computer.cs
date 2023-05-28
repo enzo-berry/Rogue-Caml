@@ -50,7 +50,7 @@ public class Computer : ObjectCharacteristics
 
     private void ShowInfoPanel()
     {
-        if (isInRange && Input.GetKeyDown(KeyCode.E))
+        if (infoPanel != null && isInRange && Input.GetKeyDown(KeyCode.E))
         {
             infoPanel.SetActive(true);
             isActive = true;
@@ -59,7 +59,7 @@ public class Computer : ObjectCharacteristics
 
     private void HideInfoPanel()
     {
-        if (Input.GetKeyDown(KeyCode.E) && isActive)
+        if (infoPanel != null && Input.GetKeyDown(KeyCode.E) && isActive)
         {
             infoPanel.SetActive(false);
             isActive = false;
