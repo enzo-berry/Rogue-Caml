@@ -186,7 +186,7 @@ MonoBehaviour:
   characteristics: 3
   MaxHealth: 5
   Health: 5
-  moveSpeed: 7
+  moveSpeed: 5
   attackSpeed: 1
   BonusDammage: 0
   Armor: 0
