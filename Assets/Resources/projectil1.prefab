@@ -145,7 +145,7 @@ MonoBehaviour:
   ParentWeaponPhotonId: 0
   LifeTime: 7
   ProjectilDammage: 0
-  speed: 10
+  speed: 30
 --- !u!61 &5602014818701153575
 BoxCollider2D:
   m_ObjectHideFlags: 0

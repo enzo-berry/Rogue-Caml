@@ -186,9 +186,10 @@ MonoBehaviour:
   characteristics: 3
   MaxHealth: 5
   Health: 5
-  moveSpeed: 3
+  moveSpeed: 7
   attackSpeed: 1
   BonusDammage: 0
+  Armor: 0
   collisionDammage: 1
   IsAlive: 0
   weaponPhotonId: 0

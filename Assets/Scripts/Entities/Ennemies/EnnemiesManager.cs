@@ -27,7 +27,7 @@ namespace RogueCaml
         
         public Vector2 direction;
         protected Vector2 TargetDirection;
-        protected float RandomRotation = 180f;
+        protected float RandomRotation = 120f;
 
         public GameObject WeaponPrefab;
 
@@ -52,16 +52,18 @@ namespace RogueCaml
             }
 
            
-            SetDirection();
+            
             if (weapon)
             {
                 TargetDirection = (Target.transform.position - transform.position);
                 TargetDirection.Normalize();
                 weapon.Attack(TargetDirection);
             }
-                
-            
 
+            if (waiting % 10 == 0)
+            {
+                SetDirection();
+            }
             transform.position += (Vector3)(moveSpeed * Time.fixedDeltaTime * direction);
             //rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * direction);
         }
@@ -108,7 +110,7 @@ namespace RogueCaml
             if (Distance(this.direction) < range) direction = -direction;
             direction.Normalize();
             
-            //direction = Quaternion.AngleAxis(Random.Range(-RandomRotation, RandomRotation), new Vector3(0,0,1)) * direction;
+            direction = Quaternion.AngleAxis(Random.Range(-RandomRotation, RandomRotation), new Vector3(0,0,1)) * direction;
         }
     }
 }
