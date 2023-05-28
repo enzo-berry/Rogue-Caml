@@ -16,6 +16,7 @@ namespace RogueCaml
         {
             _mechanics[0].Lm = this;
             _mechanics[0].Activate(0);
+            ReviveAllPlayers();   
         }
 
         // Update is called once per frame

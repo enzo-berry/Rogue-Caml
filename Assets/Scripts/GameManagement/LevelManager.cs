@@ -18,6 +18,8 @@ public class LevelManager : MonoBehaviour
 
             PhotonNetwork.Instantiate("Sword", new Vector3(8, -6, 0), Quaternion.identity);
             PhotonNetwork.Instantiate("Sword", new Vector3(-8, 6, 0), Quaternion.identity);
+
+            
         }
 
         //GameObject.Find("InteractPanel").SetActive(false);

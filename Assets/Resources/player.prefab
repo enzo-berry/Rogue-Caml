@@ -72,7 +72,7 @@ MonoBehaviour:
   weaponPhotonId: 0
   CameraObj: {fileID: 6930754821850059499}
   computer: {fileID: 3582383605393781203, guid: 0c114a4e15ec2e542941f8a227c07995, type: 3}
-  UI: {fileID: 0}
+  UI: {fileID: 7131856804197596145}
 --- !u!212 &6340805809113597238
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -503,5 +503,10 @@ PrefabInstance:
 --- !u!224 &11963201664159019 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 636747776272240233, guid: 18a37bfc5f6a2a6478e0e5710414da9d, type: 3}
+  m_PrefabInstance: {fileID: 647584643698885442}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &7131856804197596145 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7639757771336710323, guid: 18a37bfc5f6a2a6478e0e5710414da9d, type: 3}
   m_PrefabInstance: {fileID: 647584643698885442}
   m_PrefabAsset: {fileID: 0}

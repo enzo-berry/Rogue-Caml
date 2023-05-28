@@ -138,6 +138,19 @@ namespace RogueCaml
             GameManager.Instance.SwitchRoom($"level_{GameManager.Level}");
         }
 
+        [PunRPC]
+        private void Revive()
+        {
+            //get player instance
+            PlayerManager ownedPlayer = PlayerManager.OwnedPlayerInstance.GetComponent<PlayerManager>();
+            ownedPlayer.Health = ownedPlayer.MaxHealth;
+        }
+
+        [PunRPC]
+        private void LostGame()
+        {
+            LeaveRoom();
+        }
         #endregion
 
     }

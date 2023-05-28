@@ -122,6 +122,7 @@ namespace RogueCaml
             Application.Quit();
         }
 
+
         void FixedUpdate()
         {
             if (NetworkManager.Instance == null)

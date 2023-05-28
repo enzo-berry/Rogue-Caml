@@ -21,9 +21,10 @@ namespace RogueCaml
 
         private Camera cam => CameraObj.GetComponent<Camera>(); 
         private List<Collider2D> objectsInContactWithPlayer = new List<Collider2D>();
+        private SpriteRenderer sr;
+        private int counter = 0;
 
         public GameObject UI;
-
         #region Unity Callbacks
 
         //making player object permanent
@@ -46,6 +47,7 @@ namespace RogueCaml
         //Setting player infos
         public void Start()
         {
+            sr = GetComponent<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
             if (!IsMine)
             {
@@ -73,14 +75,27 @@ namespace RogueCaml
 
         void FixedUpdate()
         {
-            if (IsMine && IsAlive && !LevelManager.gameisPaused)
+            if (counter % 25 == 0)
+            {
+                if (IsAlive)
+                    setSpriteToNormalTransparence();
+                else
+                    setSpriteToTransparent();
+            }
+
+
+            if (!IsMine)
+                return;
+
+            if (IsAlive && !LevelManager.gameisPaused)
             {
                 rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * movement);
             }
-        }
 
-        
-        
+
+
+
+        }
         
         void ProcessInputs()
         {
@@ -116,6 +131,26 @@ namespace RogueCaml
                 PlayerAttack();
             }
 
+        }
+
+        void setSpriteToTransparent()
+        {
+            sr.material = new Material(sr.material);
+
+            // Set the transparency value to 50% (0.5)
+            Color spriteColor = sr.material.color;
+            spriteColor.a = 0.5f;
+            sr.material.color = spriteColor;
+        }
+
+        void setSpriteToNormalTransparence()
+        {
+            sr.material = new Material(sr.material);
+
+            // Set the transparency value to 50% (0.5)
+            Color spriteColor = sr.material.color;
+            spriteColor.a = 1f;
+            sr.material.color = spriteColor;
         }
 
         #endregion

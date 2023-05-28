@@ -26,4 +26,9 @@ public class Lvl2manager : LvlMechanique
             }
         }
     }
+
+    private void Start()
+    {
+        ReviveAllPlayers();
+    }
 }
