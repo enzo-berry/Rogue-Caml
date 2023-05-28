@@ -98,6 +98,7 @@ namespace RogueCaml
         public override void Activate(int v)
         {
             IsActive = true;
+            Debug.Log($"Pylon activated");
         }
     }
 }

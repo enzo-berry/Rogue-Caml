@@ -11,6 +11,7 @@ public class Lvl2manager : LvlMechanique
 
     public override void Update(int Id, int value)
     {
+        Debug.Log($"mangerActivate by id:{Id}");
         if (photonView.IsMine)
         {
             switch (Id)

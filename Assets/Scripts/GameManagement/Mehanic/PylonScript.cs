@@ -54,5 +54,8 @@ public class PylonScript : Mechanic, IPunObservable
         }
     }
 
-    public override void Activate(int v) { }
+    public override void Activate(int v)
+    {
+        Debug.Log($"Pylon activated");
+    }
 }
