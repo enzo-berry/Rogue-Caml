@@ -15,16 +15,10 @@ namespace RogueCaml
 
         void Start()
         {
-            
-
             if (PhotonNetwork.IsMasterClient)
             {
-                if (photonView.IsMine)
-                {
-                    _mechanics[0].Lm = this;
-                    _mechanics[0].Activate(0);
-                
-                }
+                _mechanics[0].Lm = this;
+                _mechanics[0].Activate(0);
                 ReviveAllPlayers();
             }
         }
