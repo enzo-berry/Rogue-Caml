@@ -28,11 +28,16 @@ public class Computer : InterractableItem
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        
         Debug.Log("Enter the fields");
         GameObject obj = other.gameObject;
-        ObjectCharacteristics x = obj. GetComponent<ObjectCharacteristics>();
+        ObjectCharacteristics x = obj.GetComponent<ObjectCharacteristics>();
+        if (x == null)
+            return;
         if (x.IsPlayer)
-        { 
+        {
+            if (!((PlayerManager)x).IsMine)
+                return;
             isInRange= true;
         }
     }
@@ -42,8 +47,13 @@ public class Computer : InterractableItem
         Debug.Log("Exit the fields");
         GameObject obj = other.gameObject;
         ObjectCharacteristics x = obj.GetComponent<ObjectCharacteristics>();
+        if (x == null)
+            return;
+
         if (x.IsPlayer)
         {
+            if (!((PlayerManager)x).IsMine)
+                return;
             isInRange = false;
         }
     }
