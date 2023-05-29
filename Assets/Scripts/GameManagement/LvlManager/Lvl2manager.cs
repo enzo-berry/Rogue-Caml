@@ -12,7 +12,7 @@ public class Lvl2manager : LvlMechanique
     public override void UpdateMe(int Id, int value)
     {
         Debug.Log($"Activate by id:{Id}");
-        if (photonView.IsMine)
+        if (PhotonNetwork.IsMasterClient)
         {
             switch (Id)
             {
