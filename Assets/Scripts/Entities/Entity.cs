@@ -175,8 +175,8 @@ namespace RogueCaml
         public virtual void TakeDammage(int amount)
         {
             Debug.Log("Entity took " + amount.ToString() + " damage");
-            if(Health > 0)
-                Health -= amount;
+            if(Health > 0 && amount > Armor)
+                Health -= amount - Armor;
         }
 
 
