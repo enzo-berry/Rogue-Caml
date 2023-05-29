@@ -21,7 +21,7 @@ public class Lvl2manager : LvlMechanique
                     break;
 
                 case 1: //mobGenerator
-                    PhotonNetwork.Instantiate(ball.name, transform.position, Quaternion.identity);
+                    GameManager.Instance.NextLevel();
                     break;
                 
                 case 2: //doors
