@@ -10,6 +10,7 @@ namespace RogueCaml
     {
         // Start is called before the first frame update
 
+        public GameObject lvl3manager;
         public float coolDown = 100.0f;
         private float last = 0;
         
@@ -112,8 +113,9 @@ namespace RogueCaml
         {
             if (IsMine)
             {
+                Lvl3manager lvlman = lvl3manager.GetComponent<Lvl3manager>();
+                lvlman.endgame();
                 GameManager.Instance.DestroyObject(this._pistol.gameObject);
-            
                 GameManager.Instance.DestroyObject(this.gameObject);
             }
         }
