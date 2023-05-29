@@ -10,7 +10,6 @@ using UnityEngine.UIElements;
 using Unity.VisualScripting;
 using Debug = UnityEngine.Debug;
 
-
 /*ToRecode:
  * use RPC for attack rather than OnPhotonSerializeView.
  * RPC : Better for ponctual events and syncing actions: ex: sword attacking
@@ -26,6 +25,8 @@ namespace RogueCaml
         //unsynced because only owner handles attacking
         private int sens;
         private Vector2 direction = new Vector2(0f, 0f);
+        private AudioSource audioData;
+        
 
 
         
@@ -46,6 +47,7 @@ namespace RogueCaml
         {
             spriteRenderer = GetComponent<SpriteRenderer>();
             isAttacking = false;
+            audioData = GetComponent<AudioSource>();
         }
 
         void Update()
@@ -95,6 +97,7 @@ namespace RogueCaml
         public override void Attack(Vector2 direction)
         {
             Debug.Log("Sword attacking !");
+            audioData.Play();
             //checking if it mine
             if (photonView.IsMine && !isAttacking)
             {

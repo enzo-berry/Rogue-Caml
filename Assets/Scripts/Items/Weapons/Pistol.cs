@@ -13,6 +13,7 @@ namespace RogueCaml
         
         
         private int timeSinceLastShot = 0;
+        private AudioSource audioData;
 
         void Start()
         {
@@ -20,6 +21,8 @@ namespace RogueCaml
             characteristics = Characteristics.Weapon;
 
             Range = ProjectilePrefab.GetComponent<Projectil>().speed * 0.5f;
+
+            audioData = GetComponent<AudioSource>();
         }
 
         private void Update()
@@ -65,6 +68,7 @@ namespace RogueCaml
         {
             if (photonView.IsMine && timeSinceLastShot >= cooldown)
             {
+                audioData.Play();
                 timeSinceLastShot = 0;
                 if(Owner != null)
                     transform.position = Owner.transform.position + (Vector3)direction;

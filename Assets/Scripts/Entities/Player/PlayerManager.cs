@@ -25,6 +25,8 @@ namespace RogueCaml
         private SpriteRenderer sr;
         private int counter = 0;
 
+        private AudioSource audioData;
+
         public GameObject UI;
         #region Unity Callbacks
 
@@ -50,6 +52,7 @@ namespace RogueCaml
         {
             sr = GetComponent<SpriteRenderer>();
             rb = GetComponent<Rigidbody2D>();
+            audioData = GetComponent<AudioSource>();
             if (!IsMine)
             {
                 CameraObj.SetActive(false);
@@ -201,6 +204,7 @@ namespace RogueCaml
 
         void Die()
         {
+            audioData.Play();
             if (weaponPhotonId != 0)
             {
                 Drop();
