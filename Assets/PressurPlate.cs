@@ -19,7 +19,7 @@ namespace RogueCaml
         private void OnTriggerEnter2D(Collider2D col)
         {
             
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient && Activable)
             {
                 ObjectCharacteristics objectCharacteristics = col.gameObject.GetComponent<ObjectCharacteristics>();
                 if (objectCharacteristics.IsPlayer)

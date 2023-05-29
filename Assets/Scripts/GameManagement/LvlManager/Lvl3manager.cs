@@ -18,11 +18,14 @@ namespace RogueCaml
             {
                 switch (Id)
                 {
-                    case 0:
-                        _mechanics[2].Activate(0);
+                    case 0: // doorWall0
                         break;
 
-                    case 1:
+                    case 1: // doorWall1
+                        break;
+                    
+                    case 2 or 3:
+                        _mechanics[0].Activate(0);
                         break;
                 }
             }
