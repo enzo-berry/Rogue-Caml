@@ -16,12 +16,19 @@ public class Lvl2manager : LvlMechanique
         {
             switch (Id)
             {
-                case 0:
+                case 0: //pylon
                     _mechanics[2].Activate(0);
                     break;
-            
-                case 1:
+
+                case 1: //mobGenerator
                     PhotonNetwork.Instantiate(ball.name, transform.position, Quaternion.identity);
+                    break;
+                
+                case 2: //doors
+                    break;
+                
+                case 3: //PressurPlate
+                    _mechanics[1].Activate(0); //active le mob generator
                     break;
             }
         }
