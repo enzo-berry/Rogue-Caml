@@ -185,6 +185,67 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed62ebb4bba527e46a5e79bff34f8e09, type: 3}
+--- !u!1001 &239328193
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2097732365749384529, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_Name
+      value: enemy_flying
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097732365749384556, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097732365749384556, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -4.12066
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097732365749384556, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.96024716
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097732365749384556, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097732365749384556, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097732365749384556, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097732365749384556, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097732365749384556, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097732365749384556, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097732365749384556, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2097732365749384556, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7603581535792996557, guid: c23c42790771206439ae7ea8da463a53, type: 3}
+      propertyPath: sceneViewId
+      value: 2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: c23c42790771206439ae7ea8da463a53, type: 3}
 --- !u!1 &321473635
 GameObject:
   m_ObjectHideFlags: 0
@@ -244,7 +305,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2218572463168737922, guid: 4694ac4939a22d246a7447fc19432d42, type: 3}
       propertyPath: sceneViewId
-      value: 4
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 2218572463168737933, guid: 4694ac4939a22d246a7447fc19432d42, type: 3}
       propertyPath: m_RootOrder
@@ -1581,7 +1642,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 312814932455985313, guid: 922a42faecfb076408d481865f7d3c64, type: 3}
       propertyPath: sceneViewId
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2206371597328265549, guid: 922a42faecfb076408d481865f7d3c64, type: 3}
       propertyPath: m_RootOrder
@@ -12649,7 +12710,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6251351752802017667, guid: 2f2e3f06dd8d2dd488ef587ee442b957, type: 3}
       propertyPath: sceneViewId
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 6251351752802017676, guid: 2f2e3f06dd8d2dd488ef587ee442b957, type: 3}
       propertyPath: m_RootOrder

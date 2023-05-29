@@ -241,10 +241,9 @@ MonoBehaviour:
   BonusDammage: 0
   Armor: 0
   collisionDammage: 0
-  IsAlive: 0
   weaponPhotonId: 0
   range: 0
   Target: {fileID: 0}
   mobGenerator: {fileID: 0}
   direction: {x: 0, y: 0}
-  WeaponPrefab: {fileID: 8885361513575238041, guid: f72f1a8852c5972498f144e245564ad0, type: 3}
+  WeaponPrefab: {fileID: 8885361513575238041, guid: 21f2f602118487743859c2e35d8caf35, type: 3}
