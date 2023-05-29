@@ -12620,6 +12620,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: LevelManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5403667008167576406, guid: 8d2b797233f89f540adf4ad8cea7e6ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5806876610522584459, guid: 8d2b797233f89f540adf4ad8cea7e6ff, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 0
