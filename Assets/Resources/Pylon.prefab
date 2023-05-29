@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 575443477305468956}
   - component: {fileID: 7157497030145170729}
-  - component: {fileID: 4271179788692127109}
-  - component: {fileID: 4289549234568701264}
   - component: {fileID: 5793964442240100328}
   - component: {fileID: 7144148102351395656}
   - component: {fileID: 276958771221727841}
@@ -92,36 +90,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!58 &4271179788692127109
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4508955118620527180}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.02982213, y: 0}
-  serializedVersion: 2
-  m_Radius: 3
---- !u!114 &4289549234568701264
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4508955118620527180}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1338ce75ec743119e2a82543b6a16f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characteristics: 0
-  action: {fileID: 0}
 --- !u!114 &5793964442240100328
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,7 +109,6 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
-  - {fileID: 4289549234568701264}
   - {fileID: 7144148102351395656}
   - {fileID: 276958771221727841}
   sceneViewId: 0
@@ -163,16 +130,16 @@ MonoBehaviour:
   ShowParameterInspector: 1
   m_SynchronizeParameters:
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: green
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: blue
   - Type: 4
-    SynchronizeType: 0
+    SynchronizeType: 2
     Name: red
   m_SynchronizeLayers:
-  - SynchronizeType: 0
+  - SynchronizeType: 2
     LayerIndex: 0
 --- !u!114 &276958771221727841
 MonoBehaviour:

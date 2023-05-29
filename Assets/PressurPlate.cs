@@ -9,12 +9,17 @@ namespace RogueCaml
 {
     public class PressurPlate : Mechanic
     {
-        public override void Activate(int v) { }
+        private bool Activable = true;
+
+        public override void Activate(int v)
+        {
+            Activable = v != 0;
+        }
 
         private void OnTriggerEnter2D(Collider2D col)
         {
             
-            if (PhotonNetwork.IsMasterClient)
+            if (PhotonNetwork.IsMasterClient && Activable)
             {
                 ObjectCharacteristics objectCharacteristics = col.gameObject.GetComponent<ObjectCharacteristics>();
                 if (objectCharacteristics.IsPlayer)

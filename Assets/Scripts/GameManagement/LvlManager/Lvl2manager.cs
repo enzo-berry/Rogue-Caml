@@ -28,6 +28,7 @@ public class Lvl2manager : LvlMechanique
                     break;
                 
                 case 3: //PressurPlate
+                    _mechanics[3].Activate(0);
                     _mechanics[1].Activate(0); //active le mob generator
                     break;
             }
