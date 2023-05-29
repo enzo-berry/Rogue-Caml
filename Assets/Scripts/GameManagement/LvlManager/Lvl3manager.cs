@@ -24,26 +24,8 @@ namespace RogueCaml
                     case 1: // doorWall1
                         break;
                     
-                    case 2 or 3: //PP => D0
+                    case 2 or 3:
                         _mechanics[0].Activate(0);
-                        break;
-                    
-                    case 4: // doorWall2
-                        break;
-                    
-                    case 5: // doorWall3
-                        break;
-                    
-                    case 6 or 7: //PP => D1
-                        _mechanics[1].Activate(0);
-                        break;
-                    
-                    case 8 or 9: //PP => D2
-                        _mechanics[4].Activate(0);
-                        break;
-                    
-                    case 10: //PP => D3
-                        _mechanics[5].Activate(0);
                         break;
                 }
             }
@@ -60,6 +42,11 @@ namespace RogueCaml
                 }
                 ReviveAllPlayers();
             }
+        }
+
+        private void FixedUpdate()
+        {
+
         }
 
         public void endgame()
