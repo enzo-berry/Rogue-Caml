@@ -27,6 +27,11 @@ namespace RogueCaml
             }
         }
 
-    //    // Update is called once per frame
+        private void OnDestroy()
+        {
+            PhotonNetwork.Destroy(weapon.gameObject);
+        }
+
+        //    // Update is called once per frame
     }
 }
