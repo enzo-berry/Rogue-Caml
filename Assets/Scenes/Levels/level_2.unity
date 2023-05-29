@@ -418,6 +418,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3054798592590689040, guid: f72f1a8852c5972498f144e245564ad0, type: 3}
+      propertyPath: characteristics
+      value: 544
+      objectReference: {fileID: 0}
     - target: {fileID: 3440135791069381650, guid: f72f1a8852c5972498f144e245564ad0, type: 3}
       propertyPath: sceneViewId
       value: 9
@@ -9018,6 +9022,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3054798592590689040, guid: f72f1a8852c5972498f144e245564ad0, type: 3}
+      propertyPath: characteristics
+      value: 544
+      objectReference: {fileID: 0}
     - target: {fileID: 3440135791069381650, guid: f72f1a8852c5972498f144e245564ad0, type: 3}
       propertyPath: sceneViewId
       value: 11
@@ -10024,6 +10032,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3054798592590689040, guid: f72f1a8852c5972498f144e245564ad0, type: 3}
+      propertyPath: characteristics
+      value: 544
+      objectReference: {fileID: 0}
     - target: {fileID: 3440135791069381650, guid: f72f1a8852c5972498f144e245564ad0, type: 3}
       propertyPath: sceneViewId
       value: 12
@@ -11034,6 +11046,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3054798592590689040, guid: f72f1a8852c5972498f144e245564ad0, type: 3}
+      propertyPath: characteristics
+      value: 544
+      objectReference: {fileID: 0}
     - target: {fileID: 3440135791069381650, guid: f72f1a8852c5972498f144e245564ad0, type: 3}
       propertyPath: sceneViewId
       value: 10
@@ -12115,7 +12131,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8411331027121240931, guid: 44c8b6d2282474f4c8deafda4344161b, type: 3}
       propertyPath: nb_rounds
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -8411331027121240931, guid: 44c8b6d2282474f4c8deafda4344161b, type: 3}
       propertyPath: ennemies_per_round
