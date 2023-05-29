@@ -17,14 +17,6 @@ namespace RogueCaml
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
-        /*
-        //musics and sound settings
-        public AudioSource mainMenu;
-        public AudioSource waitRoom;
-        public AudioSource firstLevel;
-        public AudioSource secondLevel;
-        public AudioSource thirdLevel;
-        */
 
         //stats
         public static int Level = 0;
