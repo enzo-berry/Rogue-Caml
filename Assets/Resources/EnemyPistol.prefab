@@ -8,7 +8,6 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-<<<<<<< Updated upstream:Assets/Resources/EnemyPistol.prefab
   - component: {fileID: 8885361513575238040}
   - component: {fileID: 7678275204727226912}
   - component: {fileID: 3054798592590689040}
@@ -18,18 +17,6 @@ GameObject:
   m_Layer: 0
   m_Name: EnemyPistol
   m_TagString: awn
-=======
-  - component: {fileID: 265399402673360440}
-  - component: {fileID: 1139818103278890698}
-  - component: {fileID: 7505647739000594571}
-  - component: {fileID: 1736459556655534131}
-  - component: {fileID: 7103827504360908251}
-  - component: {fileID: 7996943755699258525}
-  - component: {fileID: 7320684547030427988}
-  m_Layer: 2
-  m_Name: baseDoor
-  m_TagString: Untagged
->>>>>>> Stashed changes:Assets/Resources/baseDoor.prefab
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -42,30 +29,19 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8885361513575238041}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-<<<<<<< Updated upstream:Assets/Resources/EnemyPistol.prefab
   m_LocalPosition: {x: -2.6603, y: 0.1193, z: 0}
   m_LocalScale: {x: 0.49999997, y: 0.5, z: 3}
-=======
-  m_LocalPosition: {x: -8.509, y: 10.524, z: 0}
-  m_LocalScale: {x: 1.0078064, y: 1.1984205, z: 1}
->>>>>>> Stashed changes:Assets/Resources/baseDoor.prefab
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< Updated upstream:Assets/Resources/EnemyPistol.prefab
 --- !u!212 &7678275204727226912
 SpriteRenderer:
-=======
---- !u!61 &1139818103278890698
-BoxCollider2D:
->>>>>>> Stashed changes:Assets/Resources/baseDoor.prefab
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream:Assets/Resources/EnemyPistol.prefab
   m_GameObject: {fileID: 8885361513575238041}
   m_Enabled: 1
   m_CastShadows: 0
@@ -113,29 +89,6 @@ BoxCollider2D:
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &3054798592590689040
-=======
-  m_GameObject: {fileID: 7497693027246719881}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.28708437, y: -0.59324193}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1.6, y: 1.6}
-    newSize: {x: 1.6, y: 1.6}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.9841823, y: 0.4046092}
-  m_EdgeRadius: 0
---- !u!114 &7505647739000594571
->>>>>>> Stashed changes:Assets/Resources/baseDoor.prefab
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -189,7 +142,6 @@ MonoBehaviour:
   OwnershipTransfer: 1
   observableSearch: 2
   ObservedComponents:
-<<<<<<< Updated upstream:Assets/Resources/EnemyPistol.prefab
   - {fileID: 3054798592590689040}
   - {fileID: 1485729102102850510}
   sceneViewId: 0
@@ -197,20 +149,10 @@ MonoBehaviour:
   isRuntimeInstantiated: 0
 --- !u!61 &2179180430500274453
 BoxCollider2D:
-=======
-  - {fileID: 7505647739000594571}
-  - {fileID: 7103827504360908251}
-  sceneViewId: 6
-  InstantiationId: 0
-  isRuntimeInstantiated: 0
---- !u!212 &7320684547030427988
-SpriteRenderer:
->>>>>>> Stashed changes:Assets/Resources/baseDoor.prefab
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-<<<<<<< Updated upstream:Assets/Resources/EnemyPistol.prefab
   m_GameObject: {fileID: 8885361513575238041}
   m_Enabled: 1
   m_Density: 1
@@ -231,51 +173,3 @@ SpriteRenderer:
   serializedVersion: 2
   m_Size: {x: 2.730906, y: 1.9055153}
   m_EdgeRadius: 0
-=======
-  m_GameObject: {fileID: 7497693027246719881}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
-  m_Sprite: {fileID: -1237721349, guid: 62b65e1e2880c554ab4af4104e0e2975, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 1.6, y: 1.6}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
->>>>>>> Stashed changes:Assets/Resources/baseDoor.prefab
