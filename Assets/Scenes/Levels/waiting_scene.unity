@@ -3071,15 +3071,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3025482283113818624, guid: 51709106bec27e14794f0f342368d017, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3025482283113818624, guid: 51709106bec27e14794f0f342368d017, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3025482283113818624, guid: 51709106bec27e14794f0f342368d017, type: 3}
       propertyPath: m_AnchorMin.x
-      value: 0.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5450327104378341886, guid: 51709106bec27e14794f0f342368d017, type: 3}
       propertyPath: m_AnchorMax.x
@@ -3099,7 +3099,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6224873413252430462, guid: 51709106bec27e14794f0f342368d017, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7364862951977704014, guid: 51709106bec27e14794f0f342368d017, type: 3}
       propertyPath: MasterChoice
