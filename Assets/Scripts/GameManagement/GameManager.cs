@@ -65,6 +65,7 @@ namespace RogueCaml
             keybinds.Add("pickup", KeyCode.LeftControl);
             keybinds.Add("drop", KeyCode.A);
             keybinds.Add("interact", KeyCode.E);
+            keybinds.Add("nextlevel", KeyCode.N);
 
         }
 

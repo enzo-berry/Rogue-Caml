@@ -136,6 +136,11 @@ namespace RogueCaml
             {
                 HandleInteract();
             }
+
+            if (Input.GetKeyDown(KeyCode.N))
+            {
+                GameManager.Instance.NextLevel();
+            }
         }
 
         void setSpriteToTransparent()
