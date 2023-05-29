@@ -149,9 +149,6 @@ namespace RogueCaml
             {
                 Kill();
             }
-
-            if (weapon == null)
-                weaponPhotonId = 0;
         }
 
         public virtual void Kill()
