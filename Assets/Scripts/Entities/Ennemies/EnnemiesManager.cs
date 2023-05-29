@@ -42,6 +42,9 @@ namespace RogueCaml
         
         void FixedUpdate()
         {
+            if (!PhotonNetwork.IsMasterClient)
+                return;
+
             waiting++;
             if(waiting == 20)
             {

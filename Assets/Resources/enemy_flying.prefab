@@ -246,4 +246,4 @@ MonoBehaviour:
   Target: {fileID: 0}
   mobGenerator: {fileID: 0}
   direction: {x: 0, y: 0}
-  WeaponPrefab: {fileID: 5259063025289884183, guid: ac726bd35ce337545874a61ac30431c2, type: 3}
+  WeaponPrefab: {fileID: 8885361513575238041, guid: 66abf11fa68992d49a17b9a1d1e221c7, type: 3}
