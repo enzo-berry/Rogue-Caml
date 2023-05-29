@@ -35,11 +35,10 @@ namespace RogueCaml
                 PlayerManager[] players = FindObjectsOfType<PlayerManager>();
                 players = Array.FindAll(players, p => p.IsAlive);
 
-                if (players.Length == 0)
+                if (players.Length == 0 && PhotonNetwork.IsMasterClient)
                 {
-                    //means all players died
-                    //send lost RPC
-                    NetworkManager.Instance.photonView.RPC("LostGame", RpcTarget.All);
+                    //NetworkManager.Instance.photonView.RPC("LostGame", RpcTarget.All);
+                    PhotonNetwork.LoadLevel("looseScene");
                 }
             }
             cooldownChecking++;
