@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Photon.Pun;
 using UnityEngine;
 
 namespace RogueCaml
@@ -14,9 +15,18 @@ namespace RogueCaml
 
         void Start()
         {
-            _mechanics[0].Lm = this;
-            _mechanics[0].Activate(0);
-            ReviveAllPlayers();   
+            
+
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (photonView.IsMine)
+                {
+                    _mechanics[0].Lm = this;
+                    _mechanics[0].Activate(0);
+                
+                }
+                ReviveAllPlayers();
+            }
         }
 
         // Update is called once per frame

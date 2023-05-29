@@ -11,13 +11,13 @@ public class Lvl2manager : LvlMechanique
 
     public override void UpdateMe(int Id, int value)
     {
-        Debug.Log($"mangerActivate by id:{Id}");
+        Debug.Log($"Activate by id:{Id}");
         if (photonView.IsMine)
         {
             switch (Id)
             {
                 case 0:
-                    _mechanics[1].Activate(0);
+                    _mechanics[2].Activate(0);
                     break;
             
                 case 1:
@@ -29,6 +29,16 @@ public class Lvl2manager : LvlMechanique
 
     private void Start()
     {
-        ReviveAllPlayers();
+        
+
+        if (PhotonNetwork.IsMasterClient)
+        {
+            for (int i = 0; i < _mechanics.Length; i++)
+            {
+                _mechanics[i].Id = i;
+                _mechanics[i].Lm = this;
+            }
+            ReviveAllPlayers();
+        }
     }
 }
