@@ -53,28 +53,25 @@ public class Computer : InterractableItem
         if (isActive) 
         {
             HideInfoPanel();
+            
         }
         else
         {
             ShowInfoPanel();
-
         }
     }
 
     private void ShowInfoPanel()
     {
-
+        audioData.Play();
         infoPanel.SetActive(true);
         isActive = true;
-
     }
 
     private void HideInfoPanel()
     {
-
         infoPanel.SetActive(false);
         isActive = false;
-
     }
     
     
