@@ -1,4 +1,6 @@
 # Rogue-Caml
+A Unity game coded in C# for our S2 project at Epita.
+
 
 ## versions : unity et package
 **Unity :** v2021.3.16f1 (version LTS)
